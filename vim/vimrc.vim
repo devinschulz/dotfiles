@@ -2,24 +2,24 @@
 " General Config
 " ----------------------------------------------------------------------------
 
-set ruler                      "Ruler
-set backspace=indent,eol,start "Allow backspace in insert mode
-set history=1000               "lots of history
-set showcmd                    "Show incomplete cmds down the bottom
-set showmode                   "Set the current mode in the bottom
-set autoread                   "Reload files changed outside vim
+set ruler                      " ruler
+set backspace=indent,eol,start " allow backspace in insert mode
+set history=1000               " lots of history
+set showcmd                    " show incomplete cmds down the bottom
+set showmode                   " set the current mode in the bottom
+set autoread                   " reload files changed outside vim
 set nocompatible
-set noeol                      "no new line at end of file
-set nostartofline              "don't reset cursor to start of line when moving
-set incsearch                  "dynamically highlight as pattern is typed
-set scrolloff=3                "start scrolling 3 lines before the horiztonal window border
-set relativenumber             "relative line numbers instead of absolute
-set noerrorbells               "No beeps
-set nobackup                   "Don't create annoying backup files
+set noeol                      " no new line at end of file
+set nostartofline              " don't reset cursor to start of line when moving
+set incsearch                  " dynamically highlight as pattern is typed
+set scrolloff=3                " start scrolling 3 lines before the horiztonal window border
+set relativenumber             " relative line numbers instead of absolute
+set noerrorbells               " no beeps
+set nobackup                   " don't create annoying backup files
 
-set encoding=utf-8             " Set default encoding to UTF-8
-set autoread                   " Automatically reread changed files without asking
-set gdefault                   " Use `g` flag by default with :s/foo/bar
+set encoding=utf-8             " set default encoding to UTF-8
+set autoread                   " automatically reread changed files without asking
+set gdefault                   " use `g` flag by default with :s/foo/bar
 
 " ----------------------------------------------------------------------------
 " Display
@@ -29,8 +29,8 @@ set title                      " show the file name i the window titlebar
 set novisualbell               " no beeps or flashes
 set number                     " show line numbers
 set numberwidth=5
-set textwidth=80
-set nowrap                     " don't wrap long lines"
+set textwidth=80               " line length
+set nowrap                     " don't wrap long lines
 set cursorline
 set formatoptions=qrn1
 set synmaxcol=512              " don't syntax long lines
@@ -59,7 +59,7 @@ let g:mapleader = ","
 " pros: prevent editing stale copy of same file in two vim instances
 set swapfile
 
-"set directory='~.vim/.tmp/swap//'
+" set the swap directory'
 set directory=$HOME/.vim/.tmp/swap//
 
 " ----------------------------------------------------------------------------
@@ -70,8 +70,8 @@ set splitbelow                 " split below for horizontal splits
 set splitright                 " split right for vertical splits
 set fillchars=vert:│           " vertical sep between windows (unicode)
 
-" This makes vim act like all other editors, buffers can
-" exist in the background without being in a window.
+" This makes vim act like all other editors, buffers can exist in the
+" background without being in a window.
 " http://items.sjbach.com/319/configuring-vim-right
 set hidden
 
@@ -121,9 +121,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ernstvanderlinden/vim-coldfusion'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdtree'
-"Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdcommenter'
-"Plug 'mtscout6/syntastic-local-eslint.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'groenewege/vim-less'
 Plug 'ntpeters/vim-better-whitespace'
@@ -192,34 +190,6 @@ let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠️'
 
 " ----------------------------------------------------------------------------
-" Plugin: Syntastic
-" ----------------------------------------------------------------------------
-
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_loc_list_height = 5
-"let g:syntastic_auto_loc_list = 0
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 1
-"let g:syntastic_javascript_checkers = ['eslint']
-
-"let g:syntastic_error_symbol = '❌'
-"let g:syntastic_style_error_symbol = '⁉️'
-"let g:syntastic_warning_symbol = '⚠️'
-"let g:syntastic_style_warning_symbol = '💩'
-
-"" use the project specific binary of eslint instead of global
-"let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
-
-"highlight link SyntasticErrorSign SignColumn
-"highlight link SyntasticWarningSign SignColumn
-"highlight link SyntasticStyleErrorSign SignColumn
-"highlight link SyntasticStyleWarningSign SignColumn
-
-" ----------------------------------------------------------------------------
 " Plugin: CtrlP
 " ----------------------------------------------------------------------------
 
@@ -277,9 +247,4 @@ fun! <SID>StripTrailingWhitespaces()
   call cursor(l, c)
 endfun
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
-
-
-" ----------------------------------------------------------------------------
-" Language: JavaScript and JSON
-" ----------------------------------------------------------------------------
 
