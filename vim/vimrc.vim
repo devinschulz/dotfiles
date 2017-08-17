@@ -115,7 +115,7 @@ Plug 'dracula/vim'
 Plug 'tpope/vim-fugitive'
 Plug 'fatih/vim-go'
 Plug 'Raimondi/delimitMate' " automatic closing of quotes, parenthesis, brackets, etc
-Plug 'valloric/youcompleteme'
+Plug 'valloric/youcompleteme', { 'do': './install.py --all' }
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ernstvanderlinden/vim-coldfusion'
