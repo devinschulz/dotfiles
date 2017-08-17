@@ -208,7 +208,6 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*
 
 syntax enable
 set background=dark
-colorscheme one
 
 if (has('termguicolors'))
 	set termguicolors
@@ -221,6 +220,8 @@ endif
 " set Vim-specific sequences for RGB colors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+colorscheme one
 
 " ----------------------------------------------------------------------------
 " Indenting and white space
