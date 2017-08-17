@@ -132,7 +132,6 @@ Plug 'gregsexton/MatchTag'                   " highlight matching HTML tag
 Plug 'rakr/vim-one'
 Plug 'mileszs/ack.vim'
 Plug 'w0rp/ale'                              " async lint engine
-Plug 'flowtype/vim-flow'
 
 call plug#end()
 
@@ -159,7 +158,10 @@ let NERDTreeShowHidden = 1
 
 let NERDTreeIgnore = ['\.DS_Store$']
 
-" vim-jsx
+" ----------------------------------------------------------------------------
+" Plugin: jsx
+" ----------------------------------------------------------------------------
+
 let g:jsx_ext_required = 0               " Allow JSX in normal JS files
 
 " ----------------------------------------------------------------------------
