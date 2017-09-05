@@ -132,6 +132,7 @@ Plug 'gregsexton/MatchTag'                   " highlight matching HTML tag
 Plug 'rakr/vim-one'
 Plug 'mileszs/ack.vim'
 Plug 'w0rp/ale'                              " async lint engine
+Plug 'andrewradev/splitjoin.vim'
 
 call plug#end()
 
