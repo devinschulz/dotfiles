@@ -136,6 +136,9 @@ Plug 'rakr/vim-one'
 Plug 'mileszs/ack.vim'
 Plug 'w0rp/ale'                              " async lint engine
 Plug 'andrewradev/splitjoin.vim'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'fleischie/vim-styled-components'
 
 call plug#end()
 
