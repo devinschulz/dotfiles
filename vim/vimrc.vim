@@ -85,6 +85,9 @@ set nostartofline               " don't jump to col1 on switch buffer
 command! -nargs=* -complete=help Help vertical belowright help <args>
 autocmd FileType help wincmd L
 
+" Do not show stupid q: window
+map q: :q
+
 " ----------------------------------------------------------------------------
 " Match and search
 " ----------------------------------------------------------------------------
