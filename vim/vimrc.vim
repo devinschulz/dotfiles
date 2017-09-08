@@ -102,6 +102,16 @@ set smartcase
 " move the cursor to the next search result while typing
 set incsearch
 
+" Ignore searching these directories/files
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*
+
+" ag search
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+endif
+
 " ----------------------------------------------------------------------------
 " Plugins
 " ----------------------------------------------------------------------------
