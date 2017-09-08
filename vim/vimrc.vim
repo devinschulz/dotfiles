@@ -138,6 +138,8 @@ Plug 'w0rp/ale'                              " async lint engine
 Plug 'andrewradev/splitjoin.vim'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/incsearch-fuzzy.vim'
 
 call plug#end()
 
@@ -224,17 +226,17 @@ let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠️'
 
 " ----------------------------------------------------------------------------
-" Plugin: CtrlP
+" Plugin invsearch.vim
 " ----------------------------------------------------------------------------
 
-" Open file menu
-noremap <Leader>o :CtrlP<CR>
-" Open buffer menu
-noremap <Leader>b :CtrlPBuffer<CR>
-" Open most recently used files
-noremap <Leader>f :CtrlPMRUFiles<CR>
-" Ignore searching these directories/files
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+
+" fuzzy search
+map z/ <Plug>(incsearch-fuzzy-/)
+map z? <Plug>(incsearch-fuzzy-?)
+map zg/ <Plug>(incsearch-fuzzy-stay)
 
 " ----------------------------------------------------------------------------
 " Color scheme
