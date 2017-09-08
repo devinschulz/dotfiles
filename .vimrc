@@ -20,6 +20,14 @@ set encoding=utf-8             " set default encoding to UTF-8
 set autoread                   " automatically reread changed files without asking
 set gdefault                   " use `g` flag by default with :s/foo/bar
 
+if has('clipboard')
+  if has('unnamedplus')        " When possible use + register for copy-paste
+    set clipboard=unnamed,unnamedplus
+  else
+    set clipboard=unnamed
+  endif
+endif
+
 " ----------------------------------------------------------------------------
 " Display
 " ----------------------------------------------------------------------------
@@ -294,4 +302,3 @@ fun! <SID>StripTrailingWhitespaces()
   call cursor(l, c)
 endfun
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
-
