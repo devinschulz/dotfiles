@@ -184,11 +184,37 @@ set noshowmode                          " remove the duplicate -- INSERT -- belo
 " Plugin: CtrlP
 " ----------------------------------------------------------------------------
 
-" Ignore files included within .gitignore
-let g:ctrlp_user_command = [
+" Open file menu
+noremap <Leader>o :CtrlP<CR>
+" Open buffer menu
+noremap <Leader>b :CtrlPBuffer<CR>
+" Open most recently used files
+noremap <Leader>f :CtrlPMRUFiles<CR>A
+
+let g:ctrlp_max_height = 20            " provide more space to display results
+let g:ctrlp_mruf_max = 250             " track recently used files
+
+" Use ripgrep https://github.com/BurntSushi/ripgrep
+if executable('rg')
+  " Use rg in CtrlP for listing files, automatically respects .gitignore
+  let g:ctrlp_user_command = 'rg -i %s --files'
+  " rg is fast enough that ctrlp doesn't need to cache
+  let s:ctrlp_use_caching = 0
+
+" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+elseif executable('ag')
+  " Use ag in CtrlP for listing files. automatically respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  " ag is fast enough that ctrlp doesn't need to cache
+  let s:ctrlp_use_caching = 0
+
+else
+  " Ignore files included within .gitignore
+  let g:ctrlp_user_command = [
     \ '.git', 'cd %s && git ls-files . -co --exclude-standard',
     \ 'find %s -type f'
     \ ]
+endif
 
 " ----------------------------------------------------------------------------
 " Plugin: Ale
