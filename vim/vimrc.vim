@@ -11,7 +11,6 @@ set autoread                   " reload files changed outside vim
 set nocompatible
 set noeol                      " no new line at end of file
 set nostartofline              " don't reset cursor to start of line when moving
-set incsearch                  " dynamically highlight as pattern is typed
 set scrolloff=3                " start scrolling 3 lines before the horiztonal window border
 set relativenumber             " relative line numbers instead of absolute
 set noerrorbells               " no beeps
