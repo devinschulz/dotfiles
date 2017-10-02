@@ -191,6 +191,17 @@ let NERDTreeIgnore = ['\.DS_Store$']
 let g:jsx_ext_required = 0               " Allow JSX in normal JS files
 
 " ----------------------------------------------------------------------------
+" Plugin: go
+" ----------------------------------------------------------------------------
+
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+
+" ----------------------------------------------------------------------------
 " Plugin: Lightline
 " ----------------------------------------------------------------------------
 
