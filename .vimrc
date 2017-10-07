@@ -158,6 +158,7 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
+Plug 'othree/html5.vim'
 
 call plug#end()
 
