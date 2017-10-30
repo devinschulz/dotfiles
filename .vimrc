@@ -133,6 +133,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'mattn/emmet-vim'
 Plug 'dracula/vim'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 Plug 'fatih/vim-go'
 Plug 'Raimondi/delimitMate' " automatic closing of quotes, parenthesis, brackets, etc
 Plug 'valloric/youcompleteme', { 'do': './install.py --all' }
@@ -159,6 +160,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'othree/html5.vim'
+Plug 'docunext/closetag.vim'
 
 call plug#end()
 
@@ -269,6 +271,12 @@ map z? <Plug>(incsearch-fuzzy-?)
 map zg/ <Plug>(incsearch-fuzzy-stay)
 
 " ----------------------------------------------------------------------------
+" Plugin: closetag
+" ----------------------------------------------------------------------------
+
+let g:closetag_html_style=1
+
+" ----------------------------------------------------------------------------
 " Color scheme
 " ----------------------------------------------------------------------------
 
@@ -294,10 +302,10 @@ colorscheme one
 " ----------------------------------------------------------------------------
 
 set autoindent
-set noexpandtab
+set expandtab
 set copyindent
 "set preserveindent
-set softtabstop=2
+" set softtabstop=2
 set shiftwidth=2
 set tabstop=2
 set colorcolumn=80
