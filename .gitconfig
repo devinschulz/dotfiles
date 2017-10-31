@@ -1,0 +1,25 @@
+[include]
+	path = ~/.gitconfig-local
+
+[user]
+	name = Devin Schulz
+	email = devin@devinschulz.com
+
+[core]
+	editor = vim
+
+[mergetool]
+  keepBackup = false
+	writeToTemp = true
+
+[push]
+	default = tracking
+
+[status]
+  relativePaths = true
+
+[commit]
+  verbose = true
+
+[color]
+	ui = auto

@@ -3,17 +3,24 @@
 # get the dir of the current script
 script_dir=`pwd`
 
-if [ ! -f ~/.vimrc ]; then
-  ln -s $script_dir/.vimrc ~/.vimrc
-  echo '.vim.rc linked'
-else
-	echo '.vim.rc already linked, skipping.'
+link_file() {
+	if [ ! -f ~/${1} ]; then
+		ln -s $script_dir/$1 ~/$1
+		echo "$1 linked"
+	else
+		echo "$1 already linked, skipping."
+	fi
+}
+
+for file in .vimrc .tmux.conf .gitconfig .gitignore_global
+do
+	link_file $file
+done
+
+if [ ! -d ~/.brewfile ]; then
+  mkdir ~/.brewfile
 fi
 
-if [ ! -f ~/.tmux.conf ]; then
-  ln -s $script_dir/.tmux.conf ~/.tmux.conf
-  echo '.tmux.conf linked'
-else
-	echo '.tmux.conf already linked, skipping.'
+if [ ! -f ~/.brewfile/Brewfile ]; then
+	ln -s $script_dir/Brewfile ~/.brewfile/Brewfile
 fi
-
