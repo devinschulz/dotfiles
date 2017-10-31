@@ -280,22 +280,33 @@ let g:closetag_html_style=1
 " Color scheme
 " ----------------------------------------------------------------------------
 
-syntax enable
 set background=dark
-
-if (has('termguicolors'))
-	set termguicolors
-endif
+set termguicolors
+set term=xterm-256color
 
 if !has('gui_running')
-  set t_Co=256
+	if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
+		set t_Co=256
+		colorscheme one
+	elseif has("terminfo")
+		colorscheme default
+		set t_Co=8
+		set t_Sf=[3%p1%dm
+    set t_Sb=[4%p1%dm
+  else
+  	colorscheme default
+		set t_Sf=[3%dm
+    set t_Sb=[4%dm
+  endif
+  if $TMUX != ""
+  	set t_ut=
+		" set Vim-specific sequences for RGB colors
+		let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+		let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  endif
 endif
 
-" set Vim-specific sequences for RGB colors
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-
-colorscheme one
+syntax on
 
 " ----------------------------------------------------------------------------
 " Indenting and white space
