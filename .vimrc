@@ -336,3 +336,12 @@ fun! <SID>StripTrailingWhitespaces()
   call cursor(l, c)
 endfun
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
+" ----------------------------------------------------------------------------
+" Remaps
+" ----------------------------------------------------------------------------
+
+noremap <Left> :echoe "Use h"<CR>
+noremap <Right> :echoe "Use l"<CR>
+noremap <Up> :echoe "Use k"<CR>
+noremap <Down> :echoe "Use j"<CR>
