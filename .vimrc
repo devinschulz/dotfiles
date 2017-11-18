@@ -13,8 +13,10 @@ set noeol                      " no new line at end of file
 set nostartofline              " don't reset cursor to start of line when moving
 set scrolloff=3                " start scrolling 3 lines before the horiztonal window border
 set relativenumber             " relative line numbers instead of absolute
-set noerrorbells               " no beeps
 set nobackup                   " don't create annoying backup files
+set nowritebackup
+set nojoinspaces               " Use one space instead of two after punctuation
+set foldmethod=syntax
 
 set encoding=utf-8             " set default encoding to UTF-8
 set autoread                   " automatically reread changed files without asking
@@ -34,6 +36,8 @@ endif
 
 set title                      " show the file name i the window titlebar
 set novisualbell               " no beeps or flashes
+set noerrorbells               " no beeps
+set belloff=all
 set number                     " show line numbers
 set numberwidth=5
 set textwidth=80               " line length
@@ -49,6 +53,9 @@ set re=1
 set nofoldenable               " disable folding
 set foldlevelstart=99
 
+set laststatus=2               " forcefully display the last status
+set noshowmode                 " remove the duplicate -- INSERT -- below the status bar
+
 " ----------------------------------------------------------------------------
 " Input
 " ----------------------------------------------------------------------------
@@ -62,13 +69,14 @@ let g:mapleader = ","
 " ----------------------------------------------------------------------------
 " Writing swaps
 " ----------------------------------------------------------------------------
-"
+
+set noswapfile
 " default is on, explicitly set on here.
 " pros: prevent editing stale copy of same file in two vim instances
-set swapfile
+"set swapfile
 
 " set the swap directory'
-set directory=$HOME/.vim/.tmp/swap//
+"set directory=$HOME/.vim/.tmp/swap/
 
 " ----------------------------------------------------------------------------
 " Window splitting and buffers
@@ -145,7 +153,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'itchyny/lightline.vim'
+"Plug 'itchyny/lightline.vim'
 Plug 'groenewege/vim-less'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'altercation/vim-colors-solarized'
@@ -163,10 +171,15 @@ Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'othree/html5.vim'
 Plug 'docunext/closetag.vim'
 Plug 'joshdick/onedark.vim'
+Plug 'chriskempson/base16-vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'edkolev/tmuxline.vim'
 
 call plug#end()
 
 filetype plugin indent on    " required
+syntax on
 
 " ----------------------------------------------------------------------------
 " Plugin: NerdTree
@@ -180,12 +193,19 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Automatically delete buffer once file has been deleted
-let NERDTreeAutoDeleteBuffer = 1
+let g:NERDTreeAutoDeleteBuffer = 1
 
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let NERDTreeWinPos = "left"
-let NERDTreeShowHidden = 1
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeWinPos = "left"
+let g:NERDTreeShowHidden = 1
+
+" Single-click to toggle directory nodes, double click to open non-directory
+" nodes.
+let g:NERDTreeMouseMode=2
+
+" Default is 31 which is a tad too narrow
+let g:NERDTreeWinSize=40
 
 let NERDTreeIgnore = ['\.DS_Store$']
 
@@ -207,14 +227,13 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 
 " ----------------------------------------------------------------------------
-" Plugin: Lightline
+" Plugin: Airline
 " ----------------------------------------------------------------------------
 
-let g:lightline = {
-      \ 'colorscheme': 'onedark',
-      \ }
-set laststatus=2                        " forcefully display the last status
-set noshowmode                          " remove the duplicate -- INSERT -- below the status bar
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='base16'
+
+let g:airline#extensions#tmuxline#enabled = 1
 
 " ----------------------------------------------------------------------------
 " Plugin: CtrlP
@@ -282,49 +301,28 @@ let g:closetag_html_style=1
 " Color scheme
 " ----------------------------------------------------------------------------
 
-if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
-  syntax on
+if has('termguicolors')
+  set termguicolors
 endif
 
-"let g:onedark_termcolors=16
-
-colorscheme onedark
-
-"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
-"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
-"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-if (empty($TMUX))
-  if (has("nvim"))
-    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-  if (has("termguicolors"))
-    set termguicolors
-  endif
-else
-  set t_ut=
-  " set Vim-specific sequences for RGB colors
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-endif
+colorscheme base16-onedark
 
 " ----------------------------------------------------------------------------
 " Indenting and white space
 " ----------------------------------------------------------------------------
 
-set autoindent
-set expandtab
-set copyindent
-"set preserveindent
-" set softtabstop=2
-set shiftwidth=2
-set tabstop=2
-set colorcolumn=80
-set list listchars=tab:❘-,trail:·,extends:»,precedes:«,nbsp:×
+set autoindent                        " Maintin indent of current line
+set expandtab                         " Always use spaces instead of tabs
+set shiftwidth=2                      " Spaces per tab (when shifting)
+set tabstop=2                         " Spaces per tab
+set list                              " Show whitespace
+set listchars=tab:❘-,trail:·,extends:»,precedes:«,nbsp:×
 
+if has('folding')
+  set foldmethod=indent
+endif
+
+" Highlight text which extends beyond the column width
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
