@@ -96,9 +96,6 @@ set synmaxcol=512              " don't syntax long lines
 set synmaxcol=300
 set re=1
 
-set nofoldenable               " disable folding
-set foldlevelstart=99
-
 set laststatus=2               " forcefully display the last status
 set noshowmode                 " remove the duplicate -- INSERT -- below the status bar
 
@@ -237,7 +234,6 @@ hi User6 ctermfg=3
 
 set notimeout
 set ttimeout
-
 let mapleader = ","
 let g:mapleader = ","
 
@@ -304,14 +300,41 @@ if executable('ag')
 endif
 
 " ----------------------------------------------------------------------------
+" Indenting and white space
 " ----------------------------------------------------------------------------
 
+set autoindent                        " Maintin indent of current line
+set expandtab                         " Always use spaces instead of tabs
+set shiftwidth=2                      " Spaces per tab (when shifting)
+set tabstop=2                         " Spaces per tab
+set list                              " Show whitespace
+set listchars=tab:❘-,trail:·,extends:»,precedes:«,nbsp:×
+set foldmethod=indent                 " Allow folding by indent level
+set foldlevelstart=99                 " Only being folding after x indents
 
+" Highlight text which extends beyond the column width
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
 
-
+" strip trailing spaces on sace
+fun! <SID>StripTrailingWhitespaces()
+  let l = line(".")
+  let c = col(".")
+  %s/\s\+$//e
+  call cursor(l, c)
+endfun
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 " ----------------------------------------------------------------------------
-" Plugin: NerdTree
+" Remaps
+" ----------------------------------------------------------------------------
+
+noremap <Left> :echoe "Use h"<CR>
+noremap <Right> :echoe "Use l"<CR>
+noremap <Up> :echoe "Use k"<CR>
+noremap <Down> :echoe "Use j"<CR>
+" ----------------------------------------------------------------------------
+" Plugin: NERDTree
 " ----------------------------------------------------------------------------
 
 " Open sidebar by default
@@ -419,38 +442,5 @@ let g:closetag_html_style=1
 
 " ----------------------------------------------------------------------------
 " ----------------------------------------------------------------------------
-" Indenting and white space
-" ----------------------------------------------------------------------------
 
-set autoindent                        " Maintin indent of current line
-set expandtab                         " Always use spaces instead of tabs
-set shiftwidth=2                      " Spaces per tab (when shifting)
-set tabstop=2                         " Spaces per tab
-set list                              " Show whitespace
-set listchars=tab:❘-,trail:·,extends:»,precedes:«,nbsp:×
 
-if has('folding')
-  set foldmethod=indent
-endif
-
-" Highlight text which extends beyond the column width
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
-
-" strip trailing spaces on sace
-fun! <SID>StripTrailingWhitespaces()
-  let l = line(".")
-  let c = col(".")
-  %s/\s\+$//e
-  call cursor(l, c)
-endfun
-autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
-
-" ----------------------------------------------------------------------------
-" Remaps
-" ----------------------------------------------------------------------------
-
-noremap <Left> :echoe "Use h"<CR>
-noremap <Right> :echoe "Use l"<CR>
-noremap <Up> :echoe "Use k"<CR>
-noremap <Down> :echoe "Use j"<CR>
