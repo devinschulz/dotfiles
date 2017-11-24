@@ -62,7 +62,7 @@ set relativenumber             " relative line numbers instead of absolute
 set nobackup                   " don't create annoying backup files
 set nowritebackup
 set nojoinspaces               " Use one space instead of two after punctuation
-set foldmethod=syntax
+set lazyredraw
 
 set encoding=utf-8             " set default encoding to UTF-8
 set autoread                   " automatically reread changed files without asking
@@ -441,6 +441,12 @@ map zg/ <Plug>(incsearch-fuzzy-stay)
 let g:closetag_html_style=1
 
 " ----------------------------------------------------------------------------
+" Plugin: EasyAlign
 " ----------------------------------------------------------------------------
+"
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
 
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
