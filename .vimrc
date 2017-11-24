@@ -1,4 +1,50 @@
 " ----------------------------------------------------------------------------
+" Plugins
+" ----------------------------------------------------------------------------
+
+set nocompatible              " be iMproved, required
+set encoding=utf-8 nobomb
+filetype off                  " required
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'sheerun/vim-polyglot'
+Plug 'mattn/emmet-vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'fatih/vim-go'
+Plug 'Raimondi/delimitMate' " automatic closing of quotes, parenthesis, brackets, etc
+Plug 'valloric/youcompleteme', { 'do': './install.py --all' }
+Plug 'airblade/vim-gitgutter'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'ernstvanderlinden/vim-coldfusion'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'groenewege/vim-less'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'elzr/vim-json'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'gregsexton/MatchTag'  " highlight matching HTML tag
+Plug 'mileszs/ack.vim'
+Plug 'w0rp/ale'             " async lint engine
+Plug 'andrewradev/splitjoin.vim'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/incsearch-fuzzy.vim'
+Plug 'othree/html5.vim'
+Plug 'docunext/closetag.vim'
+Plug 'chriskempson/base16-vim'
+Plug 'junegunn/vim-easy-align'
+
+call plug#end()
+
+filetype plugin indent on    " required
+syntax on
+
+" ----------------------------------------------------------------------------
 " General Config
 " ----------------------------------------------------------------------------
 
@@ -129,57 +175,11 @@ if executable('ag')
 endif
 
 " ----------------------------------------------------------------------------
-" Plugins
 " ----------------------------------------------------------------------------
 
-set nocompatible              " be iMproved, required
-set encoding=utf-8 nobomb
-filetype off                  " required
 
-call plug#begin('~/.vim/plugged')
 
-Plug 'sheerun/vim-polyglot'
-Plug 'mattn/emmet-vim'
-Plug 'dracula/vim'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-Plug 'fatih/vim-go'
-Plug 'Raimondi/delimitMate' " automatic closing of quotes, parenthesis, brackets, etc
-Plug 'valloric/youcompleteme', { 'do': './install.py --all' }
-Plug 'airblade/vim-gitgutter'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'ernstvanderlinden/vim-coldfusion'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-"Plug 'itchyny/lightline.vim'
-Plug 'groenewege/vim-less'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'altercation/vim-colors-solarized'
-Plug 'elzr/vim-json'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'gregsexton/MatchTag'                   " highlight matching HTML tag
-Plug 'rakr/vim-one'
-Plug 'mileszs/ack.vim'
-Plug 'w0rp/ale'                              " async lint engine
-Plug 'andrewradev/splitjoin.vim'
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-Plug 'haya14busa/incsearch.vim'
-Plug 'haya14busa/incsearch-fuzzy.vim'
-Plug 'othree/html5.vim'
-Plug 'docunext/closetag.vim'
-Plug 'joshdick/onedark.vim'
-Plug 'chriskempson/base16-vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'edkolev/tmuxline.vim'
 
-call plug#end()
-
-filetype plugin indent on    " required
-syntax on
 
 " ----------------------------------------------------------------------------
 " Plugin: NerdTree
