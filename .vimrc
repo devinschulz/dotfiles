@@ -102,6 +102,8 @@ set foldlevelstart=99
 set laststatus=2               " forcefully display the last status
 set noshowmode                 " remove the duplicate -- INSERT -- below the status bar
 
+colorscheme base16-onedark
+
 " ----------------------------------------------------------------------------
 " Input
 " ----------------------------------------------------------------------------
@@ -298,15 +300,6 @@ map zg/ <Plug>(incsearch-fuzzy-stay)
 let g:closetag_html_style=1
 
 " ----------------------------------------------------------------------------
-" Color scheme
-" ----------------------------------------------------------------------------
-
-if has('termguicolors')
-  set termguicolors
-endif
-
-colorscheme base16-onedark
-
 " ----------------------------------------------------------------------------
 " Indenting and white space
 " ----------------------------------------------------------------------------
