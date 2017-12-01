@@ -1,0 +1,5 @@
+# Docker
+alias dcu="docker-compose up -d"
+alias dcl="docker-compose logs -f"
+
+[[ -f ~/aliases.local ]] && source ~/aliases.local
