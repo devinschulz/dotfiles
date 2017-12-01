@@ -391,11 +391,12 @@ noremap <Leader>f :CtrlPMRUFiles<CR>A
 
 let g:ctrlp_max_height = 20            " provide more space to display results
 let g:ctrlp_mruf_max = 250             " track recently used files
+let g:ctrlp_show_hidden = 1            " show hidden files in search results
 
 " Use ripgrep https://github.com/BurntSushi/ripgrep
 if executable('rg')
   " Use rg in CtrlP for listing files, automatically respects .gitignore
-  let g:ctrlp_user_command = 'rg -i %s --files'
+  let g:ctrlp_user_command = 'rg -uu -i %s --files'
   " rg is fast enough that ctrlp doesn't need to cache
   let g:ctrlp_use_caching = 0
 
