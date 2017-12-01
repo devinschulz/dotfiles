@@ -12,15 +12,8 @@ link_file() {
 	fi
 }
 
-for file in .vimrc .tmux.conf .gitconfig .gitignore_global
-do
+files=( .gitconfig .gitignore_global .tmux.conf .vimrc .zshrc)
+
+for file in "${files[@]}"; do
 	link_file $file
 done
-
-if [ ! -d ~/.brewfile ]; then
-  mkdir ~/.brewfile
-fi
-
-if [ ! -f ~/.brewfile/Brewfile ]; then
-	ln -s $script_dir/Brewfile ~/.brewfile/Brewfile
-fi
