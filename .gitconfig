@@ -1,5 +1,5 @@
 [include]
-	path = ~/.gitconfig-local
+	path = ~/.gitconfig.local
 
 [user]
 	name = Devin Schulz
@@ -22,4 +22,7 @@
   verbose = true
 
 [color]
-	ui = auto
+  ui = auto
+
+[fetch]
+  prune = true
