@@ -1,3 +1,12 @@
 [submodule "zsh/plugins/z"]
 	path = zsh/plugins/z
 	url = git@github.com:rupa/z.git
+[submodule ".tmux/tmux-yank"]
+	path = .tmux/tmux-yank
+	url = git@github.com:tmux-plugins/tmux-yank.git
+[submodule ".tmux/tmux-resurrect"]
+	path = .tmux/tmux-resurrect
+	url = git@github.com:tmux-plugins/tmux-resurrect.git
+[submodule ".tmux/tmux-sensible"]
+	path = .tmux/tmux-sensible
+	url = git@github.com:tmux-plugins/tmux-sensible.git
