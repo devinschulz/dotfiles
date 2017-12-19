@@ -9,6 +9,9 @@ done
 # Load a local zshrc file if it exists
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
-. ~/dotfiles/z/z.sh
+. ~/dotfiles/zsh/plugins/z/z.sh
 
-source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
