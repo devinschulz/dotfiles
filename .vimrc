@@ -10,17 +10,18 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'sheerun/vim-polyglot'
 Plug 'mattn/emmet-vim'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'fatih/vim-go'
 Plug 'Raimondi/delimitMate' " automatic closing of quotes, parenthesis, brackets, etc
-Plug 'valloric/youcompleteme', { 'do': './install.py --all' }
+Plug 'Shougo/neocomplete.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ernstvanderlinden/vim-coldfusion'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'groenewege/vim-less'
 Plug 'ntpeters/vim-better-whitespace'
@@ -38,6 +39,7 @@ Plug 'othree/html5.vim'
 Plug 'docunext/closetag.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'junegunn/vim-easy-align'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 call plug#end()
 
@@ -333,6 +335,20 @@ noremap <Left> :echoe "Use h"<CR>
 noremap <Right> :echoe "Use l"<CR>
 noremap <Up> :echoe "Use k"<CR>
 noremap <Down> :echoe "Use j"<CR>
+
+" Enable tab completion for omnicomplete
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" ----------------------------------------------------------------------------
+" Omnicomplete
+" ----------------------------------------------------------------------------
+
+autocmd FileType css,less,scss,sass setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
 " ----------------------------------------------------------------------------
 " Plugin: NERDTree
 " ----------------------------------------------------------------------------
@@ -421,6 +437,20 @@ endif
 
 let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠️'
+
+let g:ale_fixers = {}
+let g:ale_fixers['javascript'] = ['prettier_standard']
+
+let g:ale_linters = {}
+let g:ale_linters['javascript'] = ['']
+
+let g:ale_fix_on_save =  1
+
+" ----------------------------------------------------------------------------
+" Plugin: neocomplete.vim
+" ----------------------------------------------------------------------------
+
+let g:neocomplete#enable_at_startup = 1
 
 " ----------------------------------------------------------------------------
 " Plugin: invsearch.vim
