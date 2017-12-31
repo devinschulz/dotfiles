@@ -37,6 +37,7 @@ Plug 'docunext/closetag.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'mbbill/undotree' " visualize history
 
 call plug#end()
 
