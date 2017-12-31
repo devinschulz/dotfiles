@@ -8,13 +8,12 @@ filetype off                  " required
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot' " A collection of language packs
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'fatih/vim-go'
 Plug 'Raimondi/delimitMate' " automatic closing of quotes, parenthesis, brackets, etc
 Plug 'Shougo/neocomplete.vim'
 Plug 'airblade/vim-gitgutter'
@@ -23,7 +22,6 @@ Plug 'ernstvanderlinden/vim-coldfusion'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'groenewege/vim-less'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'elzr/vim-json'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -35,7 +33,6 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
-Plug 'othree/html5.vim'
 Plug 'docunext/closetag.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'junegunn/vim-easy-align'
