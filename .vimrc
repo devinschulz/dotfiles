@@ -103,7 +103,7 @@ colorscheme base16-onedark
 " ----------------------------------------------------------------------------
 " Statusline
 " ----------------------------------------------------------------------------
-"
+
 let g:currentmode={
       \ 'n'  : 'Normal',
       \ 'no' : 'N·Operator Pending ',
@@ -329,8 +329,13 @@ set shiftwidth=2                      " Spaces per tab (when shifting)
 set tabstop=2                         " Spaces per tab
 set list                              " Show whitespace
 set listchars=tab:❘-,trail:·,extends:»,precedes:«,nbsp:×
-set foldmethod=indent                 " Allow folding by indent level
-set foldlevelstart=99                 " Only being folding after x indents
+
+" Folding
+if &foldmethod ==# ''
+  set foldmethod=syntax               " Allow folding by indent level
+endif
+set foldlevel=0
+set foldcolumn=0
 
 " Highlight text which extends beyond the column width
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
