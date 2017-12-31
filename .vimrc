@@ -54,7 +54,6 @@ set history=1000               " lots of history
 set showcmd                    " show incomplete cmds down the bottom
 set showmode                   " set the current mode in the bottom
 set autoread                   " reload files changed outside vim
-set nocompatible
 set noeol                      " no new line at end of file
 set nostartofline              " don't reset cursor to start of line when moving
 set scrolloff=3                " start scrolling 3 lines before the horiztonal window border
