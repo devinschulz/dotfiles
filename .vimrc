@@ -237,16 +237,37 @@ let mapleader = ","
 let g:mapleader = ","
 
 " ----------------------------------------------------------------------------
-" Writing swaps
+" Automatically fix typos
+" https://sanctum.geek.nz/arabesque/vim-command-typos/
+" ----------------------------------------------------------------------------
+
+if has("user_commands")
+  command! -bang -nargs=? -complete=file E e<bang> <args>
+  command! -bang -nargs=? -complete=file W w<bang> <args>
+  command! -bang -nargs=? -complete=file Wq wq<bang> <args>
+  command! -bang -nargs=? -complete=file WQ wq<bang> <args>
+  command! -bang Wa wa<bang>
+  command! -bang WA wa<bang>
+  command! -bang Q q<bang>
+  command! -bang QA qa<bang>
+  command! -bang Qa qa<bang>
+endif
+
+" ----------------------------------------------------------------------------
+" Backup, swap and undofile
 " ----------------------------------------------------------------------------
 
 set noswapfile
-" default is on, explicitly set on here.
-" pros: prevent editing stale copy of same file in two vim instances
-"set swapfile
+set nobackup
 
-" set the swap directory'
-"set directory=$HOME/.vim/.tmp/swap/
+set undofile
+set undolevels=1000
+set undoreload=10000
+set undodir=$HOME/.vim/undofiles
+
+if !isdirectory(&undodir)
+  call mkdir(&undodir)
+endif
 
 " ----------------------------------------------------------------------------
 " Window splitting and buffers
