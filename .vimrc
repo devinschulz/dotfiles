@@ -23,7 +23,6 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'elzr/vim-json'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'gregsexton/MatchTag'  " highlight matching HTML tag
 Plug 'mileszs/ack.vim'
@@ -36,8 +35,11 @@ Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'docunext/closetag.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'mbbill/undotree' " visualize history
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'edkolev/tmuxline.vim'
+Plug 'embear/vim-localvimrc' " Allow local vim overrides within a project
 
 call plug#end()
 
@@ -99,133 +101,6 @@ set laststatus=2               " forcefully display the last status
 set noshowmode                 " remove the duplicate -- INSERT -- below the status bar
 
 colorscheme base16-onedark
-
-" ----------------------------------------------------------------------------
-" Statusline
-" ----------------------------------------------------------------------------
-
-let g:currentmode={
-      \ 'n'  : 'Normal',
-      \ 'no' : 'N·Operator Pending ',
-      \ 'v'  : 'Visual',
-      \ 'V'  : 'V·Line ',
-      \ '' : 'V·Block ',
-      \ 's'  : 'Select ',
-      \ 'S'  : 'S·Line ',
-      \ '' : 'S·Block ',
-      \ 'i'  : 'Insert',
-      \ 'R'  : 'R ',
-      \ 'Rv' : 'V·Replace ',
-      \ 'c'  : 'Command ',
-      \ 'cv' : 'Vim Ex ',
-      \ 'ce' : 'Ex ',
-      \ 'r'  : 'Prompt ',
-      \ 'rm' : 'More ',
-      \ 'r?' : 'Confirm ',
-      \ '!'  : 'Shell ',
-      \ 't'  : 'Terminal '
-      \}
-
-function! ChangeStatuslineColor()
-  if (mode() =~# '\v(n|no)')
-    exe 'hi! User1 ctermfg=255 ctermbg=39'
-  elseif (mode() =~# '\v(v|V)' || g:currentmode[mode()] ==# 'V·Block' || get(g:currentmode, mode(), '') ==# 't')
-    exe 'hi! User1 ctermfg=255 ctermbg=5'
-  elseif (mode() ==# 'i')
-    exe 'hi! User1 ctermfg=255 ctermbg=70'
-  else
-    echo "else"
-    exe 'hi! User1 ctermfg=006 guifg=orange gui=None cterm=None'
-  endif
-  return ''
-endfunction
-
-function! GitInfo()
-  if exists('*fugitive#head')
-    let branch = fugitive#head()
-    return branch !=# '' ? ' '.branch : ''
-  endif
-  return ''
-endfunction
-
-function! Readonly()
-  return &readonly ? ' ' : ''
-endfunction
-
-function! LinterWarnings() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '' : printf('%d ▲', all_non_errors)
-endfunction
-
-function! LinterErrors() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
-endfunction
-
-function! LinterOK() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '✓' : ''
-endfunction
-
-function! FileSize()
-  let bytes = getfsize(expand('%:p'))
-  if (bytes >= 1024)
-    let kbytes = bytes / 1024
-  endif
-  if (exists('kbytes') && kbytes >= 1000)
-    let mbytes = kbytes / 1000
-  endif
-
-  if bytes <= 0
-    return '0'
-  endif
-
-  if (exists('mbytes'))
-    return mbytes . 'MB '
-  elseif (exists('kbytes'))
-    return kbytes . 'KB '
-  else
-    return bytes . 'B '
-  endif
-endfunction
-
-
-" default the statusline to green when entering Vim
-hi statusline ctermfg=8 ctermbg=15
-
-set statusline=
-set statusline+=%{ChangeStatuslineColor()}
-set statusline+=\ %1*                               " Color stop 1
-set statusline+=\ %{toupper(g:currentmode[mode()])} " Current mode
-set statusline+=\ %5*\ %{GitInfo()}                 " Display git branch
-set statusline+=%2*\                               " Separator
-set statusline+=%5*%{Readonly()}                    " File is readonly
-set statusline+=\ %f                                " Path to the file
-set statusline+=%=                                  " Switch to the right side
-set statusline+=%4*%{LinterOK()}                    " Display linting OK
-set statusline+=%6*%{LinterWarnings()}              " Display linting warning count
-set statusline+=%3*%{LinterErrors()}                " Display linting error count
-set statusline+=%2*\                               " Separator
-set statusline+=%5*\                               " Line number icon
-set statusline+=\ %l                                " Current line
-set statusline+=/                                   " Separator
-set statusline+=%L                                  " Total lines
-set statusline+=\ (%p%%)                            " Percentage through file
-set statusline+=\ %{FileSize()}                     " The file size
-
-hi User0 ctermfg=255 ctermbg=39
-hi User1 ctermfg=255
-hi User2 ctermfg=12
-hi User3 ctermfg=160
-hi User4 ctermfg=70
-hi User5 ctermfg=7
-hi User6 ctermfg=3
 
 " ----------------------------------------------------------------------------
 " Input
@@ -459,12 +334,16 @@ let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠️'
 
 let g:ale_fixers = {}
-let g:ale_fixers['javascript'] = ['prettier_standard']
+let g:ale_fixers['javascript'] = ['prettier']
+let g:ale_fixers['javascript.jsx'] = ['prettier']
+let g:ale_javascript_prettier_options = '--trailing-comma es5 --no-semi --single-quote'
 
 let g:ale_linters = {}
+" Don't bother with linting since prettier will automatically fix all linting
+" errors on save
 let g:ale_linters['javascript'] = ['']
 
-let g:ale_fix_on_save =  1
+let g:ale_fix_on_save = 1
 
 " ----------------------------------------------------------------------------
 " Plugin: neocomplete.vim
@@ -494,10 +373,24 @@ let g:closetag_html_style=1
 " ----------------------------------------------------------------------------
 " Plugin: EasyAlign
 " ----------------------------------------------------------------------------
-"
+
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
+" ----------------------------------------------------------------------------
+" Plugin: Airline
+" ----------------------------------------------------------------------------
+
+" Enable top tabline.
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme = 'base16'
+let g:airline_powerline_fonts = 1
+
+" ----------------------------------------------------------------------------
+" Plugin: Tmuxline
+" ----------------------------------------------------------------------------
+
+let g:tmuxline_preset = 'full'
