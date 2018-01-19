@@ -2,5 +2,7 @@
 alias dcu="docker-compose up -d"
 alias dcs="docker-compose stop"
 alias dcl="docker-compose logs -f"
+alias dcrm="docker-compose rm"
+alias dcr="docker-compose stop; docker-compose up -d"
 
 [[ -f ~/aliases.local ]] && source ~/aliases.local
