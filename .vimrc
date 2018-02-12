@@ -40,6 +40,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
 Plug 'embear/vim-localvimrc' " Allow local vim overrides within a project
+Plug 'fatih/vim-go'
+Plug 'junegunn/fzf'
 
 call plug#end()
 
