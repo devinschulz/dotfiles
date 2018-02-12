@@ -126,20 +126,6 @@ let g:currentmode={
       \ 't'  : 'Terminal '
       \}
 
-function! ChangeStatuslineColor()
-  if (mode() =~# '\v(n|no)')
-    exe 'hi! User1 ctermfg=255 ctermbg=39'
-  elseif (mode() =~# '\v(v|V)' || g:currentmode[mode()] ==# 'V·Block' || get(g:currentmode, mode(), '') ==# 't')
-    exe 'hi! User1 ctermfg=255 ctermbg=5'
-  elseif (mode() ==# 'i')
-    exe 'hi! User1 ctermfg=255 ctermbg=70'
-  else
-    echo "else"
-    exe 'hi! User1 ctermfg=006 guifg=orange gui=None cterm=None'
-  endif
-  return ''
-endfunction
-
 function! GitInfo()
   if exists('*fugitive#head')
     let branch = fugitive#head()
@@ -150,27 +136,6 @@ endfunction
 
 function! Readonly()
   return &readonly ? ' ' : ''
-endfunction
-
-function! LinterWarnings() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '' : printf('%d ▲', all_non_errors)
-endfunction
-
-function! LinterErrors() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
-endfunction
-
-function! LinterOK() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '✓' : ''
 endfunction
 
 function! FileSize()
@@ -200,18 +165,13 @@ endfunction
 hi statusline ctermfg=8 ctermbg=15
 
 set statusline=
-set statusline+=%{ChangeStatuslineColor()}
-set statusline+=\ %1*                               " Color stop 1
+set statusline+=\%1*                                " Color stop 1
 set statusline+=\ %{toupper(g:currentmode[mode()])} " Current mode
 set statusline+=\ %5*\ %{GitInfo()}                 " Display git branch
 set statusline+=%2*\                               " Separator
 set statusline+=%5*%{Readonly()}                    " File is readonly
 set statusline+=\ %f                                " Path to the file
 set statusline+=%=                                  " Switch to the right side
-set statusline+=%4*%{LinterOK()}                    " Display linting OK
-set statusline+=%6*%{LinterWarnings()}              " Display linting warning count
-set statusline+=%3*%{LinterErrors()}                " Display linting error count
-set statusline+=%2*\                               " Separator
 set statusline+=%5*\                               " Line number icon
 set statusline+=\ %l                                " Current line
 set statusline+=/                                   " Separator
