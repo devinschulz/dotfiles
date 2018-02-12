@@ -336,6 +336,8 @@ let g:ale_sign_warning = '⚠️'
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier']
 let g:ale_fixers['javascript.jsx'] = ['prettier']
+let g:ale_fixers['less'] = ['prettier']
+let g:ale_fixers['scss'] = ['prettier']
 let g:ale_javascript_prettier_options = '--trailing-comma es5 --no-semi --single-quote'
 
 let g:ale_linters = {}
