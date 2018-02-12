@@ -94,9 +94,6 @@ set colorcolumn=+1             " set the column color after the text width
 set nowrap                     " don't wrap long lines
 set cursorline
 set formatoptions=qrn1
-set synmaxcol=512              " don't syntax long lines
-
-set synmaxcol=300
 set re=1
 
 set laststatus=2               " forcefully display the last status
