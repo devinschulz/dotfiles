@@ -5,4 +5,6 @@ alias dcl="docker-compose logs -f"
 alias dcrm="docker-compose rm"
 alias dcr="docker-compose stop; docker-compose up -d"
 
+alias vim="nvim"
+
 [[ -f ~/aliases.local ]] && source ~/aliases.local
