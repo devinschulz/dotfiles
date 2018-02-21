@@ -6,7 +6,7 @@
   email = devin@devinschulz.com
 
 [core]
-  editor = vim
+  editor = nvim
 
 [mergetool]
   keepBackup = false
