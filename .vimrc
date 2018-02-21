@@ -8,39 +8,66 @@ filetype off                  " required
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'sheerun/vim-polyglot' " A collection of language packs
+" General configuration
+Plug 'sheerun/vim-polyglot'             " A collection of language packs
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'Raimondi/delimitMate' " automatic closing of quotes, parenthesis, brackets, etc
-Plug 'Shougo/neocomplete.vim'
+Plug 'Raimondi/delimitMate'             " automatic closing of quotes, parenthesis, brackets, etc
 Plug 'airblade/vim-gitgutter'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ernstvanderlinden/vim-coldfusion'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'elzr/vim-json'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'gregsexton/MatchTag'  " highlight matching HTML tag
-Plug 'mileszs/ack.vim'
-Plug 'w0rp/ale'             " async lint engine
+Plug 'gregsexton/MatchTag'              " highlight matching HTML tag
+Plug 'w0rp/ale'                         " async lint engine
 Plug 'andrewradev/splitjoin.vim'
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
+Plug 'docunext/closetag.vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'mbbill/undotree'                  " visualize history
+Plug 'embear/vim-localvimrc'            " Allow local vim overrides within a project
+Plug 'machakann/vim-highlightedyank'    " Automatically highlight yanked text
+
+" Search
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
-Plug 'docunext/closetag.vim'
-Plug 'chriskempson/base16-vim'
-Plug 'junegunn/vim-easy-align'
+Plug 'mileszs/ack.vim'
+
+if has('nvim')
+  Plug 'Shougo/denite.nvim'
+else
+  Plug 'ctrlpvim/ctrlp.vim'
+endif
+
+" JavaScript
+Plug 'pangloss/vim-javascript'
+Plug 'elzr/vim-json'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-Plug 'mbbill/undotree' " visualize history
-Plug 'embear/vim-localvimrc' " Allow local vim overrides within a project
+Plug 'epilande/vim-es2015-snippets'
+Plug 'epilande/vim-react-snippets'
+Plug 'SirVer/ultisnips'
+
+" Go
 Plug 'fatih/vim-go'
-Plug 'junegunn/fzf'
+
+" Markdown
+Plug 'tpope/vim-markdown'
+Plug 'nelstrom/vim-markdown-folding'
+
+" Colorschemes
+Plug 'chriskempson/base16-vim'
+Plug 'mhartington/oceanic-next'
+
+" Autocomplete
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/neocomplete.vim'
+endif
 
 call plug#end()
 
@@ -51,27 +78,31 @@ syntax on
 " General Config
 " ----------------------------------------------------------------------------
 
-set ruler                      " ruler
-set backspace=indent,eol,start " allow backspace in insert mode
-set history=1000               " lots of history
-set showcmd                    " show incomplete cmds down the bottom
-set showmode                   " set the current mode in the bottom
-set autoread                   " reload files changed outside vim
-set noeol                      " no new line at end of file
-set nostartofline              " don't reset cursor to start of line when moving
-set scrolloff=3                " start scrolling 3 lines before the horiztonal window border
-set relativenumber             " relative line numbers instead of absolute
-set nobackup                   " don't create annoying backup files
+set ruler                             " ruler
+set backspace=indent,eol,start        " allow backspace in insert mode
+set history=1000                      " lots of history
+set showcmd                           " show incomplete cmds down the bottom
+set showmode                          " set the current mode in the bottom
+set autoread                          " reload files changed outside vim
+set noeol                             " no new line at end of file
+set nostartofline                     " don't reset cursor to start of line when moving
+set scrolloff=3                       " start scrolling 3 lines before the horiztonal window border
+set relativenumber                    " relative line numbers instead of absolute
+set nobackup                          " don't create annoying backup files
 set nowritebackup
-set nojoinspaces               " Use one space instead of two after punctuation
+set nojoinspaces                      " use one space instead of two after punctuation
 set lazyredraw
 
-set encoding=utf-8             " set default encoding to UTF-8
-set autoread                   " automatically reread changed files without asking
-set gdefault                   " use `g` flag by default with :s/foo/bar
+if has('nvim')
+  set inccommand=nosplit              " Live updates for search and replace
+endif
+
+set encoding=utf-8                    " set default encoding to UTF-8
+set autoread                          " automatically reread changed files without asking
+set gdefault                          " use `g` flag by default with :s/foo/bar
 
 if has('clipboard')
-  if has('unnamedplus')        " When possible use + register for copy-paste
+  if has('unnamedplus')               " when possible use + register for copy-paste
     set clipboard=unnamed,unnamedplus
   else
     set clipboard=unnamed
@@ -82,23 +113,27 @@ endif
 " Display
 " ----------------------------------------------------------------------------
 
-set title                      " show the file name i the window titlebar
-set novisualbell               " no beeps or flashes
-set noerrorbells               " no beeps
+set title              " show the file name i the window titlebar
+set novisualbell       " no beeps or flashes
+set noerrorbells       " no beeps
 set belloff=all
-set number                     " show line numbers
+set number             " show line numbers
 set numberwidth=5
-set textwidth=80               " line length
-set colorcolumn=+1             " set the column color after the text width
-set nowrap                     " don't wrap long lines
+set textwidth=80       " line length
+set colorcolumn=+1     " set the column color after the text width
+set nowrap             " don't wrap long lines
 set cursorline
 set formatoptions=qrn1
 set re=1
 
-set laststatus=2               " forcefully display the last status
-set noshowmode                 " remove the duplicate -- INSERT -- below the status bar
+set laststatus=2       " forcefully display the last status
+set noshowmode         " remove the duplicate -- INSERT -- below the status bar
 
-colorscheme base16-onedark
+if has('termguicolors')
+  set termguicolors
+endif
+
+colorscheme OceanicNext
 
 " ----------------------------------------------------------------------------
 " Statusline
@@ -165,18 +200,20 @@ endfunction
 hi statusline ctermfg=8 ctermbg=15
 
 set statusline=
-set statusline+=\%1*                                " Color stop 1
+set statusline+=%1*                                 " Color stop 1
 set statusline+=\ %{toupper(g:currentmode[mode()])} " Current mode
 set statusline+=\ %5*\ %{GitInfo()}                 " Display git branch
 set statusline+=%2*\                               " Separator
 set statusline+=%5*%{Readonly()}                    " File is readonly
 set statusline+=\ %f                                " Path to the file
 set statusline+=%=                                  " Switch to the right side
+set statusline+=\ %y                                " File type
 set statusline+=%5*\                               " Line number icon
 set statusline+=\ %l                                " Current line
 set statusline+=/                                   " Separator
 set statusline+=%L                                  " Total lines
 set statusline+=\ (%p%%)                            " Percentage through file
+set statusline+=\ %c                                " Column number
 set statusline+=\ %{FileSize()}                     " The file size
 
 hi User0 ctermfg=255 ctermbg=39
@@ -333,6 +370,63 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " ----------------------------------------------------------------------------
+" Plugin: Deoplete
+" ----------------------------------------------------------------------------
+
+if has('nvim')
+  let g:deoplete#enable_at_startup = 1
+  let g:deoplete#enable_smart_case = 1
+  " set minimum syntax keyword length.
+  let g:deoplete#auto_completion_start_length = 1
+  let g:deoplete#auto_complete_delay = 50
+endif
+
+" ----------------------------------------------------------------------------
+" Plugin: Denite
+" ----------------------------------------------------------------------------
+
+if has('nvim')
+  " reset 50% winheight on window resize
+  augroup deniteresize
+    autocmd!
+    autocmd VimResized,VimEnter * call denite#custom#option('default',
+          \'winheight', winheight(0) / 2)
+  augroup end
+
+  call denite#custom#option('default', {
+    \ 'prompt': '❯'
+    \ })
+
+  call denite#custom#var('file_rec', 'command',
+    \ ['rg', '--files', '--glob', '!.git', ''])
+  call denite#custom#var('grep', 'command', ['rg'])
+  call denite#custom#var('grep', 'default_opts',
+      \ ['--hidden', '--vimgrep', '--no-heading', '-S'])
+  call denite#custom#var('grep', 'recursive_opts', [])
+  call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+  call denite#custom#var('grep', 'separator', ['--'])
+  call denite#custom#var('grep', 'final_opts', [])
+  call denite#custom#map('insert', '<Esc>', '<denite:enter_mode:normal>',
+    \'noremap')
+  call denite#custom#map('normal', '<Esc>', '<NOP>',
+    \'noremap')
+  call denite#custom#map('insert', '<C-v>', '<denite:do_action:vsplit>',
+    \'noremap')
+  call denite#custom#map('normal', '<C-v>', '<denite:do_action:vsplit>',
+    \'noremap')
+  call denite#custom#map('normal', 'dw', '<denite:delete_word_after_caret>',
+    \'noremap')
+
+  nnoremap <C-p> :<C-u>Denite file_rec<CR>
+  nnoremap <leader>s :<C-u>Denite buffer<CR>
+  nnoremap <leader><Space>s :<C-u>DeniteBufferDir buffer<CR>
+  nnoremap <leader>8 :<C-u>DeniteCursorWord grep:. -mode=normal<CR>
+  nnoremap <leader>/ :<C-u>Denite grep:. -mode=normal<CR>
+  nnoremap <leader><Space>/ :<C-u>DeniteBufferDir grep:. -mode=normal<CR>
+  nnoremap <leader>d :<C-u>DeniteBufferDir file_rec<CR>
+endif
+
+" ----------------------------------------------------------------------------
 " Plugin: NERDTree
 " ----------------------------------------------------------------------------
 
@@ -378,37 +472,39 @@ let g:go_highlight_extra_types = 1
 " Plugin: CtrlP
 " ----------------------------------------------------------------------------
 
-" Open file menu
-noremap <Leader>o :CtrlP<CR>
-" Open buffer menu
-noremap <Leader>b :CtrlPBuffer<CR>
-" Open most recently used files
-noremap <Leader>f :CtrlPMRUFiles<CR>A
+if !has('nvim')
+  " Open file menu
+  noremap <Leader>o :CtrlP<CR>
+  " Open buffer menu
+  noremap <Leader>b :CtrlPBuffer<CR>
+  " Open most recently used files
+  noremap <Leader>f :CtrlPMRUFiles<CR>A
 
-let g:ctrlp_max_height = 20            " provide more space to display results
-let g:ctrlp_mruf_max = 250             " track recently used files
-let g:ctrlp_show_hidden = 1            " show hidden files in search results
+  let g:ctrlp_max_height = 20            " provide more space to display results
+  let g:ctrlp_mruf_max = 250             " track recently used files
+  let g:ctrlp_show_hidden = 1            " show hidden files in search results
 
-" Use ripgrep https://github.com/BurntSushi/ripgrep
-if executable('rg')
-  " Use rg in CtrlP for listing files, automatically respects .gitignore
-  let g:ctrlp_user_command = 'rg -i %s --files'
-  " rg is fast enough that ctrlp doesn't need to cache
-  let g:ctrlp_use_caching = 0
+  " Use ripgrep https://github.com/BurntSushi/ripgrep
+  if executable('rg')
+    " Use rg in CtrlP for listing files, automatically respects .gitignore
+    let g:ctrlp_user_command = 'rg -i %s --files'
+    " rg is fast enough that ctrlp doesn't need to cache
+    let g:ctrlp_use_caching = 0
 
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-elseif executable('ag')
-  " Use ag in CtrlP for listing files. automatically respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-  " ag is fast enough that ctrlp doesn't need to cache
-  let g:ctrlp_use_caching = 0
+  " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+  elseif executable('ag')
+    " Use ag in CtrlP for listing files. automatically respects .gitignore
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    " ag is fast enough that ctrlp doesn't need to cache
+    let g:ctrlp_use_caching = 0
 
-else
-  " Ignore files included within .gitignore
-  let g:ctrlp_user_command = [
-    \ '.git', 'cd %s && git ls-files . -co --exclude-standard',
-    \ 'find %s -type f'
-    \ ]
+  else
+    " Ignore files included within .gitignore
+    let g:ctrlp_user_command = [
+      \ '.git', 'cd %s && git ls-files . -co --exclude-standard',
+      \ 'find %s -type f'
+      \ ]
+  endif
 endif
 
 " ----------------------------------------------------------------------------
