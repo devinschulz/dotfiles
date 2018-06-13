@@ -2,35 +2,36 @@
 " Plugins
 " ----------------------------------------------------------------------------
 
-set nocompatible              " be iMproved, required
+set nocompatible                        " be iMproved, required
 set encoding=utf-8 nobomb
-filetype off                  " required
+filetype off                            " required
 
 call plug#begin('~/.vim/plugged')
 
 " General configuration
-Plug 'sheerun/vim-polyglot'             " A collection of language packs
-Plug 'mattn/emmet-vim'
-Plug 'tpope/vim-commentary'
+Plug 'sheerun/vim-polyglot'          " A collection of language packs
+Plug 'mattn/emmet-vim'               " automatic shortcode code completion
+Plug 'tpope/vim-commentary'          " comment and uncomment things
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'Raimondi/delimitMate'             " automatic closing of quotes, parenthesis, brackets, etc
+Plug 'tpope/vim-eunuch'              " Perform unix operations
+Plug 'Raimondi/delimitMate'          " automatic closing of quotes, parenthesis, brackets, etc
 Plug 'airblade/vim-gitgutter'
-Plug 'ernstvanderlinden/vim-coldfusion'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'gregsexton/MatchTag'              " highlight matching HTML tag
-Plug 'w0rp/ale'                         " async lint engine
+Plug 'gregsexton/MatchTag'           " highlight matching HTML tag
+Plug 'w0rp/ale'                      " async lint engine
 Plug 'andrewradev/splitjoin.vim'
-Plug 'godlygeek/tabular'
 Plug 'docunext/closetag.vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'mbbill/undotree'                  " visualize history
-Plug 'embear/vim-localvimrc'            " Allow local vim overrides within a project
-Plug 'machakann/vim-highlightedyank'    " Automatically highlight yanked text
+Plug 'mbbill/undotree'               " visualize history
+Plug 'embear/vim-localvimrc'         " Allow local vim overrides within a project
+Plug 'machakann/vim-highlightedyank' " Automatically highlight yanked text
+Plug 'terryma/vim-multiple-cursors'
+Plug 'itchyny/lightline.vim'
 
 " Search
 Plug 'haya14busa/incsearch.vim'
@@ -58,8 +59,11 @@ Plug 'fatih/vim-go'
 Plug 'tpope/vim-markdown'
 Plug 'nelstrom/vim-markdown-folding'
 
+" Other obscure languages
+Plug 'ernstvanderlinden/vim-coldfusion'
+
 " Colorschemes
-Plug 'chriskempson/base16-vim'
+" Plug 'chriskempson/base16-vim'
 Plug 'mhartington/oceanic-next'
 
 " Autocomplete
@@ -134,95 +138,6 @@ if has('termguicolors')
 endif
 
 colorscheme OceanicNext
-
-" ----------------------------------------------------------------------------
-" Statusline
-" ----------------------------------------------------------------------------
-
-let g:currentmode={
-      \ 'n'  : 'Normal',
-      \ 'no' : 'N·Operator Pending ',
-      \ 'v'  : 'Visual',
-      \ 'V'  : 'V·Line ',
-      \ '' : 'V·Block ',
-      \ 's'  : 'Select ',
-      \ 'S'  : 'S·Line ',
-      \ '' : 'S·Block ',
-      \ 'i'  : 'Insert',
-      \ 'R'  : 'R ',
-      \ 'Rv' : 'V·Replace ',
-      \ 'c'  : 'Command ',
-      \ 'cv' : 'Vim Ex ',
-      \ 'ce' : 'Ex ',
-      \ 'r'  : 'Prompt ',
-      \ 'rm' : 'More ',
-      \ 'r?' : 'Confirm ',
-      \ '!'  : 'Shell ',
-      \ 't'  : 'Terminal '
-      \}
-
-function! GitInfo()
-  if exists('*fugitive#head')
-    let branch = fugitive#head()
-    return branch !=# '' ? ' '.branch : ''
-  endif
-  return ''
-endfunction
-
-function! Readonly()
-  return &readonly ? ' ' : ''
-endfunction
-
-function! FileSize()
-  let bytes = getfsize(expand('%:p'))
-  if (bytes >= 1024)
-    let kbytes = bytes / 1024
-  endif
-  if (exists('kbytes') && kbytes >= 1000)
-    let mbytes = kbytes / 1000
-  endif
-
-  if bytes <= 0
-    return '0'
-  endif
-
-  if (exists('mbytes'))
-    return mbytes . 'MB '
-  elseif (exists('kbytes'))
-    return kbytes . 'KB '
-  else
-    return bytes . 'B '
-  endif
-endfunction
-
-
-" default the statusline to green when entering Vim
-hi statusline ctermfg=8 ctermbg=15
-
-set statusline=
-set statusline+=%1*                                 " Color stop 1
-set statusline+=\ %{toupper(g:currentmode[mode()])} " Current mode
-set statusline+=\ %5*\ %{GitInfo()}                 " Display git branch
-set statusline+=%2*\                               " Separator
-set statusline+=%5*%{Readonly()}                    " File is readonly
-set statusline+=\ %f                                " Path to the file
-set statusline+=%=                                  " Switch to the right side
-set statusline+=\ %y                                " File type
-set statusline+=%5*\                               " Line number icon
-set statusline+=\ %l                                " Current line
-set statusline+=/                                   " Separator
-set statusline+=%L                                  " Total lines
-set statusline+=\ (%p%%)                            " Percentage through file
-set statusline+=\ %c                                " Column number
-set statusline+=\ %{FileSize()}                     " The file size
-
-hi User0 ctermfg=255 ctermbg=39
-hi User1 ctermfg=255
-hi User2 ctermfg=12
-hi User3 ctermfg=160
-hi User4 ctermfg=70
-hi User5 ctermfg=7
-hi User6 ctermfg=3
 
 " ----------------------------------------------------------------------------
 " Input
@@ -566,3 +481,54 @@ nmap ga <Plug>(EasyAlign)
 " ----------------------------------------------------------------------------
 
 let g:localvimrc_ask = 0
+
+" ----------------------------------------------------------------------------
+" Plugin: Lightline
+" ----------------------------------------------------------------------------
+
+let g:lightline = {
+  \ 'colorscheme': 'oceanicnext',
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste' ],
+  \             [ 'readonly', 'filename' ],
+  \             [ 'filesize', 'git' ] ],
+  \   'right': [ [ 'lineinfo' ],
+  \              [ 'percent' ],
+  \              [ 'fileformat', 'fileencoding', 'filetype' ] ],
+  \ },
+  \ 'component_function': {
+  \   'filename': 'Filename',
+  \   'git': 'GitInfo',
+  \   'filesize': 'FileSize'
+  \ },
+  \ }
+
+function! Filename()
+  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  let modified = &modified ? ' +' : ''
+  return filename . modified
+endfunction
+
+function! GitInfo()
+  if exists('*fugitive#head')
+    let branch = fugitive#head()
+    return branch !=# '' ? ' '.branch : ''
+  endif
+  return ''
+endfunction
+
+function! FileSize()
+  let size = getfsize(expand('%:p'))
+  if size == 0 || size == -1 || size == -2
+    return ''
+  endif
+  if size < 1024
+    return size . ' bytes'
+  elseif size < 1024 * 2024
+    return printf('%.1f', size/1024.0) . 'k'
+  elseif size < 1024 * 2024 * 2024
+    return printf('%.1f', size/1024.0/1024.0) . 'm'
+  else
+    return printf('%.1f', size/1024.0/1024.0/1024.0) . 'g'
+  endif
+endfunction
