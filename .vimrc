@@ -491,23 +491,16 @@ let g:lightline = {
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ],
   \             [ 'readonly', 'filename' ],
-  \             [ 'filesize', 'git' ] ],
+  \             [ 'git' ] ],
   \   'right': [ [ 'lineinfo' ],
   \              [ 'percent' ],
-  \              [ 'fileformat', 'fileencoding', 'filetype' ] ],
+  \              [ 'filesize', 'fileformat', 'fileencoding', 'filetype' ] ],
   \ },
   \ 'component_function': {
-  \   'filename': 'Filename',
   \   'git': 'GitInfo',
   \   'filesize': 'FileSize'
   \ },
   \ }
-
-function! Filename()
-  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
-  let modified = &modified ? ' +' : ''
-  return filename . modified
-endfunction
 
 function! GitInfo()
   if exists('*fugitive#head')
