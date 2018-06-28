@@ -59,6 +59,9 @@ Plug 'fatih/vim-go'
 Plug 'tpope/vim-markdown'
 Plug 'nelstrom/vim-markdown-folding'
 
+" Shell
+Plug 'z0mbix/vim-shfmt', { 'for': ['sh', 'zsh'] }
+
 " Other obscure languages
 Plug 'ernstvanderlinden/vim-coldfusion'
 
@@ -525,3 +528,10 @@ function! FileSize()
     return printf('%.1f', size/1024.0/1024.0/1024.0) . 'g'
   endif
 endfunction
+
+" ----------------------------------------------------------------------------
+" Plugin: shfmt
+" ----------------------------------------------------------------------------
+
+let g:shfmt_extra_args = '-i 2 -ci' " Google style
+let g:shfmt_fmt_on_save = 1
