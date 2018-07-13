@@ -52,6 +52,10 @@ else
   call dein#add('ctrlpvim/ctrlp.vim')
 endif
 
+call dein#add('autozimu/LanguageClient-neovim', {
+      \ 'rev': 'next',
+      \ 'build': 'bash install.sh' })
+
 " HTML/XML
 call dein#add('docunext/closetag.vim', {
       \ 'on_ft': ['html', 'xml', 'javascript']
@@ -72,11 +76,13 @@ call dein#add('flowtype/vim-flow', {
       \ 'build': 'npm install -g flow-bin' })
 
 " Reason
-" call dein#add('reasonml-editor/vim-reason-plus')
+call dein#add('reasonml-editor/vim-reason-plus', {
+      \ 'build': 'npm install -g ocaml-language-server' })
 
 " Typescript
 " call dein#add('HerringtonDarkholme/yats.vim')
-" call dein#add('mhartington/nvim-typescript')
+" call dein#add('mhartington/nvim-typescript', {
+"       \ 'build': './install.sh && npm i -g typescript neovim' })
 
 " Go
 call dein#add('fatih/vim-go', { 'on_ft': 'go' })
@@ -108,6 +114,7 @@ endif
 
 if dein#check_install()
   call dein#install()
+  call dein#remote_plugins()
   let pluginsExist=1
 endif
 
@@ -597,3 +604,18 @@ endfunction
 
 let g:shfmt_extra_args = '-i 2 -ci' " Google style
 let g:shfmt_fmt_on_save = 1
+
+" ----------------------------------------------------------------------------
+" Plugin: LanguageClient
+" ----------------------------------------------------------------------------
+
+let g:LanguageClient_serverCommands = {
+    \ 'reason': ['ocaml-language-server', '--stdio'],
+    \ 'ocaml': ['ocaml-language-server', '--stdio'],
+    \ }
+
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" Or map each action separately
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
