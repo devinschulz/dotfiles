@@ -6,6 +6,7 @@ set nocompatible                        " be iMproved, required
 set encoding=utf-8 nobomb
 filetype off                            " required
 
+" Install dein if not already installed
 if (!isdirectory(expand("$HOME/.config/nvim/repos/github.com/Shougo/dein.vim")))
   call system(expand("mkdir -p $HOME/.config/nvim/repos/github.com"))
   call system(expand("git clone https://github.com/Shougo/dein.vim $HOME/.config/nvim/repos/github.com/Shougo/dein.vim"))
@@ -17,24 +18,24 @@ call dein#begin(expand('~/.config/nvim'))
 call dein#add('haya14busa/dein-command.vim')
 
 " General configuration
-call dein#add('sheerun/vim-polyglot')                     " A collection of language packs
-call dein#add('tpope/vim-commentary')                     " comment and uncomment things
+call dein#add('sheerun/vim-polyglot')          " A collection of language packs
+call dein#add('tpope/vim-commentary')          " comment and uncomment things
 call dein#add('tpope/vim-fugitive')
 call dein#add('tpope/vim-repeat')
 call dein#add('tpope/vim-surround')
-call dein#add('tpope/vim-eunuch')                         " Perform unix operations
-call dein#add('Raimondi/delimitMate')                     " automatic closing of quotes, parenthesis, brackets, etc
+call dein#add('tpope/vim-eunuch')              " Perform unix operations
+call dein#add('Raimondi/delimitMate')          " automatic closing of quotes, parenthesis, brackets, etc
 call dein#add('airblade/vim-gitgutter')
 call dein#add('editorconfig/editorconfig-vim')
 call dein#add('scrooloose/nerdtree')
 call dein#add('Xuyuanp/nerdtree-git-plugin')
 call dein#add('ntpeters/vim-better-whitespace')
-call dein#add('w0rp/ale')                                 " async lint engine
+call dein#add('w0rp/ale')                      " async lint engine
 call dein#add('andrewradev/splitjoin.vim')
 call dein#add('junegunn/vim-easy-align')
-call dein#add('mbbill/undotree')                          " visualize history
-call dein#add('embear/vim-localvimrc')                    " Allow local vim overrides within a project
-call dein#add('machakann/vim-highlightedyank')            " Automatically highlight yanked text
+call dein#add('mbbill/undotree')               " visualize history
+call dein#add('embear/vim-localvimrc')         " Allow local vim overrides within a project
+call dein#add('machakann/vim-highlightedyank') " Automatically highlight yanked text
 call dein#add('terryma/vim-multiple-cursors')
 call dein#add('itchyny/lightline.vim')
 call dein#add('Shougo/neosnippet-snippets')
@@ -43,6 +44,7 @@ call dein#add('Shougo/neosnippet-snippets')
 call dein#add('haya14busa/incsearch.vim')
 call dein#add('haya14busa/incsearch-fuzzy.vim')
 call dein#add('mileszs/ack.vim')
+call dein#add('junegunn/fzf.vim')
 
 if has('nvim')
   call dein#add('Shougo/denite.nvim')
@@ -56,35 +58,43 @@ call dein#add('docunext/closetag.vim', {
       \})                                                 " Automatically close html tags
 call dein#add('gregsexton/MatchTag', { 'on_ft': 'html' }) " highlight matching HTML tag
 call dein#add('mattn/emmet-vim')
-call dein#add('othree/html5.vim')
+call dein#add('othree/html5.vim', { 'on_ft': 'html' })
 
 " JavaScript
 call dein#add('pangloss/vim-javascript')
 call dein#add('elzr/vim-json')
-call dein#add('prettier/vim-prettier', { 'build': 'yarn install' })
+call dein#add('prettier/vim-prettier', { 'build': 'npm install' })
 call dein#add('epilande/vim-es2015-snippets')
 call dein#add('epilande/vim-react-snippets')
 call dein#add('SirVer/ultisnips')
+call dein#add('flowtype/vim-flow', {
+      \ 'on_ft': 'javascript',
+      \ 'build': 'npm install -g flow-bin' })
 
 " Reason
-call dein#add('reasonml-editor/vim-reason-plus')
+" call dein#add('reasonml-editor/vim-reason-plus')
 
 " Typescript
-call dein#add('HerringtonDarkholme/yats.vim')
-call dein#add('mhartington/nvim-typescript')
+" call dein#add('HerringtonDarkholme/yats.vim')
+" call dein#add('mhartington/nvim-typescript')
 
 " Go
 call dein#add('fatih/vim-go', { 'on_ft': 'go' })
 
 " Markdown
-call dein#add('tpope/vim-markdown')
-call dein#add('nelstrom/vim-markdown-folding')
+call dein#add('tpope/vim-markdown', { 'on_ft': 'markdown' })
+call dein#add('nelstrom/vim-markdown-folding', { 'on_ft': 'markdown' })
+call dein#add('dhruvasagar/vim-table-mode')
+call dein#add('rhysd/vim-grammarous')
+call dein#add('junegunn/limelight.vim')
+call dein#add('junegunn/goyo.vim')
+call dein#add('amix/vim-zenroom2')
 
 " Shell
 call dein#add('z0mbix/vim-shfmt', { 'on_ft': ['sh', 'zsh'] })
 
 " Other obscure languages
-call dein#add('ernstvanderlinden/vim-coldfusion')
+call dein#add('ernstvanderlinden/vim-coldfusion', { 'on_ft': ['coldfusion'] })
 
 " Colorschemes
 call dein#add('mhartington/oceanic-next')
@@ -364,6 +374,37 @@ if has('nvim')
   nnoremap <leader><Space>/ :<C-u>DeniteBufferDir grep:. -mode=normal<CR>
   nnoremap <leader>d :<C-u>DeniteBufferDir file_rec<CR>
 endif
+
+" ----------------------------------------------------------------------------
+" Plugin: fzf
+" ----------------------------------------------------------------------------
+
+set rtp+=/usr/local/opt/fzf
+set rtp+=~/.fzf
+
+nmap ; :Buffers<CR>
+nmap <Leader>r :Tags<CR>
+nmap <Leader>t :Files<CR>
+nmap <Leader>a :Ag<CR>
+nmap <Leader>c :Colors<CR>
+
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow -g "!{.git,node_modules}/*" 2>/dev/null'
+
+" Updates fzf to use the current colorscheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
 " ----------------------------------------------------------------------------
 " Plugin: NERDTree
