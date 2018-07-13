@@ -6,77 +6,102 @@ set nocompatible                        " be iMproved, required
 set encoding=utf-8 nobomb
 filetype off                            " required
 
-call plug#begin('~/.vim/plugged')
-
-" General configuration
-Plug 'sheerun/vim-polyglot'          " A collection of language packs
-Plug 'mattn/emmet-vim'               " automatic shortcode code completion
-Plug 'tpope/vim-commentary'          " comment and uncomment things
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-eunuch'              " Perform unix operations
-Plug 'Raimondi/delimitMate'          " automatic closing of quotes, parenthesis, brackets, etc
-Plug 'airblade/vim-gitgutter'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'gregsexton/MatchTag'           " highlight matching HTML tag
-Plug 'w0rp/ale'                      " async lint engine
-Plug 'andrewradev/splitjoin.vim'
-Plug 'docunext/closetag.vim'
-Plug 'junegunn/vim-easy-align'
-Plug 'mbbill/undotree'               " visualize history
-Plug 'embear/vim-localvimrc'         " Allow local vim overrides within a project
-Plug 'machakann/vim-highlightedyank' " Automatically highlight yanked text
-Plug 'terryma/vim-multiple-cursors'
-Plug 'itchyny/lightline.vim'
-
-" Search
-Plug 'haya14busa/incsearch.vim'
-Plug 'haya14busa/incsearch-fuzzy.vim'
-Plug 'mileszs/ack.vim'
-
-if has('nvim')
-  Plug 'Shougo/denite.nvim'
-else
-  Plug 'ctrlpvim/ctrlp.vim'
+if (!isdirectory(expand("$HOME/.config/nvim/repos/github.com/Shougo/dein.vim")))
+  call system(expand("mkdir -p $HOME/.config/nvim/repos/github.com"))
+  call system(expand("git clone https://github.com/Shougo/dein.vim $HOME/.config/nvim/repos/github.com/Shougo/dein.vim"))
 endif
 
+set runtimepath+=~/.config/nvim/repos/github.com/Shougo/dein.vim/
+
+call dein#begin(expand('~/.config/nvim'))
+call dein#add('haya14busa/dein-command.vim')
+
+" General configuration
+call dein#add('sheerun/vim-polyglot')                     " A collection of language packs
+call dein#add('tpope/vim-commentary')                     " comment and uncomment things
+call dein#add('tpope/vim-fugitive')
+call dein#add('tpope/vim-repeat')
+call dein#add('tpope/vim-surround')
+call dein#add('tpope/vim-eunuch')                         " Perform unix operations
+call dein#add('Raimondi/delimitMate')                     " automatic closing of quotes, parenthesis, brackets, etc
+call dein#add('airblade/vim-gitgutter')
+call dein#add('editorconfig/editorconfig-vim')
+call dein#add('scrooloose/nerdtree')
+call dein#add('Xuyuanp/nerdtree-git-plugin')
+call dein#add('ntpeters/vim-better-whitespace')
+call dein#add('w0rp/ale')                                 " async lint engine
+call dein#add('andrewradev/splitjoin.vim')
+call dein#add('junegunn/vim-easy-align')
+call dein#add('mbbill/undotree')                          " visualize history
+call dein#add('embear/vim-localvimrc')                    " Allow local vim overrides within a project
+call dein#add('machakann/vim-highlightedyank')            " Automatically highlight yanked text
+call dein#add('terryma/vim-multiple-cursors')
+call dein#add('itchyny/lightline.vim')
+call dein#add('Shougo/neosnippet-snippets')
+
+" Search
+call dein#add('haya14busa/incsearch.vim')
+call dein#add('haya14busa/incsearch-fuzzy.vim')
+call dein#add('mileszs/ack.vim')
+
+if has('nvim')
+  call dein#add('Shougo/denite.nvim')
+else
+  call dein#add('ctrlpvim/ctrlp.vim')
+endif
+
+" HTML/XML
+call dein#add('docunext/closetag.vim', {
+      \ 'on_ft': ['html', 'xml', 'javascript']
+      \})                                                 " Automatically close html tags
+call dein#add('gregsexton/MatchTag', { 'on_ft': 'html' }) " highlight matching HTML tag
+call dein#add('mattn/emmet-vim')
+call dein#add('othree/html5.vim')
+
 " JavaScript
-Plug 'pangloss/vim-javascript'
-Plug 'elzr/vim-json'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-Plug 'epilande/vim-es2015-snippets'
-Plug 'epilande/vim-react-snippets'
-Plug 'SirVer/ultisnips'
+call dein#add('pangloss/vim-javascript')
+call dein#add('elzr/vim-json')
+call dein#add('prettier/vim-prettier', { 'build': 'yarn install' })
+call dein#add('epilande/vim-es2015-snippets')
+call dein#add('epilande/vim-react-snippets')
+call dein#add('SirVer/ultisnips')
+
+" Reason
+call dein#add('reasonml-editor/vim-reason-plus')
+
+" Typescript
+call dein#add('HerringtonDarkholme/yats.vim')
+call dein#add('mhartington/nvim-typescript')
 
 " Go
-Plug 'fatih/vim-go'
+call dein#add('fatih/vim-go', { 'on_ft': 'go' })
 
 " Markdown
-Plug 'tpope/vim-markdown'
-Plug 'nelstrom/vim-markdown-folding'
+call dein#add('tpope/vim-markdown')
+call dein#add('nelstrom/vim-markdown-folding')
 
 " Shell
-Plug 'z0mbix/vim-shfmt', { 'for': ['sh', 'zsh'] }
+call dein#add('z0mbix/vim-shfmt', { 'on_ft': ['sh', 'zsh'] })
 
 " Other obscure languages
-Plug 'ernstvanderlinden/vim-coldfusion'
+call dein#add('ernstvanderlinden/vim-coldfusion')
 
 " Colorschemes
-" Plug 'chriskempson/base16-vim'
-Plug 'mhartington/oceanic-next'
+call dein#add('mhartington/oceanic-next')
 
 " Autocomplete
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  call dein#add('Shougo/deoplete.nvim')
 else
-  Plug 'Shougo/neocomplete.vim'
+  call dein#add('Shougo/neocomplete.vim')
 endif
 
-call plug#end()
+if dein#check_install()
+  call dein#install()
+  let pluginsExist=1
+endif
+
+call dein#end()
 
 filetype plugin indent on    " required
 syntax on
@@ -214,12 +239,13 @@ map q: :q
 " Match and search
 " ----------------------------------------------------------------------------
 
-set matchtime=1                       " tenths of a sec
-set showmatch                         " briefly jump to matching paren?
-set wrapscan                          " Searches wrap around end of the file.
-set hlsearch                          " highlight search results
+set matchtime=1     " tenths of a sec
+set showmatch       " show matching bracket
+set wrapscan        " Searches wrap around end of the file.
+set hlsearch        " highlight search results
 set ignorecase
 set smartcase
+set matchpairs+=<:> " Add HTML brackets to pair matching
 
 " move the cursor to the next search result while typing
 set incsearch
