@@ -7,4 +7,6 @@ alias dcr="docker-compose stop; docker-compose up -d"
 
 alias vim="nvim"
 
+alias did="vim +'normal Go' +'r!date' ~/Google\ Drive/did.txt"
+
 [[ -f ~/aliases.local ]] && source ~/aliases.local
