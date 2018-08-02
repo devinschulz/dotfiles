@@ -39,6 +39,7 @@ call dein#add('machakann/vim-highlightedyank') " Automatically highlight yanked 
 call dein#add('terryma/vim-multiple-cursors')
 call dein#add('itchyny/lightline.vim')
 call dein#add('Shougo/neosnippet-snippets')
+call dein#add('RRethy/vim-illuminate')         " Highlight same words
 
 " Search
 call dein#add('haya14busa/incsearch.vim')
