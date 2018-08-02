@@ -124,6 +124,8 @@ call dein#end()
 filetype plugin indent on    " required
 syntax on
 
+let g:node_host_prog = '/usr/local/bin/neovim-node-host'
+
 " ----------------------------------------------------------------------------
 " General Config
 " ----------------------------------------------------------------------------
