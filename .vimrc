@@ -565,7 +565,7 @@ let g:lightline = {
   \ 'colorscheme': 'oceanicnext',
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ],
-  \             [ 'readonly', 'filename' ],
+  \             [ 'readonly', 'path' ],
   \             [ 'git' ] ],
   \   'right': [ [ 'lineinfo' ],
   \              [ 'percent' ],
@@ -573,7 +573,8 @@ let g:lightline = {
   \ },
   \ 'component_function': {
   \   'git': 'GitInfo',
-  \   'filesize': 'FileSize'
+  \   'filesize': 'FileSize',
+  \   'path': 'GetPath'
   \ },
   \ }
 
@@ -599,6 +600,10 @@ function! FileSize()
   else
     return printf('%.1f', size/1024.0/1024.0/1024.0) . 'g'
   endif
+endfunction
+
+function! GetPath()
+  return split(expand('%:p:h'), '/')[-1] . '/' . expand('%:t')
 endfunction
 
 " ----------------------------------------------------------------------------
