@@ -47,12 +47,6 @@ call dein#add('haya14busa/incsearch-fuzzy.vim')
 call dein#add('mileszs/ack.vim')
 call dein#add('junegunn/fzf.vim')
 
-if has('nvim')
-  call dein#add('Shougo/denite.nvim')
-else
-  call dein#add('ctrlpvim/ctrlp.vim')
-endif
-
 call dein#add('autozimu/LanguageClient-neovim', {
       \ 'rev': 'next',
       \ 'build': 'bash install.sh' })
@@ -341,51 +335,6 @@ if has('nvim')
 endif
 
 " ----------------------------------------------------------------------------
-" Plugin: Denite
-" ----------------------------------------------------------------------------
-
-if has('nvim')
-  " reset 50% winheight on window resize
-  augroup deniteresize
-    autocmd!
-    autocmd VimResized,VimEnter * call denite#custom#option('default',
-          \'winheight', winheight(0) / 2)
-  augroup end
-
-  call denite#custom#option('default', {
-    \ 'prompt': '❯'
-    \ })
-
-  call denite#custom#var('file_rec', 'command',
-    \ ['rg', '--files', '--glob', '!.git', ''])
-  call denite#custom#var('grep', 'command', ['rg'])
-  call denite#custom#var('grep', 'default_opts',
-      \ ['--hidden', '--vimgrep', '--no-heading', '-S'])
-  call denite#custom#var('grep', 'recursive_opts', [])
-  call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-  call denite#custom#var('grep', 'separator', ['--'])
-  call denite#custom#var('grep', 'final_opts', [])
-  call denite#custom#map('insert', '<Esc>', '<denite:enter_mode:normal>',
-    \'noremap')
-  call denite#custom#map('normal', '<Esc>', '<NOP>',
-    \'noremap')
-  call denite#custom#map('insert', '<C-v>', '<denite:do_action:vsplit>',
-    \'noremap')
-  call denite#custom#map('normal', '<C-v>', '<denite:do_action:vsplit>',
-    \'noremap')
-  call denite#custom#map('normal', 'dw', '<denite:delete_word_after_caret>',
-    \'noremap')
-
-  nnoremap <C-p> :<C-u>Denite file_rec<CR>
-  nnoremap <leader>s :<C-u>Denite buffer<CR>
-  nnoremap <leader><Space>s :<C-u>DeniteBufferDir buffer<CR>
-  nnoremap <leader>8 :<C-u>DeniteCursorWord grep:. -mode=normal<CR>
-  nnoremap <leader>/ :<C-u>Denite grep:. -mode=normal<CR>
-  nnoremap <leader><Space>/ :<C-u>DeniteBufferDir grep:. -mode=normal<CR>
-  nnoremap <leader>d :<C-u>DeniteBufferDir file_rec<CR>
-endif
-
-" ----------------------------------------------------------------------------
 " Plugin: fzf
 " ----------------------------------------------------------------------------
 
@@ -457,45 +406,6 @@ let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
-
-" ----------------------------------------------------------------------------
-" Plugin: CtrlP
-" ----------------------------------------------------------------------------
-
-if !has('nvim')
-  " Open file menu
-  noremap <Leader>o :CtrlP<CR>
-  " Open buffer menu
-  noremap <Leader>b :CtrlPBuffer<CR>
-  " Open most recently used files
-  noremap <Leader>f :CtrlPMRUFiles<CR>A
-
-  let g:ctrlp_max_height = 20            " provide more space to display results
-  let g:ctrlp_mruf_max = 250             " track recently used files
-  let g:ctrlp_show_hidden = 1            " show hidden files in search results
-
-  " Use ripgrep https://github.com/BurntSushi/ripgrep
-  if executable('rg')
-    " Use rg in CtrlP for listing files, automatically respects .gitignore
-    let g:ctrlp_user_command = 'rg -i %s --files'
-    " rg is fast enough that ctrlp doesn't need to cache
-    let g:ctrlp_use_caching = 0
-
-  " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-  elseif executable('ag')
-    " Use ag in CtrlP for listing files. automatically respects .gitignore
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-    " ag is fast enough that ctrlp doesn't need to cache
-    let g:ctrlp_use_caching = 0
-
-  else
-    " Ignore files included within .gitignore
-    let g:ctrlp_user_command = [
-      \ '.git', 'cd %s && git ls-files . -co --exclude-standard',
-      \ 'find %s -type f'
-      \ ]
-  endif
-endif
 
 " ----------------------------------------------------------------------------
 " Plugin: Ale
