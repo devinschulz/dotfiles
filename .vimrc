@@ -72,6 +72,7 @@ call dein#add('prettier/vim-prettier', { 'build': 'npm install' })
 call dein#add('epilande/vim-es2015-snippets')
 call dein#add('epilande/vim-react-snippets')
 call dein#add('SirVer/ultisnips')
+call dein#add('Quramy/vim-js-pretty-template')
 call dein#add('flowtype/vim-flow', {
       \ 'on_ft': 'javascript',
       \ 'build': 'npm install -g flow-bin' })
@@ -81,9 +82,8 @@ call dein#add('reasonml-editor/vim-reason-plus', {
       \ 'build': 'npm install -g ocaml-language-server' })
 
 " Typescript
-" call dein#add('HerringtonDarkholme/yats.vim')
-" call dein#add('mhartington/nvim-typescript', {
-"       \ 'build': './install.sh && npm i -g typescript neovim' })
+call dein#add('leafgarland/typescript-vim')
+call dein#add('Quramy/tsuquyomi')
 
 " Go
 call dein#add('fatih/vim-go', { 'on_ft': 'go' })
@@ -627,3 +627,16 @@ nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+" ----------------------------------------------------------------------------
+" Plugin: tsuquyomi
+" ----------------------------------------------------------------------------
+
+autocmd FileType typescript setlocal completeopt-=menu
+
+" ----------------------------------------------------------------------------
+" Plugin: Flow
+" ----------------------------------------------------------------------------
+
+let g:flow#enable = 0
+
