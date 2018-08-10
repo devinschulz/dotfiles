@@ -47,10 +47,6 @@ call dein#add('haya14busa/incsearch-fuzzy.vim')
 call dein#add('mileszs/ack.vim')
 call dein#add('junegunn/fzf.vim')
 
-call dein#add('autozimu/LanguageClient-neovim', {
-      \ 'rev': 'next',
-      \ 'build': 'bash install.sh' })
-
 " HTML/XML
 call dein#add('docunext/closetag.vim', {
       \ 'on_ft': ['html', 'xml', 'javascript']
@@ -70,10 +66,6 @@ call dein#add('Quramy/vim-js-pretty-template')
 call dein#add('flowtype/vim-flow', {
       \ 'on_ft': 'javascript',
       \ 'build': 'npm install -g flow-bin' })
-
-" Reason
-call dein#add('reasonml-editor/vim-reason-plus', {
-      \ 'build': 'npm install -g ocaml-language-server' })
 
 " Typescript
 call dein#add('leafgarland/typescript-vim')
@@ -528,21 +520,6 @@ endfunction
 
 let g:shfmt_extra_args = '-i 2 -ci' " Google style
 let g:shfmt_fmt_on_save = 1
-
-" ----------------------------------------------------------------------------
-" Plugin: LanguageClient
-" ----------------------------------------------------------------------------
-
-let g:LanguageClient_serverCommands = {
-    \ 'reason': ['ocaml-language-server', '--stdio'],
-    \ 'ocaml': ['ocaml-language-server', '--stdio'],
-    \ }
-
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-" Or map each action separately
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " ----------------------------------------------------------------------------
 " Plugin: tsuquyomi
