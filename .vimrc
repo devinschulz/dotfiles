@@ -405,6 +405,9 @@ let g:go_highlight_methods = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 
+" format with goimports instead of gofmt
+let g:go_fmt_command = "goimports"
+
 " ----------------------------------------------------------------------------
 " Plugin: Ale
 " ----------------------------------------------------------------------------
