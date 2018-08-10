@@ -116,31 +116,32 @@ let g:node_host_prog = '/usr/local/bin/neovim-node-host'
 " General Config
 " ----------------------------------------------------------------------------
 
-set ruler                             " ruler
-set backspace=indent,eol,start        " allow backspace in insert mode
-set history=1000                      " lots of history
-set showcmd                           " show incomplete cmds down the bottom
-set showmode                          " set the current mode in the bottom
-set autoread                          " reload files changed outside vim
-set noeol                             " no new line at end of file
-set nostartofline                     " don't reset cursor to start of line when moving
-set scrolloff=3                       " start scrolling 3 lines before the horiztonal window border
-set relativenumber                    " relative line numbers instead of absolute
-set nobackup                          " don't create annoying backup files
+set ruler                      " ruler
+set backspace=indent,eol,start " allow backspace in insert mode
+set history=1000               " lots of history
+set showcmd                    " show incomplete cmds in the bottom
+set showmode                   " set the current mode in the bottom
+set autoread                   " reload files changed outside vim
+set noeol                      " no new line at end of file
+set nostartofline              " don't reset cursor to start of line when moving
+set scrolloff=3                " start scrolling 3 lines before the horiztonal window border
+set relativenumber             " relative line numbers instead of absolute
+set nobackup                   " don't create annoying backup files
 set nowritebackup
-set nojoinspaces                      " use one space instead of two after punctuation
+set nojoinspaces               " use one space instead of two after punctuation
 set lazyredraw
+set autowrite                  " Automatically :write before running commands
 
 if has('nvim')
-  set inccommand=nosplit              " Live updates for search and replace
+  set inccommand=nosplit       " Live updates for search and replace
 endif
 
-set encoding=utf-8                    " set default encoding to UTF-8
-set autoread                          " automatically reread changed files without asking
-set gdefault                          " use `g` flag by default with :s/foo/bar
+set encoding=utf-8             " set default encoding to UTF-8
+set autoread                   " automatically reread changed files without asking
+set gdefault                   " use `g` flag by default with :s/foo/bar
 
 if has('clipboard')
-  if has('unnamedplus')               " when possible use + register for copy-paste
+  if has('unnamedplus')        " when possible use + register for copy-paste
     set clipboard=unnamed,unnamedplus
   else
     set clipboard=unnamed
