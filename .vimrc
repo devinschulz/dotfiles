@@ -56,8 +56,6 @@ call dein#add('mattn/emmet-vim')
 call dein#add('othree/html5.vim', { 'on_ft': 'html' })
 
 " JavaScript
-call dein#add('pangloss/vim-javascript')
-call dein#add('elzr/vim-json')
 call dein#add('prettier/vim-prettier', { 'build': 'npm install' })
 call dein#add('epilande/vim-es2015-snippets')
 call dein#add('epilande/vim-react-snippets')
@@ -68,7 +66,6 @@ call dein#add('flowtype/vim-flow', {
       \ 'build': 'npm install -g flow-bin' })
 
 " Typescript
-call dein#add('leafgarland/typescript-vim')
 call dein#add('Quramy/tsuquyomi')
 
 " Go
@@ -92,17 +89,10 @@ call dein#add('ernstvanderlinden/vim-coldfusion', { 'on_ft': ['coldfusion'] })
 " Colorschemes
 call dein#add('mhartington/oceanic-next')
 
-" Autocomplete
-if has('nvim')
-  call dein#add('Shougo/deoplete.nvim')
-else
-  call dein#add('Shougo/neocomplete.vim')
-endif
-
 if dein#check_install()
   call dein#install()
   call dein#remote_plugins()
-  let pluginsExist=1
+  let pluginsExist = 1
 endif
 
 call dein#end()
@@ -289,15 +279,6 @@ set foldcolumn=0
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
-" strip trailing spaces on sace
-fun! <SID>StripTrailingWhitespaces()
-  let l = line(".")
-  let c = col(".")
-  %s/\s\+$//e
-  call cursor(l, c)
-endfun
-autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
-
 " ----------------------------------------------------------------------------
 " Remaps
 " ----------------------------------------------------------------------------
@@ -419,6 +400,8 @@ let g:ale_sign_warning = '⚠️'
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier']
 let g:ale_fixers['javascript.jsx'] = ['prettier']
+let g:ale_fixers['typescript'] = ['prettier']
+let g:ale_fixers['typescript.jsx'] = ['prettier']
 let g:ale_fixers['less'] = ['prettier']
 let g:ale_fixers['scss'] = ['prettier']
 let g:ale_javascript_prettier_options = '--trailing-comma es5 --no-semi --single-quote'
@@ -537,3 +520,9 @@ autocmd FileType typescript setlocal completeopt-=menu
 
 let g:flow#enable = 0
 
+" ----------------------------------------------------------------------------
+" Plugin: Better whitespace
+" ----------------------------------------------------------------------------
+
+let g:better_whitespace_enabled = 1
+let g:strip_whitespace_on_save = 1
