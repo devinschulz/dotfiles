@@ -523,7 +523,7 @@ endfunction
 " ----------------------------------------------------------------------------
 
 let g:shfmt_extra_args = '-i 2 -ci' " Google style
-let g:shfmt_fmt_on_save = 1
+let g:shfmt_fmt_on_save = 0
 
 " ----------------------------------------------------------------------------
 " Plugin: tsuquyomi
