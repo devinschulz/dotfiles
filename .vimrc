@@ -40,6 +40,7 @@ call dein#add('terryma/vim-multiple-cursors')
 call dein#add('itchyny/lightline.vim')
 call dein#add('Shougo/neosnippet-snippets')
 call dein#add('RRethy/vim-illuminate')         " Highlight same words
+call dein#add('Shougo/deoplete.nvim')
 
 " Search
 call dein#add('haya14busa/incsearch.vim')
@@ -300,13 +301,11 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 " Plugin: Deoplete
 " ----------------------------------------------------------------------------
 
-if has('nvim')
-  let g:deoplete#enable_at_startup = 1
-  let g:deoplete#enable_smart_case = 1
-  " set minimum syntax keyword length.
-  let g:deoplete#auto_completion_start_length = 1
-  let g:deoplete#auto_complete_delay = 50
-endif
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
+" set minimum syntax keyword length.
+let g:deoplete#auto_completion_start_length = 1
+let g:deoplete#auto_complete_delay = 50
 
 " ----------------------------------------------------------------------------
 " Plugin: fzf
