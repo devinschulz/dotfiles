@@ -269,11 +269,10 @@ set list                              " Show whitespace
 set listchars=tab:❘-,trail:·,extends:»,precedes:«,nbsp:×
 
 " Folding
-if &foldmethod ==# ''
-  set foldmethod=syntax               " Allow folding by indent level
-endif
-set foldlevel=0
-set foldcolumn=0
+set foldmethod=syntax " Allow folding by indent level
+set foldcolumn=1      " Defines 1 col at window left, to indicate folding
+let javaScript_fold=1 " Activate folding by JS syntax
+set foldlevelstart=99 " Start with all folds opened
 
 " Highlight text which extends beyond the column width
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
