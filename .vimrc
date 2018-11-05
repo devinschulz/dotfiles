@@ -24,11 +24,10 @@ call dein#add('tpope/vim-fugitive')
 call dein#add('tpope/vim-repeat')
 call dein#add('tpope/vim-surround')
 call dein#add('tpope/vim-eunuch')              " Perform unix operations
+call dein#add('tpope/vim-vinegar')             " netrw improvements
 call dein#add('Raimondi/delimitMate')          " automatic closing of quotes, parenthesis, brackets, etc
 call dein#add('airblade/vim-gitgutter')
 call dein#add('editorconfig/editorconfig-vim')
-call dein#add('scrooloose/nerdtree')
-call dein#add('Xuyuanp/nerdtree-git-plugin')
 call dein#add('ntpeters/vim-better-whitespace')
 call dein#add('w0rp/ale')                      " async lint engine
 call dein#add('andrewradev/splitjoin.vim')
@@ -270,11 +269,10 @@ set list                              " Show whitespace
 set listchars=tab:❘-,trail:·,extends:»,precedes:«,nbsp:×
 
 " Folding
-if &foldmethod ==# ''
-  set foldmethod=syntax               " Allow folding by indent level
-endif
-set foldlevel=0
-set foldcolumn=0
+set foldmethod=syntax " Allow folding by indent level
+set foldcolumn=1      " Defines 1 col at window left, to indicate folding
+let javaScript_fold=1 " Activate folding by JS syntax
+set foldlevelstart=99 " Start with all folds opened
 
 " Highlight text which extends beyond the column width
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
@@ -343,31 +341,6 @@ let g:fzf_colors =
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-
-" ----------------------------------------------------------------------------
-" Plugin: NERDTree
-" ----------------------------------------------------------------------------
-
-" Open automatically when no files are specified
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-" Automatically delete buffer once file has been deleted
-let g:NERDTreeAutoDeleteBuffer = 1
-
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeDirArrows = 1
-let g:NERDTreeWinPos = "left"
-let g:NERDTreeShowHidden = 1
-
-" Single-click to toggle directory nodes, double click to open non-directory
-" nodes.
-let g:NERDTreeMouseMode=2
-
-" Default is 31 which is a tad too narrow
-let g:NERDTreeWinSize=40
-
-let NERDTreeIgnore = ['\.DS_Store$']
 
 " ----------------------------------------------------------------------------
 " Plugin: jsx
