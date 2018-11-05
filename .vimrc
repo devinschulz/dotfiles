@@ -403,6 +403,8 @@ let g:ale_fixers['typescript'] = ['prettier']
 let g:ale_fixers['typescript.jsx'] = ['prettier']
 let g:ale_fixers['less'] = ['prettier']
 let g:ale_fixers['scss'] = ['prettier']
+let g:ale_fixers['css'] = ['prettier']
+let g:ale_fixers['markdown'] = ['prettier']
 let g:ale_javascript_prettier_options = '--trailing-comma es5 --no-semi --single-quote'
 
 let g:ale_linters = {}
