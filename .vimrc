@@ -50,11 +50,11 @@ call dein#add('junegunn/fzf.vim')
 
 " HTML/XML
 call dein#add('docunext/closetag.vim', {
-      \ 'on_ft': ['html', 'xml', 'javascript']
+      \ 'on_ft': ['html', 'xml', 'javascript', 'typescript']
       \})                                                 " Automatically close html tags
-call dein#add('gregsexton/MatchTag', { 'on_ft': 'html' }) " highlight matching HTML tag
+call dein#add('gregsexton/MatchTag', { 'on_ft': ['html', 'typescript', 'javascript'] }) " highlight matching HTML tag
 call dein#add('mattn/emmet-vim')
-call dein#add('othree/html5.vim', { 'on_ft': 'html' })
+call dein#add('othree/html5.vim', { 'on_ft': ['html', 'typescript', 'javascript'] })
 
 " JavaScript
 call dein#add('prettier/vim-prettier', { 'build': 'npm install' })
@@ -512,6 +512,8 @@ let g:shfmt_fmt_on_save = 0
 " ----------------------------------------------------------------------------
 
 autocmd FileType typescript setlocal completeopt-=menu
+
+au BufReadPost *.tsx set syntax=typescript
 
 " ----------------------------------------------------------------------------
 " Plugin: Flow
