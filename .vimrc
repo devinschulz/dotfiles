@@ -138,6 +138,12 @@ if has('clipboard')
   endif
 endif
 
+" Automatically reload vimrc once saved
+augroup myvimrc
+  au!
+  au BufWritePost .vimrc,vimrc so $MYVIMRC
+augroup END
+
 " ----------------------------------------------------------------------------
 " Display
 " ----------------------------------------------------------------------------
