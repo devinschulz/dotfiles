@@ -40,6 +40,7 @@ call dein#add('itchyny/lightline.vim')
 call dein#add('Shougo/neosnippet-snippets')
 call dein#add('RRethy/vim-illuminate')         " Highlight same words
 call dein#add('Shougo/deoplete.nvim')
+call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 
 " Search
 call dein#add('haya14busa/incsearch.vim')
