@@ -41,6 +41,7 @@ call dein#add('Shougo/neosnippet-snippets')
 call dein#add('RRethy/vim-illuminate')         " Highlight same words
 call dein#add('Shougo/deoplete.nvim')
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
+call dein#add('wellle/targets.vim')            " Provides additional text objects
 
 " Search
 call dein#add('haya14busa/incsearch.vim')
@@ -509,3 +510,4 @@ let g:flow#enable = 0
 
 let g:better_whitespace_enabled = 1
 let g:strip_whitespace_on_save = 1
+

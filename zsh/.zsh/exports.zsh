@@ -1,4 +1,4 @@
-export VISUAL=vim
+export VISUAL=nvim
 export EDITOR=$VISUAL
 
 export GITHUB_USER=devinschulz
@@ -16,4 +16,4 @@ if [ $ITERM_SESSION_ID ]; then
   export PROMPT_COMMAND='echo -ne "\033];${PWD##*/}\007"; ':"$PROMPT_COMMAND"
 fi
 
-[[ -f ~/exports.local ]] && source ~/exports.local
+xsource ~/exports.local

@@ -1,0 +1,37 @@
+[user]
+	name = Devin Schulz
+	email = devin@devinschulz.com
+	signingkey = C7E3228CEB877F00
+[core]
+	editor = nvim
+[mergetool]
+	keepBackup = false
+	writeToTemp = true
+[push]
+	default = tracking
+[status]
+	relativePaths = true
+[commit]
+	verbose = true
+[color]
+	ui = auto
+[fetch]
+	prune = true
+[alias]
+	amend = commit --amend --no-edit
+	br = branch
+	ci = commit
+	co = checkout
+	cp = cherry-pick
+	rg = rebase
+	st = status
+[credential]
+	helper = osxkeychain
+[diff]
+	tool = nvimdiff
+[difftool "nvimdiff"]
+	cmd = "nvim -d -u ~/.vimrc \"$LOCAL\" \"$REMOTE\""
+[difftool]
+	prompt = false
+[gpg]
+	program = gpg

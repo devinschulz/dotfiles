@@ -1,15 +1,12 @@
-[submodule "zsh/plugins/z"]
-	path = zsh/plugins/z
+[submodule "zsh/.zsh/plugins/z"]
+	path = zsh/.zsh/plugins/z
 	url = git@github.com:rupa/z.git
-[submodule ".tmux/tmux-yank"]
-	path = .tmux/tmux-yank
-	url = git@github.com:tmux-plugins/tmux-yank.git
-[submodule ".tmux/tmux-resurrect"]
-	path = .tmux/tmux-resurrect
-	url = git@github.com:tmux-plugins/tmux-resurrect.git
-[submodule ".tmux/tmux-sensible"]
-	path = .tmux/tmux-sensible
+[submodule "tmux/plugins/tmux-sensible"]
+	path = tmux/.tmux/plugins/tmux-sensible
 	url = git@github.com:tmux-plugins/tmux-sensible.git
-[submodule ".tmux/tmux-1password"]
-	path = .tmux/tmux-1password
-	url = https://github.com/yardnsm/tmux-1password
+[submodule "tmux/plugins/tmux-resurrect"]
+	path = tmux/.tmux/plugins/tmux-resurrect
+	url = git@github.com:tmux-plugins/tmux-resurrect.git
+[submodule "tmux/plugins/tmux-yank"]
+	path = tmux/.tmux/plugins/tmux-yank
+	url = git@github.com:tmux-plugins/tmux-yank.git
