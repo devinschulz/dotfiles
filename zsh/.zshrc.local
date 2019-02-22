@@ -24,6 +24,11 @@ xsource "$HOME/.zsh/exports.zsh"
 # ensure dotfiles bin directory is loaded first
 PATH="$HOME/.bin:/usr/local/sbin:$PATH"
 
+autoload -Uz compinit
+compinit
+# Completion for kitty
+kitty + complete setup zsh | source /dev/stdin
+
 ## Settings for umask
 #if (( EUID == 0 )); then
 #    umask 002
