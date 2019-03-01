@@ -162,53 +162,20 @@ nmap ga <Plug>(EasyAlign)
 let g:localvimrc_ask = 0
 
 " ----------------------------------------------------------------------------
-" Plugin: Lightline
+" Plugin: Airline
 " ----------------------------------------------------------------------------
 
-let g:lightline = {
-  \ 'colorscheme': 'oceanicnext',
-  \ 'active': {
-  \   'left': [ [ 'mode', 'paste' ],
-  \             [ 'readonly', 'path' ],
-  \             [ 'git' ] ],
-  \   'right': [ [ 'lineinfo' ],
-  \              [ 'percent' ],
-  \              [ 'filesize', 'fileformat', 'filetype' ] ],
-  \ },
-  \ 'component_function': {
-  \   'git': 'GitInfo',
-  \   'filesize': 'FileSize',
-  \   'path': 'GetPath'
-  \ },
-  \ }
-
-function! GitInfo()
-  if exists('*fugitive#head')
-    let branch = fugitive#head()
-    return branch !=# '' ? ' '.branch : ''
-  endif
-  return ''
-endfunction
-
-function! FileSize()
-  let size = getfsize(expand('%:p'))
-  if size == 0 || size == -1 || size == -2
-    return ''
-  endif
-  if size < 1024
-    return size . ' bytes'
-  elseif size < 1024 * 2024
-    return printf('%.1f', size/1024.0) . 'k'
-  elseif size < 1024 * 2024 * 2024
-    return printf('%.1f', size/1024.0/1024.0) . 'm'
-  else
-    return printf('%.1f', size/1024.0/1024.0/1024.0) . 'g'
-  endif
-endfunction
-
-function! GetPath()
-  return split(expand('%:p:h'), '/')[-1] . '/' . expand('%:t')
-endfunction
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='oceanicnext'
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols = {}
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.maxlinenr = ''
 
 " ----------------------------------------------------------------------------
 " Plugin: shfmt

@@ -28,12 +28,13 @@ call dein#add('mbbill/undotree')               " visualize history
 call dein#add('embear/vim-localvimrc')         " Allow local vim overrides within a project
 call dein#add('machakann/vim-highlightedyank') " Automatically highlight yanked text
 call dein#add('terryma/vim-multiple-cursors')
-call dein#add('itchyny/lightline.vim')
 call dein#add('Shougo/neosnippet-snippets')
 call dein#add('RRethy/vim-illuminate')         " Highlight same words
 call dein#add('Shougo/deoplete.nvim')
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('wellle/targets.vim')            " Provides additional text objects
+call dein#add('vim-airline/vim-airline')
+call dein#add('vim-airline/vim-airline-themes')
 
 " Search
 call dein#add('haya14busa/incsearch.vim')
