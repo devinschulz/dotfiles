@@ -12,3 +12,10 @@ if has("user_commands")
   command! -bang Qa qa<bang>
 endif
 
+" Beautify JSON
+function! JsonFmt()
+  %!python -m json.tool
+  %s;^\(\s\+\);\=repeat(' ', len(submatch(0))/2);g
+endfunction
+
+command! JsonFmt :call JsonFmt()

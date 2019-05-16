@@ -1,26 +1,88 @@
 " ----------------------------------------------------------------------------
-" Plugin: Deoplete
+" Plugin: Coc.nvim
 " ----------------------------------------------------------------------------
 
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_smart_case = 1
-" set minimum syntax keyword length.
-let g:deoplete#auto_completion_start_length = 1
-let g:deoplete#auto_complete_delay = 50
+" https://kimpers.com/vim-intelligent-autocompletion/
+let g:coc_global_extensions = [
+  \ 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-highlight', 'coc-snippets',
+  \ 'coc-tsserver', 'coc-tslint', 'coc-tslint-plugin', 'coc-emmet',
+  \ 'coc-css', 'coc-json', 'coc-pyls', 'coc-yaml', 'coc-yank', 'coc-html'
+  \ ]
 
-" Omnicomplete
-augroup omnifuncs
-  autocmd!
-  autocmd FileType css,less,scss,sass setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType typescript setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-augroup end
+" Better display for messages
+set cmdheight=2
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+" always show signcolumns
+set signcolumn=yes
 
-" Enable tab completion for omnicomplete
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" Use `lp` and `ln` for navigate diagnostics
+nmap <silent> <leader>lp <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>ln <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> <leader>ld <Plug>(coc-definition)
+nmap <silent> <leader>lt <Plug>(coc-type-definition)
+nmap <silent> <leader>li <Plug>(coc-implementation)
+nmap <silent> <leader>lf <Plug>(coc-references)
+
+" Remap for rename current word
+nmap <leader>lr <Plug>(coc-rename)
+
+" Use K for show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" coc-prettier
+"
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Prettier with :Prettier for the current buffer
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+" Format range with Prettier
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+" coc-snippets
+"
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
 
 " ----------------------------------------------------------------------------
 " Plugin: Ack.vim
@@ -96,37 +158,6 @@ let g:go_highlight_extra_types = 1
 let g:go_fmt_command = "goimports"
 
 " ----------------------------------------------------------------------------
-" Plugin: Ale
-" ----------------------------------------------------------------------------
-
-let g:ale_sign_error = '✘'
-let g:ale_sign_warning = '⚠'
-highlight ALEErrorSign ctermbg=NONE ctermfg=red
-highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
-
-let g:ale_fixers = {}
-let g:ale_fixers['javascript'] = ['prettier']
-let g:ale_fixers['javascript.jsx'] = ['prettier']
-let g:ale_fixers['typescript'] = ['prettier']
-let g:ale_fixers['typescript.jsx'] = ['prettier']
-let g:ale_fixers['less'] = ['prettier']
-let g:ale_fixers['scss'] = ['prettier']
-let g:ale_fixers['css'] = ['prettier']
-let g:ale_fixers['markdown'] = ['prettier']
-let g:ale_javascript_prettier_options = '--trailing-comma es5 --no-semi --single-quote'
-
-let g:ale_linters = {}
-let g:ale_linters['javascript'] = ['']
-
-let g:ale_fix_on_save =  1
-
-" ----------------------------------------------------------------------------
-" Plugin: neocomplete.vim
-" ----------------------------------------------------------------------------
-
-let g:neocomplete#enable_at_startup = 1
-
-" ----------------------------------------------------------------------------
 " Plugin: invsearch.vim
 " ----------------------------------------------------------------------------
 
@@ -168,11 +199,12 @@ let g:localvimrc_ask = 0
 let g:airline_theme='oceanicnext'
 let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#coc#enabled = 1
 let g:airline_left_sep = ' ✱ '
 let g:airline_right_sep = ' ✱ '
-let g:airline_section_warning = ''
 let g:airline_section_y = ''
-let g:airline_section_x = ''
+let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
 " ----------------------------------------------------------------------------
 " Plugin: shfmt

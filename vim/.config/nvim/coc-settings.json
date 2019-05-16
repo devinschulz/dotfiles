@@ -1,0 +1,32 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "go",
+    "javascript",
+    "javascript.jsx",
+    "json",
+    "less",
+    "markdown",
+    "typescript",
+    "typescript.tsx"
+  ],
+  "languageserver": {
+    "golang": {
+      "command": "go-langserver",
+      "filetypes": ["go"],
+      "initializationOptions": {
+        "gocodeCompletionEnabled": true,
+        "diagnosticsEnabled": true,
+        "lintTool": "golint"
+      }
+    },
+    "dockerfile": {
+      "command": "docker-langserver",
+      "filetypes": ["dockerfile"],
+      "args": ["--stdio"]
+    }
+  },
+  "prettier.singleQuote": true,
+  "prettier.semi": false,
+  "prettier.trailingComma": "none"
+}

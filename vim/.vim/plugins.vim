@@ -21,20 +21,21 @@ call dein#add('Raimondi/delimitMate')          " automatic closing of quotes, pa
 call dein#add('airblade/vim-gitgutter')
 call dein#add('editorconfig/editorconfig-vim')
 call dein#add('ntpeters/vim-better-whitespace')
-call dein#add('w0rp/ale')                      " async lint engine
 call dein#add('andrewradev/splitjoin.vim')
 call dein#add('junegunn/vim-easy-align')
 call dein#add('mbbill/undotree')               " visualize history
 call dein#add('embear/vim-localvimrc')         " Allow local vim overrides within a project
 call dein#add('machakann/vim-highlightedyank') " Automatically highlight yanked text
 call dein#add('terryma/vim-multiple-cursors')
-call dein#add('Shougo/neosnippet-snippets')
 call dein#add('RRethy/vim-illuminate')         " Highlight same words
-call dein#add('Shougo/deoplete.nvim')
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('wellle/targets.vim')            " Provides additional text objects
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
+call dein#add('neoclide/coc.nvim', {
+      \ 'merge': 0,
+      \ 'build': './install.sh nightly && npm i -g dockerfile-language-server-nodejs && go get -u github.com/sourcegraph/go-langserver'
+      \ })
 
 " Search
 call dein#add('haya14busa/incsearch.vim')
@@ -45,14 +46,12 @@ call dein#add('ervandew/supertab')
 
 " HTML/XML
 call dein#add('docunext/closetag.vim', {
-      \ 'on_ft': ['html', 'xml', 'javascript', 'typescript']
-      \})                                                 " Automatically close html tags
+      \ 'on_ft': ['html', 'xml', 'javascript', 'typescript'] })                                                 " Automatically close html tags
 call dein#add('gregsexton/MatchTag', { 'on_ft': ['html', 'typescript', 'javascript'] }) " highlight matching HTML tag
 call dein#add('mattn/emmet-vim')
 call dein#add('othree/html5.vim', { 'on_ft': ['html', 'typescript', 'javascript'] })
 
 " JavaScript
-call dein#add('prettier/vim-prettier', { 'build': 'npm install' })
 call dein#add('epilande/vim-es2015-snippets')
 call dein#add('epilande/vim-react-snippets')
 call dein#add('SirVer/ultisnips')
@@ -64,6 +63,10 @@ call dein#add('carlitux/deoplete-ternjs', {
       \ 'build': 'npm install -g tern',
       \ 'on_ft': ['javascript', 'typescript', 'javascript.jsx'] })
 
+" CSS
+call dein#add('JulesWang/css.vim')
+call dein#add('othree/csscomplete.vim')
+call dein#add('ap/vim-css-color')
 " Typescript
 call dein#add('Quramy/tsuquyomi')
 
