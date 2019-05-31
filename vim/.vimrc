@@ -5,6 +5,7 @@ let configs = [
   \ "display",
   \ "backups",
   \ "commands",
+  \ "mappings",
   \ "search",
   \ ]
 
