@@ -26,13 +26,14 @@ alias dcu='docker-compose up'
 alias dcU='docker-compose up -d'
 alias dcv='docker-compose version'
 alias dcs='docker-compose stop'
-alias vim="nvim"
 
+alias vim="nvim"
 alias did="vim +'normal Go' +'r!date' ~/Google\ Drive/did.txt"
 alias cat='bat'
 alias ping='prettyping --nolegend'
 alias top='htop'
 alias help='tldr'
+alias tx='tmuxinator'
 
 [[ -f ~/aliases.local ]] && source ~/aliases.local
 

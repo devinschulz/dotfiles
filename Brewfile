@@ -1,4 +1,5 @@
 tap 'alecthomas/tap'
+tap 'nexeck/homebrew-tmuxinator'
 tap 'homebrew/bundle'
 tap 'homebrew/cask'
 tap 'homebrew/cask-fonts'
@@ -98,6 +99,7 @@ brew 'yarn'
 brew 'zsh'
 brew 'zsh-completions'
 brew 'alecthomas/tap/gometalinter'
+brew 'nexeck/homebrew-tmuxinator/tmuxinator'
 
 # Fonts
 cask 'font-anonymous-pro'
