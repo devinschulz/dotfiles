@@ -3,30 +3,36 @@
     "css",
     "go",
     "javascript",
-    "javascript.jsx",
+    "javascriptreact",
     "json",
     "less",
     "markdown",
     "typescript",
-    "typescript.tsx"
+    "typescriptreact"
   ],
   "languageserver": {
+    "dockerfile": {
+      "args": [
+        "--stdio"
+      ],
+      "command": "docker-langserver",
+      "filetypes": [
+        "dockerfile"
+      ]
+    },
     "golang": {
       "command": "go-langserver",
-      "filetypes": ["go"],
+      "filetypes": [
+        "go"
+      ],
       "initializationOptions": {
-        "gocodeCompletionEnabled": true,
         "diagnosticsEnabled": true,
+        "gocodeCompletionEnabled": true,
         "lintTool": "golint"
       }
-    },
-    "dockerfile": {
-      "command": "docker-langserver",
-      "filetypes": ["dockerfile"],
-      "args": ["--stdio"]
     }
   },
-  "prettier.singleQuote": true,
   "prettier.semi": false,
+  "prettier.singleQuote": true,
   "prettier.trailingComma": "none"
 }
