@@ -129,6 +129,9 @@ cask 'font-ubuntu'
 cask 'font-work-sans'
 
 # Applications
+cask 'appcleaner'
+cask 'bitwarden'
+cask 'bitwarden-cli'
 cask 'docker'
 cask 'firefox'
 cask 'google-backup-and-sync'
@@ -145,6 +148,7 @@ cask 'tower2'
 cask 'trailer'
 cask 'virtualbox'
 cask 'virualbox-extension-pack'
+cask 'vlc'
 
 mas 'Lungo', id: 1263070803
 mas 'Magnet', id: 441258766
