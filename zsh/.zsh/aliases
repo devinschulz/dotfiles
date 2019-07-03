@@ -2,7 +2,6 @@
 alias dps="docker ps"
 
 # Docker Compose (c)
-
 alias dc='docker-compose'
 alias dcb='docker-compose build'
 alias dcB='docker-compose build --no-cache'
@@ -34,6 +33,8 @@ alias ping='prettyping --nolegend'
 alias top='htop'
 alias help='tldr'
 alias tx='tmuxinator'
+alias lzd='lazydocker'
+alias lzg='lazygit'
 
 [[ -f ~/aliases.local ]] && source ~/aliases.local
 
