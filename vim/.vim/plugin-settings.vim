@@ -234,3 +234,8 @@ let g:flow#enable = 0
 let g:better_whitespace_enabled = 1
 let g:strip_whitespace_on_save = 1
 
+" ----------------------------------------------------------------------------
+" Plugin: Rust.vim
+" ----------------------------------------------------------------------------
+
+let g:rustfmt_autosave = 1

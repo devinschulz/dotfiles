@@ -23,6 +23,7 @@ xsource "$HOME/.zsh/exports.zsh"
 
 # ensure dotfiles bin directory is loaded first
 PATH="$HOME/.bin:/usr/local/sbin:$PATH"
+PATH="$HOME/.cargo/bin:$PATH"
 
 autoload -Uz compinit
 compinit

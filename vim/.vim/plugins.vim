@@ -73,6 +73,9 @@ call dein#add('Quramy/tsuquyomi')
 " Go
 call dein#add('fatih/vim-go', { 'on_ft': 'go' })
 
+" Rust
+call dein#add('rust-lang/rust.vim')
+
 " Markdown
 call dein#add('tpope/vim-markdown', { 'on_ft': 'markdown' })
 call dein#add('nelstrom/vim-markdown-folding', { 'on_ft': 'markdown' })
