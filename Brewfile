@@ -133,8 +133,6 @@ cask 'font-work-sans'
 
 # Applications
 cask 'appcleaner'
-cask 'bitwarden'
-cask 'bitwarden-cli'
 cask 'docker'
 cask 'firefox'
 cask 'fork'
@@ -158,6 +156,5 @@ cask 'vlc'
 
 mas 'Lungo', id: 1263070803
 mas 'Magnet', id: 441258766
-mas 'Paste', id: 967805235
 mas 'Xcode', id: 497799835
 mas 'xScope', id: 889428659
