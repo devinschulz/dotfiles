@@ -133,6 +133,7 @@ cask 'font-work-sans'
 
 # Applications
 cask 'appcleaner'
+cask 'cryptomator'
 cask 'docker'
 cask 'firefox'
 cask 'fork'
