@@ -5,8 +5,9 @@
 " https://kimpers.com/vim-intelligent-autocompletion/
 let g:coc_global_extensions = [
   \ 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-highlight', 'coc-snippets',
-  \ 'coc-tsserver', 'coc-tslint', 'coc-tslint-plugin', 'coc-emmet',
-  \ 'coc-css', 'coc-json', 'coc-pyls', 'coc-yaml', 'coc-yank', 'coc-html'
+  \ 'coc-tsserver', 'coc-tslint', 'coc-tslint-plugin', 'coc-emmet', 'coc-css',
+  \'coc-json', 'coc-pyls', 'coc-yaml', 'coc-yank', 'coc-html', 'coc-pairs',
+  \ 'coc-git', 'coc-lists', 'coc-stylelint'
   \ ]
 
 " Better display for messages
@@ -17,6 +18,12 @@ set updatetime=300
 set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
+
+let g:coc_status_error_sign = '•'
+let g:coc_status_warning_sign = '•'
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Use `lp` and `ln` for navigate diagnostics
 nmap <silent> <leader>lp <Plug>(coc-diagnostic-prev)
@@ -203,8 +210,9 @@ let g:airline#extensions#coc#enabled = 1
 let g:airline_left_sep = ' ✱ '
 let g:airline_right_sep = ' ✱ '
 let g:airline_section_y = ''
-let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+" let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+" let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+
 
 " ----------------------------------------------------------------------------
 " Plugin: shfmt
