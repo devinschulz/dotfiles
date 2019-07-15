@@ -67,6 +67,9 @@ call dein#add('othree/csscomplete.vim')
 " Typescript
 call dein#add('Quramy/tsuquyomi')
 
+" Svelte
+call dein#add('burner/vim-svelte')
+
 " Go
 call dein#add('fatih/vim-go', { 'on_ft': 'go' })
 
