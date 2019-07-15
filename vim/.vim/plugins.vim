@@ -67,8 +67,12 @@ call dein#add('carlitux/deoplete-ternjs', {
 call dein#add('JulesWang/css.vim')
 call dein#add('othree/csscomplete.vim')
 call dein#add('ap/vim-css-color')
+
 " Typescript
 call dein#add('Quramy/tsuquyomi')
+
+" Svelte
+call dein#add('burner/vim-svelte')
 
 " Go
 call dein#add('fatih/vim-go', { 'on_ft': 'go' })
