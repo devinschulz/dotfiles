@@ -59,14 +59,11 @@ call dein#add('Quramy/vim-js-pretty-template')
 call dein#add('flowtype/vim-flow', {
       \ 'on_ft': 'javascript',
       \ 'build': 'npm install -g flow-bin' })
-call dein#add('carlitux/deoplete-ternjs', {
-      \ 'build': 'npm install -g tern',
-      \ 'on_ft': ['javascript', 'typescript', 'javascript.jsx'] })
 
 " CSS
 call dein#add('JulesWang/css.vim')
 call dein#add('othree/csscomplete.vim')
-call dein#add('ap/vim-css-color')
+
 " Typescript
 call dein#add('Quramy/tsuquyomi')
 
