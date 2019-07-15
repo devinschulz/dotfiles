@@ -6,7 +6,7 @@
 let g:coc_global_extensions = [
   \ 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-highlight', 'coc-snippets',
   \ 'coc-tsserver', 'coc-tslint', 'coc-tslint-plugin', 'coc-emmet', 'coc-css',
-  \'coc-json', 'coc-pyls', 'coc-yaml', 'coc-yank', 'coc-html', 'coc-pairs',
+  \ 'coc-json', 'coc-pyls', 'coc-yaml', 'coc-yank', 'coc-html', 'coc-pairs',
   \ 'coc-git', 'coc-lists', 'coc-stylelint'
   \ ]
 
