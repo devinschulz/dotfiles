@@ -17,7 +17,7 @@ call dein#add('tpope/vim-repeat')
 call dein#add('tpope/vim-surround')
 call dein#add('tpope/vim-eunuch')              " Perform unix operations
 call dein#add('tpope/vim-vinegar')             " netrw improvements
-call dein#add('Raimondi/delimitMate')          " automatic closing of quotes, parenthesis, brackets, etc
+call dein#add('jiangmiao/auto-pairs')
 call dein#add('airblade/vim-gitgutter')
 call dein#add('editorconfig/editorconfig-vim')
 call dein#add('ntpeters/vim-better-whitespace')
@@ -36,6 +36,7 @@ call dein#add('neoclide/coc.nvim', {
       \ 'merge': 0,
       \ 'build': './install.sh nightly && npm i -g dockerfile-language-server-nodejs && go get -u github.com/sourcegraph/go-langserver'
       \ })
+call dein#add('mhinz/vim-startify')
 
 " Search
 call dein#add('haya14busa/incsearch.vim')
