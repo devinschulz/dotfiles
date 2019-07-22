@@ -1,4 +1,7 @@
 {
+  "prettier.requireConfig": true,
+  "tslint.autoFixOnSave": true,
+  "tslint.enable": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "go",
@@ -31,8 +34,5 @@
         "lintTool": "golint"
       }
     }
-  },
-  "prettier.semi": false,
-  "prettier.singleQuote": true,
-  "prettier.trailingComma": "none"
+  }
 }
