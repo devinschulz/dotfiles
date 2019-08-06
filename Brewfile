@@ -168,3 +168,4 @@ mas 'Lungo', id: 1263070803
 mas 'Magnet', id: 441258766
 mas 'Xcode', id: 497799835
 mas 'xScope', id: 889428659
+mas 'Todoist', id: 585829637
