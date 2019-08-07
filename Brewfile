@@ -6,6 +6,7 @@ tap 'homebrew/core'
 tap 'jesseduffield/lazydocker'
 tap 'nexeck/homebrew-tmuxinator'
 tap 'tinygo-org/tools'
+tap 'Goles/battery'
 
 brew 'ack'
 brew 'alecthomas/tap/gometalinter'
@@ -14,6 +15,7 @@ brew 'automake'
 brew 'awscli'
 brew 'bash'
 brew 'bat'
+brew 'battery'
 brew 'boost'
 brew 'cask'
 brew 'cmake'
@@ -89,6 +91,7 @@ brew 'ripgrep'
 brew 'rust'
 brew 'shfmt'
 brew 'siege'
+brew 'spark'
 brew 'stow'
 brew 'terminal-notifier'
 brew 'the_silver_searcher'
@@ -165,3 +168,4 @@ mas 'Lungo', id: 1263070803
 mas 'Magnet', id: 441258766
 mas 'Xcode', id: 497799835
 mas 'xScope', id: 889428659
+mas 'Todoist', id: 585829637
