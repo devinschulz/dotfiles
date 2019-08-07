@@ -117,3 +117,22 @@ if has('nvim')
   let g:node_host_prog = expand('/usr/local/bin/neovim-node-host')
 endif
 
+" Based on https://gist.github.com/kkoomen/68319b08ab843ce67cf7b282b0b2fd24
+function! OnVimEnter() abort
+  " Run PlugUpdate every week automatically when entering Vim.
+  if exists('g:dein#_base_path')
+    let l:filename = printf('%s/.vim_dein_update', g:dein#_base_path)
+    if filereadable(l:filename) == 0
+      call writefile([], l:filename)
+    endif
+
+    let l:this_week = strftime('%Y_%V')
+    let l:contents = readfile(l:filename)
+    if index(l:contents, l:this_week) < 0
+      call dein#update()
+      call writefile([l:this_week], l:filename, 'a')
+    endif
+  endif
+endfunction
+
+autocmd VimEnter * call OnVimEnter()
