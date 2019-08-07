@@ -36,7 +36,6 @@ call dein#add('neoclide/coc.nvim', {
       \ 'merge': 0,
       \ 'build': './install.sh nightly && npm i -g dockerfile-language-server-nodejs && go get -u github.com/sourcegraph/go-langserver'
       \ })
-call dein#add('mhinz/vim-startify')
 
 " Search
 call dein#add('haya14busa/incsearch.vim')
