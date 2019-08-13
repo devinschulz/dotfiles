@@ -45,20 +45,19 @@
 (use-package flycheck)
 (use-package flycheck-pos-tip)
 (use-package gist)
-(use-package js2-mode)
-(use-package js2-refactor)
 (use-package less-css-mode)
 (use-package lorem-ipsum)
 (use-package visual-regexp)
 (use-package dockerfile-mode)
 (use-package editorconfig)
 (use-package helm)
-(use-package projectile)
 (use-package org)
 (use-package find-file-in-project)
 (use-package rainbow-delimiters)
 (use-package web-mode)
 (use-package go-mode)
+(use-package typescript-mode)
+(use-package company-go)
 
 (require 'init-ivy)
 (require 'init-smartparens)
@@ -68,6 +67,17 @@
 (require 'init-company)
 (require 'init-undo-tree)
 (require 'init-hydra)
+(require 'init-tide)
+(require 'init-avy)
+(require 'init-crux)
+(require 'init-move-text)
+(require 'init-magit)
+(require 'init-git-gutter)
+(require 'init-multiple-cursors)
+(require 'init-rainbow-delimiters)
+(require 'init-html-mode)
+(require 'init-js-mode)
+(require 'init-lsp-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -76,7 +86,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (helm editorconfig dockerfile-mode visual-regexp undo-tree lorem-ipsum js2-refactor js2-mode gist flycheck-pos-tup flycheck css-eldoc use-package))))
+    (magit move-text typescript-mode helm editorconfig dockerfile-mode visual-regexp undo-tree lorem-ipsum js2-refactor js2-mode gist flycheck-pos-tup flycheck css-eldoc use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

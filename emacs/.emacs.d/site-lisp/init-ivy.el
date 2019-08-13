@@ -1,11 +1,13 @@
 ;; Based on https://sam217pa.github.io/2016/08/30/how-to-make-your-own-spacemacs/#fnref:3
 (use-package ivy
-  :diminish (ivy-mode . "")
-  :init (ivy-mode 1) ; globally at startup
+  :init
+  (ivy-mode 1) ; globally at startup
+  :bind
+  ("C-x C-r" . ivy-resume)
   :config
-  (setq ivy-use-virtual-buffers t)
-  (setq ivy-height 20)
-  (setq ivy-count-format "%d/%d "))
+  (setq ivy-use-virtual-buffers t
+        ivy-height 20
+        ivy-count-format "%d/%d "))
 
 (use-package counsel
   :bind*                           ; load counsel when pressed
@@ -17,5 +19,13 @@
    ("C-c /"   . counsel-ag)        ; search for regexp in git repo using ag
    ("C-c l"   . counsel-locate))   ; search for files or else using locate
   )
+
+(use-package swiper
+  :ensure t
+  :config
+  (defun swiper-at-point (sym)
+    "Use `swiper' to search for the symbol at point."
+    (interactive (list (thing-at-point 'symbol))) (swiper sym))
+  :bind ("M-s w" . swiper-at-point))
 
 (provide 'init-ivy)

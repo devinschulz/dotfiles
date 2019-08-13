@@ -2,8 +2,10 @@
 (global-linum-mode 1)
 
 (use-package doom-themes
+  :init
+  (load-theme 'doom-one t)
   :config
-  (load-theme 'doom-one t))
+  (doom-themes-org-config))
 
 (use-package doom-modeline
   :hook (after-init . doom-modeline-mode))
