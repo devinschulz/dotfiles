@@ -3,6 +3,8 @@ set -gx PATH $PATH ~/.bin
 set -gx PATH $PATH ~/.cargo/bin
 
 set -gx EDITOR nvim
+set -gx TERM xterm-256color
+set -gx CLICOLOR 1
 
 # Remove the welcome to fish message
 set fish_greeting
