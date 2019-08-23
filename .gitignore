@@ -27,3 +27,5 @@ recentf
 *.eld
 transient
 *.last
+.mc-lists.el
+.last-package-update-day

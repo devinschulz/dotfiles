@@ -1,4 +1,4 @@
-;; disable splash screen
+;;; disable splash screen
 (setq inhibit-startup-message t)
 
 ;; Set path in dependencies
@@ -50,74 +50,51 @@
 (require 'use-package-ensure)
 (setq use-package-always-ensure t)
 
-;; Require the appearance early
-(require 'appearance)
+(use-package async)
 
-(use-package gist :defer t)
-(use-package lorem-ipsum :defer t)
-(use-package visual-regexp :defer t)
+(use-package auto-package-update
+   :ensure t
+   :config
+   (setq auto-package-update-delete-old-versions t
+         auto-package-update-interval 4)
+   (auto-package-update-maybe))
 
-(use-package dockerfile-mode
-  :mode "Dockerfile\\'")
+;; make use of standard directories
+(use-package no-littering)
 
-(use-package editorconfig
-  :defer t
-  :config
-  (editorconfig-mode 1))
+;; variables to remove compile-log warnings
+(defvar ido-cur-item nil)
+(defvar ido-default-item nil)
+(defvar ido-cur-list nil)
 
-(use-package helm)
-(use-package find-file-in-project)
-(use-package rainbow-delimiters)
-(use-package embrace)
+;; packages in etc
+(async-bytecomp-package-mode 1)
+(let ((loaded (mapcar #'file-name-sans-extension (delq nil (mapcar #'car load-history)))))
+  (dolist (file (directory-files "~/.emacs.d/etc" t ".+\\.elc?$"))
+    (let ((library (file-name-sans-extension file)))
+      (unless (member library loaded)
+        (load library nil t)
+        (push library loaded)))))
 
-(use-package deadgrep
-  :config
-  (global-set-key (kbd "<f5>") #'deadgrep))
-
-(use-package ws-butler
-  :config
-  (add-hook 'prog-mode-hook 'ws-butler-mode))
-
-(use-package yasnippet
-  :init
-  (use-package yasnippet-snippets)
-  :config
-  (yas-global-mode 1))
-
-(require 'init-ivy)
-(require 'init-smartparens)
-(require 'init-neotree)
-(require 'init-which-key)
-(require 'init-projectile)
-(require 'init-company)
-(require 'init-undo-tree)
-(require 'init-hydra)
-;; ;; (require 'init-tide)
-(require 'init-avy)
-(require 'init-crux)
-(require 'init-move-text)
-(require 'init-magit)
-(require 'init-git-gutter)
-(require 'init-multiple-cursors)
-(require 'init-rainbow-delimiters)
-(require 'init-html-mode)
-(require 'init-lsp-mode)
-(require 'init-web-mode)
-(require 'init-flycheck)
-(require 'init-go-mode)
-(require 'init-org)
+;;(use-package helm)
 
 (require 'global-keys)
-(require 'mode-mappings)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ivy-dynamic-exhibit-delay-ms 200)
+ '(ivy-height 10)
+ '(ivy-initial-inputs-alist nil)
+ '(ivy-magic-tilde nil)
+ '(ivy-re-builders-alist (quote ((t . ivy-prescient-re-builder))) t)
+ '(ivy-use-virtual-buffers t)
+ '(ivy-wrap t)
  '(package-selected-packages
    (quote
-    (spacemacs-theme company-web magit move-text typescript-mode helm editorconfig dockerfile-mode visual-regexp undo-tree lorem-ipsum js2-refactor js2-mode gist flycheck-pos-tup flycheck css-eldoc use-package))))
+    (easy-kill-extras pbcopy spacemacs-theme company-web magit move-text typescript-mode helm editorconfig dockerfile-mode visual-regexp undo-tree lorem-ipsum js2-refactor js2-mode gist flycheck-pos-tup flycheck css-eldoc use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

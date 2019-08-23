@@ -1,4 +1,28 @@
-;; projectile
+(use-package diff-hl
+  :ensure t
+  :diminish diff-hl-mode
+  :hook ((magit-post-refresh . diff-hl-magit-post-refresh)
+         (dired-mode         . diff-hl-dired-mode))
+  :config
+  (global-diff-hl-mode))
+
+(use-package saveplace
+  :ensure nil
+  :defer 5
+  :config
+  (setq save-place t))
+
+(use-package magit
+  :config (define-key magit-file-mode-map (kbd "C-x g") nil)
+  :bind
+  ("C-x g g" . magit-status)
+  ("C-x g f" . magit-find-file)
+  ("C-x M-g" . magit-dispatch)
+  ("C-c M-g" . magit-file-dispatch))
+
+(use-package gist :defer t)
+(use-package undo-tree :defer t)
+
 (use-package projectile
   :init
   (setq projectile-dynamic-mode-line nil
@@ -27,5 +51,3 @@
     (local-set-key (kbd "M-,") 'pop-tag-mark)
     (add-to-list 'company-backends 'company-go))
   (add-hook 'go-mode-hook 'my-go-mode-hook))
-
-(provide 'init-projectile)
