@@ -1,10 +1,14 @@
 # Include executables in path
-set -gx PATH $PATH ~/.bin
-set -gx PATH $PATH ~/.cargo/bin
+set -gx PATH ~/.bin $PATH
+set -x PATH ~/.cargo/bin $PATH
 
-set -gx EDITOR nvim
-set -gx TERM xterm-256color
-set -gx CLICOLOR 1
+set -x GOROOT (brew --prefix golang)/libexec
+set -x GOPATH $HOME/go
+
+set -x PATH $GOPATH/bin $PATH
+set -x PATH $GOROOT/bin $PATH
+
+set -gx EDITOR emacs
 
 # Remove the welcome to fish message
 set fish_greeting
