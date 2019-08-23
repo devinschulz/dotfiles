@@ -29,3 +29,5 @@ transient
 *.last
 .mc-lists.el
 .last-package-update-day
+cache.el
+known-projects.el
