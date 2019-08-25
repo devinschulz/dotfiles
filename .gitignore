@@ -31,3 +31,5 @@ transient
 .last-package-update-day
 cache.el
 known-projects.el
+prescient-save.el
+ido-save-directory-list.el
