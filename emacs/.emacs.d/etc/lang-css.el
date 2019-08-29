@@ -1,5 +1,6 @@
 (use-package css-mode
   :mode "//.css'"
+  :after prettier-js
   :init (setq css-indent-offset 2))
 
 ;; SCSS mode
