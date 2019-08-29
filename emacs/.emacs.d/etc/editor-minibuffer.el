@@ -91,4 +91,5 @@
   :init
   (use-package yasnippet-snippets)
   :config
-  (yas-global-mode 1))
+  (yas-global-mode 1)
+  (yas-reload-all))
