@@ -1,12 +1,11 @@
 ;; Show line numbers all the time
 ;; (global-linum-mode 1)
 
-(use-package doom-themes
-  :init (load-theme 'doom-one t)
-  :config (doom-themes-org-config))
+;; (use-package doom-themes
+;;   :init (load-theme 'doom-one t)
+;;   :config (doom-themes-org-config))
 
 (use-package doom-modeline
-  :after doom-themes
   :init
   (setq doom-modeline-bar-width                 3
         doom-modeline-buffer-encoding           t
@@ -20,8 +19,13 @@
         doom-modeline-minor-modes               nil)
   :config (doom-modeline-mode))
 
+(use-package base16-theme
+  :init
+  (setq base16-theme-256-color-source "base16-shell")
+  :config
+  (load-theme 'base16-oceanicnext t))
+
 (use-package whitespace
-  :ensure nil
   :diminish
   :hook (prog-mode . whitespace-mode)
   :config
@@ -33,10 +37,9 @@
                                 space-before-tab::tab
                                 space-before-tab::space)))
 (use-package nlinum-relative
-  :ensure t
   :config
   (nlinum-relative-on)
   (add-hook 'prog-mode-hook 'nlinum-relative-mode)
   (setq nlinum-relative-redisplay-delay 0.5) ;; delay
-  (setq nlinum-relative-current-symbol "->") ;; or "" for current line
+  (setq nlinum-relative-current-symbol "") ;; or "" for current line
   (setq nlinum-relative-offset 1))
