@@ -1,10 +1,6 @@
 ;; Show line numbers all the time
 ;; (global-linum-mode 1)
 
-;; (use-package doom-themes
-;;   :init (load-theme 'doom-one t)
-;;   :config (doom-themes-org-config))
-
 (use-package doom-modeline
   :init
   (setq doom-modeline-bar-width                 3
@@ -36,10 +32,3 @@
                                 empty
                                 space-before-tab::tab
                                 space-before-tab::space)))
-(use-package nlinum-relative
-  :config
-  (nlinum-relative-on)
-  (add-hook 'prog-mode-hook 'nlinum-relative-mode)
-  (setq nlinum-relative-redisplay-delay 0.5) ;; delay
-  (setq nlinum-relative-current-symbol "") ;; or "" for current line
-  (setq nlinum-relative-offset 1))
