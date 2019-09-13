@@ -1,4 +1,3 @@
-
 ;; Join the next line
 (global-set-key (kbd "M-j") (lambda () (interactive) (join-line -1)))
 
@@ -8,5 +7,9 @@
 ;; Jump to function at point
 (define-key emacs-lisp-mode-map (kbd "C-c .") 'find-function-at-point)
 
-(provide 'global-keys)
+;; Allow mouse interactions
+(xterm-mouse-mode t)
+(global-set-key [mouse-4] '(lambda () (interactive) (scroll-down 1)))
+(global-set-key [mouse-5] '(lambda () (interactive) (scroll-up 1)))
 
+(provide 'global-keys)
