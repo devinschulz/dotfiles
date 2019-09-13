@@ -1,4 +1,3 @@
-;;  "JS development.npm i -g javascript-typescript-langserver"
 (use-package js2-mode
   ; :defines flycheck-javascript-eslint-executable
   :mode (("\\.js\\'" . js2-mode)
@@ -40,32 +39,6 @@
   :config
   (setq prettier-js-args '("--trailing-comma" "none" "--single-quote" "true" "--no-semi" "true" "--config-precedence" "prefer-file")))
 
-(use-package tern
-  :config
-  (bind-key "C-c C-c" 'compile tern-mode-keymap)
-  :hook (js2-mode . tern-mode))
-
-(use-package company-tern
-  :init (add-to-list 'company-backends 'company-tern))
-
-;; Typescript
-(defun my/setup-tide-mode ()
-  "Set up tide mode."
-  (interactive)
-  (setq company-tooltip-align-annotations t)
-  (tide-setup)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (eldoc-mode +1)
-  (setq typescript-indent-level 2)
-  (setq js2-indent-level 2)
-  (flycheck-mode +1)
-  (company-mode +1))
-
 (use-package typescript-mode
   :mode (("\\.ts\\'" . typescript-mode)
          ("\\.tsx\\'" . typescript-mode)))
-
-(use-package tide
-  :hook ((before-save . tide-format-before-save)
-         (typescript-mode . my/setup-tide-mode)
-         (js2-mode . my/setup-tide-mode)))
