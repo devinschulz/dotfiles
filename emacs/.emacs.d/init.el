@@ -22,6 +22,9 @@
 ;; Make backups of files, even when they're in version control
 (setq vc-make-backup-files t)
 
+;; Disable lockfiles
+(setq create-lockfiles nil)
+
 (require 'package)
 
 ; Some combination of GNU TLS and Emacs fail to retrieve archive

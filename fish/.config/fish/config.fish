@@ -21,3 +21,6 @@ end
 # https://github.com/fish-shell/fish-shell/issues/1915
 for i in (functions);functions $i > /dev/null; end
 
+# Enable starship
+# https://github.com/starship/starship
+eval (starship init fish)

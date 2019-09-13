@@ -1,10 +1,17 @@
 (use-package diff-hl
-  :ensure t
-  :diminish diff-hl-mode
-  :hook ((magit-post-refresh . diff-hl-magit-post-refresh)
-         (dired-mode         . diff-hl-dired-mode))
-  :config
-  (global-diff-hl-mode))
+  :defer t
+  :init
+  (global-diff-hl-mode)
+
+  ;; Highlight changed files in the fringe of Dired
+  (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
+
+  ;; Fall back to the display margin, if the fringe is unavailable
+  (unless (display-graphic-p)
+    (diff-hl-margin-mode))
+
+  ;; Refresh diff-hl after Magit operations
+  (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh))
 
 (use-package saveplace
   :ensure nil
@@ -30,6 +37,7 @@
         projectile-mode-line-prefix "")
   (projectile-mode)
   :config
+  (setq projectile-sort-order 'recentf)
   (setq projectile-project-compilation-cmd "make ")
   (setq projectile-completion-system 'ivy)
   (define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map))

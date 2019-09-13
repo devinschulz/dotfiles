@@ -15,6 +15,9 @@
   ("M-g <up>" . move-text-up)
   ("M-g <down>" . move-text-down))
 
+(use-package comment-dwim-2
+  :bind ("M-;" . comment-dwim-2))
+
 (prefer-coding-system 'utf-8)
 (set-charset-priority 'unicode)
 (setq default-process-coding-system '(utf-8-unix . utf-8-unix))

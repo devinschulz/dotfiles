@@ -7,6 +7,7 @@ stow git
 stow kitty
 stow tmux
 stow vim
+stow starship
 
 # Packages required for language server protocol
 npm i -g \

@@ -61,7 +61,9 @@
   (flycheck-mode +1)
   (company-mode +1))
 
-(use-package typescript-mode)
+(use-package typescript-mode
+  :mode (("\\.ts\\'" . typescript-mode)
+         ("\\.tsx\\'" . typescript-mode)))
 
 (use-package tide
   :hook ((before-save . tide-format-before-save)
