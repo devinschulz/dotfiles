@@ -88,6 +88,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(company-lsp-async t)
+ '(company-lsp-cache-candidates t)
+ '(company-lsp-enable-recompletion t)
+ '(company-lsp-enable-snippet t)
  '(ivy-dynamic-exhibit-delay-ms 200)
  '(ivy-height 10)
  '(ivy-initial-inputs-alist nil)
@@ -95,6 +99,16 @@
  '(ivy-re-builders-alist (quote ((t . ivy-prescient-re-builder))) t)
  '(ivy-use-virtual-buffers t)
  '(ivy-wrap t)
+ '(lsp-clients-go-server-args
+   (quote
+    ("--cache-style=always" "--diagnostics-style=onsave" "--format-style=goimports")))
+ '(lsp-document-sync-method (quote incremental))
+ '(lsp-guess-root t t)
+ '(lsp-log-io nil)
+ '(lsp-print-io nil)
+ '(lsp-print-performance nil)
+ '(lsp-reponse-timeout 10 t)
+ '(lsp-trace nil t)
  '(package-selected-packages
    (quote
     (easy-kill-extras pbcopy spacemacs-theme company-web magit move-text typescript-mode helm editorconfig dockerfile-mode visual-regexp undo-tree lorem-ipsum js2-refactor js2-mode gist flycheck-pos-tup flycheck css-eldoc use-package))))
