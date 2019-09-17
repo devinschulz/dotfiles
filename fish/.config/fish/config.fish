@@ -24,3 +24,6 @@ for i in (functions);functions $i > /dev/null; end
 # Enable starship
 # https://github.com/starship/starship
 eval (starship init fish)
+
+# Enable kitty completions
+kitty + complete setup fish | source
