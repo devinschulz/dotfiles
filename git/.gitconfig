@@ -3,7 +3,8 @@
 	email = devin@devinschulz.com
 	signingkey = C7E3228CEB877F00
 [core]
-	editor = nvim
+	editor = emacs
+	excludesfile = /Users/dev/.gitignore_global
 [mergetool]
 	keepBackup = false
 	writeToTemp = true
