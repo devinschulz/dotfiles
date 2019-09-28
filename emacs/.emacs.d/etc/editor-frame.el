@@ -29,3 +29,7 @@
   :config (setq dumb-jump-selector 'ivy))
 
 (use-package visual-regexp :defer t)
+
+(use-package goto-line-preview
+  :config
+  (global-set-key [remap goto-line] 'goto-line-preview))
