@@ -22,7 +22,8 @@
          ("C-c C-o w" . origami-open-all-nodes)
          ("C-c C-o n" . origami-next-fold)
          ("C-c C-o p" . origami-previous-fold)
-         ("C-c C-o f" . origami-forward-fold)))
+         ("C-c C-o f" . origami-forward-fold))
+  :config (origami-mode t))
 
 (use-package crux
   :bind
