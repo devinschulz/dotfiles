@@ -23,7 +23,11 @@ for i in (functions);functions $i > /dev/null; end
 
 # Enable starship
 # https://github.com/starship/starship
-eval (starship init fish)
+# if type -q starship
+#     eval (starship init fish)
+# end
 
 # Enable kitty completions
-kitty + complete setup fish | source
+if type -q kitty
+    kitty + complete setup fish | source
+end
