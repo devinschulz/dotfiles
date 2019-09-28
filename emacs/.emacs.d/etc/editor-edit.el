@@ -9,16 +9,15 @@
 (setq track-eol t) ; Keep cursor at end of lines
 (setq line-move-visual nil) ; To be required by track-eol
 
-(setq-default kill-whole-line t)	; Kill line including '\n'
-(setq-default indent-tabs-mode nil)   ; use space
+(setq-default kill-whole-line t) ; Kill line including '\n'
+(setq-default indent-tabs-mode nil) ; use space
 
 (use-package multiple-cursors
-  :ensure t
-  :bind (("C->"           . mc/mark-next-like-this)
-         ("C-<"           . mc/mark-previous-like-this)
-         ("C-c C-<"       . mc/mark-all-like-this)
-         ("C-S-c C-S-c"   . mc/edit-lines)
-         ("C-S-<mouse-1>" . mc/add-cursor-on-click)))
+  :bind
+  ("C-S-c C-S-c" . mc/edit-lines)
+  ("C->" . mc/mark-next-like-this)
+  ("C-<" . mc/mark-previous-like-this)
+  ("C-c C-<" . mc/mark-all-like-this))
 
 (use-package misc
   :ensure nil

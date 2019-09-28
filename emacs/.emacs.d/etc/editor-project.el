@@ -39,7 +39,9 @@
 (use-package undo-tree
   :defer t
   :bind ("M-/" . undo-tree-redo)
-  :config (global-undo-tree-mode))
+  :config
+  (setq undo-tree-visualizer-timstamps t)
+  (global-undo-tree-mode))
 
 (use-package projectile
   :init
