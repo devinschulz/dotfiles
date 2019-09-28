@@ -27,6 +27,10 @@
   ("C-x M-g" . magit-dispatch)
   ("C-c M-g" . magit-file-dispatch))
 
+(use-package magithub
+  :after magit
+  :config
+  (magithub-feature-autoinject t))
 
 (use-package gist :defer t)
 
@@ -66,12 +70,3 @@
     (local-set-key (kbd "M-,") 'pop-tag-mark)
     (add-to-list 'company-backends 'company-go))
   (add-hook 'go-mode-hook 'my-go-mode-hook))
-
-(use-package projectile-git-autofetch   ; Auto-fetch Github repos
-  :after magit
-  :config
-  (projectile-git-autofetch-mode)
-  ;; Fetch all open projects every ten minutes
-  (validate-setq projectile-git-autofetch-projects 'open
-                 projectile-git-autofetch-interval 600)
-  :diminish (projectile-git-autofetch-mode . "↓"))
