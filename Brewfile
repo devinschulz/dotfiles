@@ -114,6 +114,7 @@ brew 'zsh-completions'
 
 # Fonts
 cask 'font-anonymous-pro'
+cask 'font-cascadia'
 cask 'font-droid-sans'
 cask 'font-droid-sans-mono'
 cask 'font-fira-code'
