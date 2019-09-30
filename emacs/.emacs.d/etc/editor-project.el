@@ -38,7 +38,8 @@
 
 (use-package undo-tree
   :defer t
-  :bind ("M-/" . undo-tree-redo)
+  :bind (("C-z" . undo-tree-undo)
+         ("C-S-z" . undo-tree-redo))
   :config
   (setq undo-tree-visualizer-timstamps t)
   (global-undo-tree-mode))
