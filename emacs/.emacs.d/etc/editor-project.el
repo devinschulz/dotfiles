@@ -27,10 +27,10 @@
   ("C-x M-g" . magit-dispatch)
   ("C-c M-g" . magit-file-dispatch))
 
-(use-package magithub
-  :after magit
-  :config
-  (magithub-feature-autoinject t))
+;; (use-package magithub
+;;   :after magit
+;;   :config
+;;   (magithub-feature-autoinject t))
 
 (use-package gist :defer t)
 
