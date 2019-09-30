@@ -10,6 +10,7 @@ tap 'Goles/battery'
 
 brew 'ack'
 brew 'alecthomas/tap/gometalinter'
+brew 'aspell'
 brew 'autoconf'
 brew 'automake'
 brew 'awscli'
