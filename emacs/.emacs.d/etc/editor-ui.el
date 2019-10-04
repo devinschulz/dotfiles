@@ -1,5 +1,5 @@
-;; Show line numbers all the time
-(global-linum-mode 1)
+;; Display line numbers
+(global-display-line-numbers-mode t)
 
 (use-package doom-modeline
   :init
