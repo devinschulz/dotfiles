@@ -1,3 +1,6 @@
+;; Globally enable save place mode
+(save-place-mode 1)
+
 (use-package diff-hl
   :defer t
   :init
@@ -12,12 +15,6 @@
 
   ;; Refresh diff-hl after Magit operations
   (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh))
-
-(use-package saveplace
-  :ensure nil
-  :defer 5
-  :config
-  (setq save-place t))
 
 (use-package magit
   :config (define-key magit-file-mode-map (kbd "C-x g") nil)
