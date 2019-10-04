@@ -15,11 +15,9 @@
         doom-modeline-minor-modes               nil)
   :config (doom-modeline-mode))
 
-(use-package base16-theme
-  :init
-  (setq base16-theme-256-color-source "base16-shell")
+(use-package monokai-theme
   :config
-  (load-theme 'base16-oceanicnext t))
+  (load-theme 'monokai t))
 
 (use-package whitespace
   :diminish
