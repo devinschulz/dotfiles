@@ -1,3 +1,6 @@
+;; Disable flashing for beeps
+(setq ring-bell-function 'ignore)
+
 (use-package avy
   :ensure t
   :bind (("C-c f" . avy-goto-char)
