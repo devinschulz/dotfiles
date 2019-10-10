@@ -46,11 +46,8 @@
 
 ;; Delete selection when inserting someting
 (use-package delsel
-  :ensure nil
   :hook (after-init . delete-selection-mode))
 
 (use-package hungry-delete
   :diminish
-  :hook (after-init . global-hungry-delete-mode)
-  :bind (("<backspace>" . smart-hungry-delete-backward-char)
-         ("<del>" . smart-hungry-delete-forward-char)))
+  :hook (after-init . global-hungry-delete-mode))
