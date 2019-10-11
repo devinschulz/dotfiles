@@ -24,7 +24,7 @@ function start_work_env
   docker-compose up -d --force-recreate
   cd -
 
-  cd ~/go/src/github.com/InVisionApp/trapezoid-console
+  cd ~/InVision/trapezoid-console
   echo "Starting trapezoid-console"
   docker-compose up -d
   cd -
