@@ -33,7 +33,8 @@
   :bind (("C-z" . undo-tree-undo)
          ("C-S-z" . undo-tree-redo))
   :config
-  (setq undo-tree-visualizer-timstamps t)
+  (setq undo-tree-visualizer-timestamps t)
+  (setq undo-tree-auto-save-history t)
   (global-undo-tree-mode))
 
 (use-package projectile
