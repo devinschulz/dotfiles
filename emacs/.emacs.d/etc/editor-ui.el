@@ -18,6 +18,11 @@
 (use-package monokai-theme
   :config
   (load-theme 'monokai t))
+             (doom-themes-treemacs-config)
+             (doom-themes-org-config))
+           (use-package solaire-mode
+             :hook
+             ((change-major-mode after-revert ediff-prepare-buffer) . turn-on-solaire-mode)
 
 (use-package whitespace
   :diminish

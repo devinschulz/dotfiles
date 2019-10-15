@@ -123,9 +123,10 @@
  '(lsp-print-performance nil)
  '(lsp-reponse-timeout 10 t)
  '(lsp-trace nil t)
+ '(ns-auto-hide-menu-bar nil)
  '(package-selected-packages
    (quote
-    (powerline snazzy-theme monokai-theme zenburn-theme color-theme-sanityinc-tomorrow afternoon-theme lush-theme moe-theme blackboard-theme flyspell-correct-ivy magithub org-bullets goto-line-preview easy-kill-extras pbcopy spacemacs-theme company-web magit move-text typescript-mode helm editorconfig dockerfile-mode visual-regexp undo-tree lorem-ipsum js2-refactor js2-mode gist flycheck-pos-tup flycheck css-eldoc use-package)))
+    (solaire-mode powerline snazzy-theme monokai-theme zenburn-theme color-theme-sanityinc-tomorrow afternoon-theme lush-theme moe-theme blackboard-theme flyspell-correct-ivy magithub org-bullets goto-line-preview easy-kill-extras pbcopy spacemacs-theme company-web magit move-text typescript-mode helm editorconfig dockerfile-mode visual-regexp undo-tree lorem-ipsum js2-refactor js2-mode gist flycheck-pos-tup flycheck css-eldoc use-package)))
  '(window-divider-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
