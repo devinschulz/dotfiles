@@ -66,6 +66,12 @@
 (defvar ido-default-item nil)
 (defvar ido-cur-list nil)
 
+;; Make Emacs use the $PATH set up by the user's shell
+(use-package exec-path-from-shell
+  :if (memq window-system '(mac ns x))
+  :demand t
+  :config (exec-path-from-shell-initialize))
+
 ;; packages in etc
 (async-bytecomp-package-mode 1)
 (let ((loaded (mapcar #'file-name-sans-extension (delq nil (mapcar #'car load-history)))))
@@ -85,7 +91,7 @@
  '(ansi-color-names-vector
    ["#303030" "#ff4b4b" "#d7ff5f" "#fce94f" "#5fafd7" "#d18aff" "#afd7ff" "#c6c6c6"])
  '(ansi-term-color-vector
-   [unspecified "#272822" "#f92672" "#a6e22e" "#f4bf75" "#66d9ef" "#ae81ff" "#66d9ef" "#f8f8f2"])
+   [unspecified "#272822" "#f92672" "#a6e22e" "#f4bf75" "#66d9ef" "#ae81ff" "#66d9ef" "#f8f8f2"] t)
  '(beacon-color "#cc6666")
  '(company-lsp-async t)
  '(company-lsp-cache-candidates t)
@@ -105,6 +111,9 @@
  '(ivy-re-builders-alist (quote ((t . ivy-prescient-re-builder))) t)
  '(ivy-use-virtual-buffers t)
  '(ivy-wrap t)
+ '(jdee-db-active-breakpoint-face-colors (cons "#1B2229" "#51afef"))
+ '(jdee-db-requested-breakpoint-face-colors (cons "#1B2229" "#98be65"))
+ '(jdee-db-spec-breakpoint-face-colors (cons "#1B2229" "#3f444a"))
  '(lsp-clients-go-server-args
    (quote
     ("--cache-style=always" "--diagnostics-style=onsave" "--format-style=goimports")))
@@ -116,9 +125,10 @@
  '(lsp-reponse-timeout 10 t)
  '(lsp-trace nil t)
  '(ns-auto-hide-menu-bar nil)
+ '(objed-cursor-color "#ff6c6b")
  '(package-selected-packages
    (quote
-    (solaire-mode powerline snazzy-theme monokai-theme zenburn-theme color-theme-sanityinc-tomorrow afternoon-theme lush-theme moe-theme blackboard-theme flyspell-correct-ivy magithub org-bullets goto-line-preview easy-kill-extras pbcopy spacemacs-theme company-web magit move-text typescript-mode helm editorconfig dockerfile-mode visual-regexp undo-tree lorem-ipsum js2-refactor js2-mode gist flycheck-pos-tup flycheck css-eldoc use-package)))
+    (exec-path-from-shell solaire-mode powerline snazzy-theme monokai-theme zenburn-theme color-theme-sanityinc-tomorrow afternoon-theme lush-theme moe-theme blackboard-theme flyspell-correct-ivy magithub org-bullets goto-line-preview easy-kill-extras pbcopy spacemacs-theme company-web magit move-text typescript-mode helm editorconfig dockerfile-mode visual-regexp undo-tree lorem-ipsum js2-refactor js2-mode gist flycheck-pos-tup flycheck css-eldoc use-package)))
  '(window-divider-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
