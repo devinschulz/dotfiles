@@ -5,11 +5,7 @@
 (setq site-lisp-dir
       (expand-file-name "site-lisp" user-emacs-directory))
 
-(setq settings-dir
-      (expand-file-name "settings" user-emacs-directory))
-
 ;; Set load paths
-(add-to-list 'load-path settings-dir)
 (add-to-list 'load-path site-lisp-dir)
 
 (require 'better-defaults)
@@ -78,10 +74,6 @@
       (unless (member library loaded)
         (load library nil t)
         (push library loaded)))))
-
-;;(use-package helm)
-
-(require 'global-keys)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
