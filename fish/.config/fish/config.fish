@@ -2,7 +2,11 @@
 set -gx PATH ~/.bin $PATH
 set -x PATH ~/.cargo/bin $PATH
 
-set -x GOROOT (brew --prefix golang)/libexec
+if test -q brew
+    set -x GOROOT (brew --prefix golang)/libexec
+else
+    set -x GOROOT $HOME/go
+end
 set -x GOPATH $HOME/go
 
 set -x PATH $GOPATH/bin $PATH

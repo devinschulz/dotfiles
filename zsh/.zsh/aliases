@@ -26,7 +26,6 @@ alias dcU='docker-compose up -d'
 alias dcv='docker-compose version'
 alias dcs='docker-compose stop'
 
-alias vim="nvim"
 alias did="vim +'normal Go' +'r!date' ~/Google\ Drive/did.txt"
 alias cat='bat'
 alias ping='prettyping --nolegend'
