@@ -24,6 +24,8 @@
   ("C-x M-g" . magit-dispatch)
   ("C-c M-g" . magit-file-dispatch))
 
+(use-package magit-todos :defer t)
+
 (use-package gist :defer t)
 
 (use-package github-pullrequest :defer t)
