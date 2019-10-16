@@ -15,14 +15,28 @@
         doom-modeline-minor-modes               nil)
   :config (doom-modeline-mode))
 
-(use-package monokai-theme
-  :config
-  (load-theme 'monokai t))
-             (doom-themes-treemacs-config)
-             (doom-themes-org-config))
-           (use-package solaire-mode
-             :hook
-             ((change-major-mode after-revert ediff-prepare-buffer) . turn-on-solaire-mode)
+(if (display-graphic-p)
+    (progn
+      (use-package doom-themes
+        :init
+        (load-theme 'doom-one t)
+        :config
+        (setq doom-themes-treemacs-theme "doom-colors")
+        (doom-themes-treemacs-config)
+        (doom-themes-org-config))
+
+      (use-package solaire-mode
+        :after doom-themes
+        :hook
+        ((change-major-mode after-revert ediff-prepare-buffer) . turn-on-solaire-mode)
+        (minibuffer-setup . solaire-mode-in-minibuffer)
+        :config
+        (solaire-global-mode +1)
+        (solaire-mode-swap-bg)))
+  (use-package monokai-theme
+    :config
+    (load-theme 'monokai t)))
+
 
 (use-package whitespace
   :diminish
