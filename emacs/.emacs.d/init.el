@@ -89,7 +89,7 @@
  '(ansi-color-faces-vector
    [default bold shadow italic underline bold bold-italic bold])
  '(ansi-color-names-vector
-   ["#303030" "#ff4b4b" "#d7ff5f" "#fce94f" "#5fafd7" "#d18aff" "#afd7ff" "#c6c6c6"])
+   ["#21242b" "#ff4b4b" "#d7ff5f" "#fce94f" "#5fafd7" "#d18aff" "#afd7ff" "#c6c6c6"])
  '(ansi-term-color-vector
    [unspecified "#272822" "#f92672" "#a6e22e" "#f4bf75" "#66d9ef" "#ae81ff" "#66d9ef" "#f8f8f2"] t)
  '(beacon-color "#cc6666")
@@ -101,6 +101,7 @@
  '(custom-safe-themes
    (quote
     ("a2cde79e4cc8dc9a03e7d9a42fabf8928720d420034b66aecc5b665bbf05d4e9" "26d49386a2036df7ccbe802a06a759031e4455f07bda559dcf221f53e8850e69" "669e02142a56f63861288cc585bee81643ded48a19e36bfdf02b66d745bcc626" default)))
+ '(doom-modeline-mode t)
  '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id))
  '(frame-background-mode (quote dark))
  '(gofmt-command "goimports")
@@ -128,7 +129,7 @@
  '(objed-cursor-color "#ff6c6b")
  '(package-selected-packages
    (quote
-    (simpleclip magit-todos icicles powerline snazzy-theme monokai-theme zenburn-theme color-theme-sanityinc-tomorrow afternoon-theme lush-theme moe-theme blackboard-theme flyspell-correct-ivy magithub org-bullets goto-line-preview easy-kill-extras pbcopy spacemacs-theme company-web magit move-text typescript-mode helm editorconfig dockerfile-mode visual-regexp undo-tree lorem-ipsum js2-refactor js2-mode gist flycheck-pos-tup flycheck css-eldoc use-package)))
+    (eslintd-fix xref-js2 simpleclip magit-todos icicles powerline snazzy-theme monokai-theme zenburn-theme color-theme-sanityinc-tomorrow afternoon-theme lush-theme moe-theme blackboard-theme flyspell-correct-ivy magithub org-bullets goto-line-preview easy-kill-extras pbcopy spacemacs-theme company-web magit move-text typescript-mode helm editorconfig dockerfile-mode visual-regexp undo-tree lorem-ipsum js2-refactor js2-mode gist flycheck-pos-tup flycheck css-eldoc use-package)))
  '(window-divider-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
