@@ -15,11 +15,17 @@
 # Adjustments would still go to the .zshrc.local file.
 ################################################################################
 
+source "$HOME/.zsh/antigen.zsh"
+
+antigen bundle git
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle agkozak/zsh-z
+antigen bundle lukechilds/zsh-better-npm-completion
+antigen bundle akoenig/npm-run.plugin.zsh
+
 xsource "$HOME/.zsh/functions.zsh"
 xsource "$HOME/.zsh/aliases"
 xsource "$HOME/.zsh/exports.zsh"
-
-. "$HOME/.zsh/plugins/z/z.sh"
 
 # ensure dotfiles bin directory is loaded first
 PATH="$HOME/.bin:/usr/local/sbin:$PATH"
