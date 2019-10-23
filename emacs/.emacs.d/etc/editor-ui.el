@@ -1,7 +1,6 @@
 ;; Display line numbers
 (global-display-line-numbers-mode t)
 
-
 (use-package doom-modeline
   :init
   (setq doom-modeline-bar-width                 3
