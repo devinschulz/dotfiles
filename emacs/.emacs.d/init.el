@@ -100,7 +100,7 @@
  '(custom-enabled-themes (quote (monokai)))
  '(custom-safe-themes
    (quote
-    ("a2cde79e4cc8dc9a03e7d9a42fabf8928720d420034b66aecc5b665bbf05d4e9" "26d49386a2036df7ccbe802a06a759031e4455f07bda559dcf221f53e8850e69" "669e02142a56f63861288cc585bee81643ded48a19e36bfdf02b66d745bcc626" default)))
+    ("2d1fe7c9007a5b76cea4395b0fc664d0c1cfd34bb4f1860300347cdad67fb2f9" "f951343d4bbe5a90dba0f058de8317ca58a6822faa65d8463b0e751a07ec887c" "a2cde79e4cc8dc9a03e7d9a42fabf8928720d420034b66aecc5b665bbf05d4e9" "26d49386a2036df7ccbe802a06a759031e4455f07bda559dcf221f53e8850e69" "669e02142a56f63861288cc585bee81643ded48a19e36bfdf02b66d745bcc626" default)))
  '(doom-modeline-mode t)
  '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id))
  '(frame-background-mode (quote dark))

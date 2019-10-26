@@ -1,0 +1,5 @@
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-history-substring-search
+agkozak/zsh-z
+lukechilds/zsh-better-npm-completion
+paulirish/git-open

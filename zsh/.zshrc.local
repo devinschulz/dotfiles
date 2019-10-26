@@ -15,13 +15,8 @@
 # Adjustments would still go to the .zshrc.local file.
 ################################################################################
 
-source "$HOME/.zsh/antigen.zsh"
-
-antigen bundle git
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle agkozak/zsh-z
-antigen bundle lukechilds/zsh-better-npm-completion
-antigen bundle akoenig/npm-run.plugin.zsh
+source <(antibody init)
+antibody bundle < ~/.zsh_plugins.txt
 
 xsource "$HOME/.zsh/functions.zsh"
 xsource "$HOME/.zsh/aliases"
