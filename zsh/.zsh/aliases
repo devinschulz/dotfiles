@@ -1,30 +1,25 @@
 # Docker
 alias dps="docker ps"
 
-# Docker Compose (c)
+# Pulled in and modified from oh-my-zsh docker-compose plugin
+# https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/docker-compose/docker-compose.plugin.zsh
 alias dc='docker-compose'
+
 alias dcb='docker-compose build'
-alias dcB='docker-compose build --no-cache'
-alias dcd='docker-compose down'
 alias dce='docker-compose exec'
-alias dck='docker-compose kill'
-alias dcl='docker-compose logs'
-alias dcls='docker-compose ps'
-alias dcp='docker-compose pause'
-alias dcP='docker-compose unpause'
-alias dcpl='docker-compose pull'
-alias dcph='docker-compose push'
 alias dcps='docker-compose ps'
-alias dcr='docker-compose run'
-alias dcR='docker-compose run --rm'
+alias dcr='docker-compose restart'
 alias dcrm='docker-compose rm'
-alias dcs='docker-compose start'
-alias dcsc='docker-compose scale'
-alias dcS='docker-compose restart'
-alias dcu='docker-compose up'
-alias dcU='docker-compose up -d'
-alias dcv='docker-compose version'
-alias dcs='docker-compose stop'
+alias dcrun='docker-compose run'
+alias dcstop='docker-compose stop'
+alias dcup='docker-compose up'
+alias dcupd='docker-compose up -d'
+alias dcdn='docker-compose down'
+alias dcl='docker-compose logs'
+alias dclf='docker-compose logs -f'
+alias dcpull='docker-compose pull'
+alias dcstart='docker-compose start'
+alias dcdestroy='docker-compose stop && docker-compose rm -f'
 
 alias did="vim +'normal Go' +'r!date' ~/Google\ Drive/did.txt"
 alias cat='bat'
