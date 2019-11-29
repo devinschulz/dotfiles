@@ -33,3 +33,6 @@ cache.el
 known-projects.el
 prescient-save.el
 ido-save-directory-list.el
+emacs/.emacs.d/var
+emacs/.emacs.d/straight
+emacs/.emacs.d/places
