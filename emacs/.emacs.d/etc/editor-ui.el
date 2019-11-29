@@ -1,6 +1,9 @@
 ;; Display line numbers
 (global-display-line-numbers-mode t)
 
+;; Set the font family
+(set-frame-font "Dank Mono" nil t)
+
 (use-package doom-modeline
   :init
   (setq doom-modeline-bar-width                 3
@@ -26,8 +29,8 @@
 
 (add-hook 'after-init-hook
           (lambda() (if (display-graphic-p)
-                        (load-theme 'doom-one t)
-                      (load-theme 'monokai t))))
+                        (load-theme 'doom-vibrant t)
+                      (load-theme 'doom-vibrant t))))
 
 (use-package solaire-mode
   :after doom-themes

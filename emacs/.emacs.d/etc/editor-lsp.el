@@ -16,9 +16,11 @@
         ("C-c r" . lsp-rename))
   :config
   (require 'lsp-clients)
-  )
 
-(use-package lsp-ui :commands lsp-ui-mode)
+  ;; Use flycheck, not flymake
+  (setq lsp-prefer-flymake nil))
+
+(use-package lsp-ui)
 
 (use-package company-lsp
   :custom
@@ -27,4 +29,4 @@
   (company-lsp-enable-snippet t)
   (company-lsp-enable-recompletion t))
 
-(use-package lsp-treemacs :defer t)
+(use-package lsp-treemacs)

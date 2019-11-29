@@ -1,7 +1,4 @@
 (use-package ivy
-  :diminish
-  :demand t
-  :ensure t
   :bind (("C-x b"   . ivy-switch-buffer)
          ("C-x B"   . ivy-switch-buffer-other-window)
          ("M-H"     . ivy-resume)
@@ -62,19 +59,19 @@
   (ivy-set-occur 'ivy-switch-buffer 'ivy-switch-buffer-occur))
 
 (use-package swiper
-  :ensure t
   :after ivy
-  :bind (("C-s" . swiper)
-         :map swiper-map
-              ("M-y" . yank)
-              ("M-%" . swiper-query-replace)
-              ("C-." . swiper-avy)))
+  :bind ("C-s" . swiper)
+  :config
+
+  ;; Use only one color for subgroups in Swiper highlighting.
+  (setq swiper-faces '(swiper-match-face-1
+                       swiper-match-face-2
+                       swiper-match-face-2
+                       swiper-match-face-2)))
 
 (use-package counsel
   :diminish
-  :ensure t
   :after ivy
-  :demand t
   :bind (("C-*"     . counsel-org-agenda-headlines)
          ("C-x C-f" . counsel-find-file)
          ("M-x"     . counsel-M-x)
@@ -84,12 +81,55 @@
          ("C-c e l" . counsel-find-library)
          ("C-c e q" . counsel-set-variable)
          ("C-c e u" . counsel-unicode-char)
-         ("C-x r b" . counsel-bookmark)))
+         ("C-x r b" . counsel-bookmark))
+  :init
+  (counsel-mode +1))
 
 (use-package yasnippet
-  :defer t
-  :init
-  (use-package yasnippet-snippets)
   :config
-  (yas-global-mode 1)
-  (yas-reload-all))
+  (yas-global-mode 1))
+
+(use-package yasnippet-snippets
+  :after yassnippet)
+
+(use-package prescient
+  :config
+  (prescient-persist-mode +1))
+
+(use-package ivy-prescient
+  :demand t
+  ;; Needs to load after Cousel, because otherwise Counsel overrides
+  ;; the Ivy customizations
+  :after counsel
+  :config
+  (ivy-prescient-mode +1))
+
+(use-package company-prescient
+  :after company
+  :config
+  (company-prescient-mode +1))
+
+(use-package helpful
+  :after counsel
+  :config
+  ;; Have the alternate "help" action for `counsel-M-x' use Helpful
+  ;; instead of the default Emacs help.
+  (setf (nth 0 (cdr (assoc "h" (plist-get ivy--actions-list 'counsel-M-x))))
+        (lambda (x) (helpful-function (intern x))))
+
+  :bind (;; Remap standard commands.
+       ([remap describe-function] . helpful-callable)
+       ([remap describe-variable] . helpful-variable)
+       ([remap describe-symbol]   . helpful-symbol)
+       ([remap describe-key]      . helpful-key)
+
+       ;; Suggested bindings from the documentation at
+       ;; https://github.com/Wilfred/helpful.
+
+       :map help-map
+       ("F" . helpful-function)
+       ("M-f" . helpful-macro)
+       ("C" . helpful-command)
+
+       :map global-map
+       ("C-c C-d" . helpful-at-point)))

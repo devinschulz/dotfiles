@@ -1,2 +1,1 @@
-(use-package toml-mode
-  :defer t)
+(use-package toml-mode)

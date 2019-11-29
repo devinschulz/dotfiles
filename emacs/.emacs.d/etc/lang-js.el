@@ -29,10 +29,10 @@
   :mode ("\\.jsx\\'" . rjsx-mode)
   :hook (rjsx-mode . add-node-modules-path))
 
-(use-package js2-refactor
-  :hook (js2-mode rjsx-mode)
-  :config
-  (js2r-add-keybindings-with-prefix "C-c C-m"))
+;; (use-package js2-refactor
+;;   :hook (js2-mode rjsx-mode)
+;;   :config
+;;   (js2r-add-keybindings-with-prefix "C-c C-m"))
 
 (use-package add-node-modules-path
   :commands add-node-modules-path
@@ -40,7 +40,6 @@
 
 ;; Run Mocha or Jasmine tests
 (use-package mocha
-  :defer t
   :config (use-package mocha-snippets))
 
 (defun web-mode-init-prettier-hook ()

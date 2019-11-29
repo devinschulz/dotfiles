@@ -10,7 +10,6 @@
 (show-paren-mode 1)
 
 (use-package ws-butler
-  :defer t
   :hook (prog-mode . ws-butler-mode))
 
 (use-package origami
@@ -56,7 +55,6 @@
     ("b" dumb-jump-back "Back"))
 
 (use-package editorconfig
-  :defer t
   :config
   (editorconfig-mode 1))
 
@@ -64,12 +62,17 @@
   :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package smartparens
-  :ensure t
-  :diminish smartparens-mode
+  :demand t
   :config
-  (progn
-    (require 'smartparens-config)
-    (smartparens-global-mode 1)))
+
+  ;; Load the default pair definitions
+  (require 'smartparens-config)
+
+  ;; Enable smartparens functionality in all buffers
+  (smartparens-global-mode +1)
+
+  ;; Highlight matching delimiters
+  (show-smartparens-global-mode +1))
 
 (use-package embrace
   :bind

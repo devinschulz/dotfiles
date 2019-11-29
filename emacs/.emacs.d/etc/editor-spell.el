@@ -10,23 +10,16 @@
         flycheck-emacs-lisp-load-path 'inherit
         flycheck-check-syntax-automatically '(save mode-enabled)))
 
-(use-package lorem-ipsum
-  :defer t
-  :bind (("C-c C-l s" . lorem-ipsum-insert-sentences)
-         ("C-c C-l p" . lorem-ipsum-insert-paragraphs)
-         ("C-c C-l l" . lorem-ipsum-insert-list)))
-
 (use-package flyspell-correct
-    :ensure t
-    :diminish flyspell-correct-auto-mode
-    :bind (("C-c i n" . flyspell-correct-next)
-           ("C-c i p" . flyspell-correct-previous)
-           ("C-c i w" . flyspell-correct-wrapper))
-    :config
-    (setq flyspell-correct-interface #'flyspell-correct-ivy))
+  :diminish flyspell-correct-auto-mode
+  :bind (("C-c i n" . flyspell-correct-next)
+         ("C-c i p" . flyspell-correct-previous)
+         ("C-c i w" . flyspell-correct-wrapper))
+  :config
+  (setq flyspell-correct-interface #'flyspell-correct-ivy))
 
 (use-package flyspell-correct-ivy
-  :after flyspell-correct
+  :requires (flyspell-correct)
   :init
   (setq flyspell-correct-interface #'flyspell-correct-ivy))
 
@@ -42,9 +35,8 @@
 
 (use-package flyspell                   ;
   :diminish flyspell-mode
-  :after ispell
-  :init
-  (add-hook 'prog-mode-hook #'flyspell-prog-mode)
-  (add-hook 'text-mode-hook #'turn-on-flyspell)
-  (add-hook 'org-mode-hook 'flyspell-mode)
+  :requires (ispell)
+  :hook ((prog-mode . flyspell-prog-mode)
+         (text-mode . turn-on-flyspell)
+         (org-mode . flyspell-mode))
   :commands (flyspell-mode flyspell-prog-mode))

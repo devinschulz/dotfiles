@@ -1,7 +1,6 @@
-(use-package "eldoc"
+(use-package eldoc
   :diminish eldoc-mode
   :commands turn-on-eldoc-mode
-  :defer t
   :init
   (progn
   (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)

@@ -1,6 +1,9 @@
 (prefer-coding-system 'utf-8)
 (set-charset-priority 'unicode)
 
+;; Auto-pair
+(electric-pair-mode 1)
+
 (defun display-startup-echo-area-message ()
   (message ""))
 
@@ -18,10 +21,6 @@
   ("C->" . mc/mark-next-like-this)
   ("C-<" . mc/mark-previous-like-this)
   ("C-c C-<" . mc/mark-all-like-this))
-
-(use-package misc
-  :ensure nil
-  :bind ("M-z" . zap-up-to-char))
 
 (use-package move-text
   :bind
@@ -41,13 +40,11 @@
 
 ;; Automatically reload files that was modified by an external program
 (use-package autorevert
-  :diminish
   :hook (after-init . global-auto-revert-mode))
 
 ;; Delete selection when inserting someting
 (use-package delsel
-  :hook (after-init . delete-selection-mode))
+  :config (delete-selection-mode))
 
 (use-package hungry-delete
-  :diminish
-  :hook (after-init . global-hungry-delete-mode))
+  :config (global-hungry-delete-mode))
