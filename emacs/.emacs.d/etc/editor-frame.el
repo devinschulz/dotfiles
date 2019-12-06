@@ -1,8 +1,15 @@
-;; disable splash screen
-(setq inhibit-startup-message t)
+;; Sidable the "About GNU Emacs" buffer at startup, and go straight
+;; for the scratch buffer
+(setq inhibit-startup-screen t)
+
+;; Remove the initial "scratch" message and start with a blank screen.
+(setq initial-scratch-message nil)
 
 ;; Disable flashing for beeps
-(setq ring-bell-function 'ignore)
+(setq ring-bell-function #'ignore)
+
+;; Allows you to resize frames however you want
+(setq frame-resize-pixelwise t)
 
 ;; Disable the menu bar
 (menu-bar-mode -1)
@@ -12,6 +19,9 @@
 
 ;; Disable the toolbar
 (tool-bar-mode -1)
+
+;; Make `mode-line-position' show the column, not just the row.
+(column-number-mode +1)
 
 (use-package avy
   :bind (("C-c f" . avy-goto-char)
@@ -49,5 +59,10 @@
   (setq vr/engine 'emacs))
 
 (use-package goto-line-preview
-  :config
-  (global-set-key [remap goto-line] 'goto-line-preview))
+  :bind ([remap goto-line] . goto-line-preview))
+
+;; Package `transpose-frame' provides simple commands to mirror,
+;; rotate, and transpose Emacs windows: `flip-frame', `flop-frame',
+;; `transpose-frame', `rotate-frame-clockwise',
+;; `rotate-frame-anticlockwise', `rotate-frame'.
+(use-package transpose-frame)

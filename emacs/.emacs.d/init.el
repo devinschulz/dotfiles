@@ -31,6 +31,9 @@
                          ("melpa" . "https://melpa.org/packages/")
                          ("org" . "http://orgmode.org/elpa/")))
 
+;; If there's an error, let me see where it is.
+(setq debug-on-error t)
+
 ;; make use of standard directories
 (use-package no-littering
   :demand t)
@@ -40,6 +43,14 @@
 (use-package popup)
 (use-package async)
 (use-package better-defaults)
+
+;; Make Emacs use the $PATH set up by the user's shell
+(use-package exec-path-from-shell
+  :straight t
+  :demand t)
+
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
 
 ;;load all packages in etc
 (let ((loaded (mapcar #'file-name-sans-extension (delq nil (mapcar #'car load-history)))))

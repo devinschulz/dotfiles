@@ -17,7 +17,7 @@
 
 (use-package company-quickhelp
   :config
-  (company-quickhelp-mode))
+  (company-quickhelp-mode +1))
 
 ;; Complete for web,html,emmet,jade,slim modes
 (use-package company-web
@@ -31,5 +31,5 @@
   (setq which-key-sort-order 'which-key-key-order-alpha
       which-key-side-window-max-height 0.25
       which-key-idle-delay 0.25)
-  (which-key-mode)
+  (which-key-mode +1)
   (which-key-setup-side-window-bottom))

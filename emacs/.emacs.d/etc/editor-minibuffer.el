@@ -55,7 +55,7 @@
       (apply 'ivy-completing-read args)))
 
   :config
-  (ivy-mode 1)
+  (ivy-mode +1)
   (ivy-set-occur 'ivy-switch-buffer 'ivy-switch-buffer-occur))
 
 (use-package swiper
@@ -87,7 +87,7 @@
 
 (use-package yasnippet
   :config
-  (yas-global-mode 1))
+  (yas-global-mode +1))
 
 (use-package yasnippet-snippets
   :after yassnippet)

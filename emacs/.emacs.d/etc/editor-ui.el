@@ -2,7 +2,7 @@
 (global-display-line-numbers-mode t)
 
 ;; Set the font family
-(set-frame-font "Dank Mono" nil t)
+(set-frame-font "Operator Mono" nil t)
 
 (use-package doom-modeline
   :init
@@ -16,21 +16,20 @@
         doom-modeline-major-mode-color-icon     t
         doom-modeline-major-mode-icon           t
         doom-modeline-minor-modes               nil)
-  :config (doom-modeline-mode))
+  :hook (after-init . doom-modeline-mode))
 
 (use-package doom-themes
-  :config
+  :init
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
+  :config
   (doom-themes-treemacs-config)
-  (doom-themes-org-config))
+  (doom-themes-org-config)
+  :hook (after-init . (lambda() (if (display-graphic-p)
+                                    (load-theme 'doom-molokai 'no-confirm)
+                                  (load-theme 'monokai 'no-confirm)))))
 
 (use-package monokai-theme)
-
-(add-hook 'after-init-hook
-          (lambda() (if (display-graphic-p)
-                        (load-theme 'doom-vibrant t)
-                      (load-theme 'doom-vibrant t))))
 
 (use-package solaire-mode
   :after doom-themes

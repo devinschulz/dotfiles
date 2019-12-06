@@ -12,59 +12,76 @@
 ;; Disable lockfiles
 (setq create-lockfiles nil)
 
-;; Make Emacs use the $PATH set up by the user's shell
-(use-package exec-path-from-shell
-  :if (memq window-system '(mac ns x))
-  :config (exec-path-from-shell-initialize))
-
 ;; Magit
-(straight-use-package 'magit)
-(global-set-key (kbd "C-x g g") 'magit-status)
-(global-set-key (kbd "C-x g f") 'magit-find-file)
-(global-set-key (kbd "C-x M-g") 'magit-dispatch)
-(global-set-key (kbd "C-c M-g") 'magit-file-dispatch)
+(use-package magit
+  :bind (("C-x g" . magit-status)
+         ("C-x M-g" . magit-dispatch)
+         ("C-c M-g" . magit-file-dispatch))
+  :init
+  ;; Suppress the message we get about "Turning on
+  ;; magit-auto-revert-mode" when loading Magit.
+  (setq magit-no-message '("Turning on magit-auto-revert-mode...")))
 
-(straight-use-package 'magit-todos)
+(use-package magit-todos
+  :straight t)
 
-(straight-use-package 'diff-hl)
-(global-diff-hl-mode)
+(use-package git-commit
+  :config
+  (setq git-commit-summary-max-length 50))
 
-;; Highlight changed files in the fringe of Dired
-(add-hook 'dired-mode-hook 'diff-hl-dired-mode)
+;; Package `git-link` provides a simple function M-x git-link which
+;; copies to the kill ring a link to the current line of code or
+;; selection on Github
+(use-package git-link
+  :config
+  (setq git-link-use-commit t))
 
-;; Fall back to the display margin, if the fringe is unavailable
-(unless (display-graphic-p)
+(use-package diff-hl
+  :after magit
+
+  ;; Highlight changed files in the fringe of Dired
+  :hook (dired-mode . diff-hl-dired-mode)
+
+  ;; Refresh diff-hl after Magit operations
+  :hook (magit-post-refresh . diff-hl-magit-post-refresh)
+  :config
   (diff-hl-margin-mode))
 
-;; Refresh diff-hl after Magit operations
-(add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)
+(use-package undo-tree
+  :bind (:map undo-tree-map
+              ("M-/" . undo-tree-redo))
+  :config
+  (setq undo-tree-auto-save-history t)
+  (setq undo-tree-enable-undo-in-region nil))
 
-(straight-use-package 'undo-tree)
-(setq undo-tree-auto-save-history t)
-(global-set-key (kbd "C-z") 'undo-tree-undo)
-(global-set-key (kbd "C-S-z") 'undo-tree-redo)
+(use-package projectile
+  :config
+  (setq projectile-dynamic-mode-line nil
+        projectile-enable-caching t
+        projectile-mode-line-prefix ""
+        projectile-sort-order 'recentf
+        projectile-project-compilation-cmd "make "
+        projectile-completion-system 'ivy)
+  (projectile-mode +1)
+  (define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map))
 
-(straight-use-package 'projectile)
-(setq projectile-dynamic-mode-line nil
-      projectile-enable-caching t
-      projectile-mode-line-prefix ""
-      projectile-sort-order 'recentf
-      projectile-project-compilation-cmd "make "
-      projectile-completion-system 'ivy
-      )
-(projectile-mode)
-(define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map)
+(use-package counsel-projectile
+  :config
+  ;; Sort files using `prescient', instead of showing them in a
+  ;; lexicographic order.
+  (setq counsel-projectile-sort-files t)
 
-(straight-use-package 'counsel-projectile)
-(counsel-projectile-mode)
+  :init
+  (counsel-projectile-mode +1))
 
-(straight-use-package 'go-projectile)
-(defun my-go-mode-hook ()
-  (add-hook 'before-save-hook 'gofmt-before-save) ; gofmt before every save
-  (setq gofmt-command "goimports")
-  (go-guru-hl-identifier-mode)                    ; highlight identifiers
-  (go-eldoc-setup)
-  (local-set-key (kbd "M-.") 'godef-jump)
-  (local-set-key (kbd "M-,") 'pop-tag-mark)
-  (add-to-list 'company-backends 'company-go))
-(add-hook 'go-mode-hook 'my-go-mode-hook)
+(use-package go-projectile
+  :config
+  (defun my-go-mode-hook ()
+    (add-hook 'before-save-hook 'gofmt-before-save) ; gofmt before every save
+    (setq gofmt-command "goimports")
+    (go-guru-hl-identifier-mode)                    ; highlight identifiers
+    (go-eldoc-setup)
+    (local-set-key (kbd "M-.") 'godef-jump)
+    (local-set-key (kbd "M-,") 'pop-tag-mark)
+    (add-to-list 'company-backends 'company-go))
+  (add-hook 'go-mode-hook 'my-go-mode-hook))
