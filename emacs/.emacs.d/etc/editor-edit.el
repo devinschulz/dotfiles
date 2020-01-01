@@ -7,6 +7,9 @@
 (autoload 'zap-up-to-char "misc"
   "Kill up to, but not including ARGth occurrence of CHAR." t)
 
+;; Replace the globally defined zap-to-char with zap-up-to-char
+(global-set-key "\M-z" 'zap-up-to-char)
+
 ;; Don't blink the cursor on the opening paren when you insert a
 ;; closing paren, as we already have superior handling of that from
 ;; Smartparens.
