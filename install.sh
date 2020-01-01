@@ -17,7 +17,6 @@ npm i -g \
     typescript-language-server \
     javascript-typescript-langserver \
     vscode-css-languageserver-bin \
-    @elm-tooling/elm-language-server \
     eslint_d
 
 go get -u golang.org/x/tools/cmd/gopls
