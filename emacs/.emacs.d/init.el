@@ -32,7 +32,7 @@
                          ("org" . "http://orgmode.org/elpa/")))
 
 ;; If there's an error, let me see where it is.
-(setq debug-on-error t)
+(setq debug-on-error nil)
 
 ;; make use of standard directories
 (use-package no-littering
