@@ -1,4 +1,4 @@
-export VISUAL=nvim
+export VISUAL=emacs
 export EDITOR=$VISUAL
 
 export GITHUB_USER=devinschulz
