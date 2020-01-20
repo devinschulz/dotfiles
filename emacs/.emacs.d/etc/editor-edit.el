@@ -10,6 +10,11 @@
 ;; Replace the globally defined zap-to-char with zap-up-to-char
 (global-set-key "\M-z" 'zap-up-to-char)
 
+;; Disable prompt when converting a text block to either uppercase
+;; (C-x C+u) or lowercase (C-x C-l).
+(PUT 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
+
 ;; Don't blink the cursor on the opening paren when you insert a
 ;; closing paren, as we already have superior handling of that from
 ;; Smartparens.
