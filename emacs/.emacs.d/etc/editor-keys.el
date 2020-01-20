@@ -12,4 +12,8 @@
 (global-set-key [mouse-4] '(lambda () (interactive) (scroll-down 1)))
 (global-set-key [mouse-5] '(lambda () (interactive) (scroll-up 1)))
 
-(provide 'global-keys)
+;; Remove all trailing whitespaces before saving the buffer.
+(global-set-key (kbd "C-x s") '(lambda ()
+  (interactive)
+  (delete-trailing-whitespace)
+  (save-buffer)))
