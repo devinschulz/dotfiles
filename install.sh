@@ -9,12 +9,13 @@ stow vim
 
 # Packages required for language server protocol
 npm i -g \
-    vscode-html-languageserver-bin \
     dockerfile-language-server-nodejs \
+    eslint_d \
+    javascript-typescript-langserver \
     typescript \
     typescript-language-server \
-    javascript-typescript-langserver \
+    vim-language-server \
     vscode-css-languageserver-bin \
-    eslint_d
+    vscode-html-languageserver-bin
 
 GO111MODULE=on go get golang.org/x/tools/gopls@latest
