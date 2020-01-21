@@ -2,21 +2,21 @@
 
 stow config
 stow emacs
-stow fish
 stow git
 stow kitty
 stow tmux
 stow vim
-stow starship
 
 # Packages required for language server protocol
 npm i -g \
-    vscode-html-languageserver-bin \
     dockerfile-language-server-nodejs \
+    eslint_d \
+    javascript-typescript-langserver \
     typescript \
     typescript-language-server \
-    javascript-typescript-langserver \
+    vim-language-server \
     vscode-css-languageserver-bin \
-    eslint_d
+    vscode-html-languageserver-bin
 
-go get -u golang.org/x/tools/cmd/gopls
+# Golang language server
+GO111MODULE=on go get golang.org/x/tools/gopls@latest

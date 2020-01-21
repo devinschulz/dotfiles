@@ -2,11 +2,14 @@ export VISUAL=emacs
 export EDITOR=$VISUAL
 
 export GITHUB_USER=devinschulz
-
 export GOPATH=$HOME/go
-export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
+
+if [[ "$OSTYPE" == "darwin" ]]; then
+    # Homebrew path
+    export GOROOT=/usr/local/opt/go/libexec
+    export PATH=$PATH:$GOROOT/bin
+fi
 
 # Added by n-install (see http://git.io/n-install-repo).
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
