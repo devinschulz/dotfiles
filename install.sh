@@ -20,9 +20,3 @@ npm i -g \
 
 # Golang language server
 GO111MODULE=on go get golang.org/x/tools/gopls@latest
-
-# Install TPM (tmux plugin manager)
-if [ ! -d ~/.tmux/plugins/tpm ]; then
-    mkdir -p ~/.tmux/plugins
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
