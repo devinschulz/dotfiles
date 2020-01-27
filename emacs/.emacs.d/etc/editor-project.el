@@ -25,6 +25,9 @@
 (use-package magit-todos
   :straight t)
 
+;; Package `forge` provides a Github interface directly within magit
+(use-package forge)
+
 (use-package git-commit
   :config
   (setq git-commit-summary-max-length 50))
@@ -41,11 +44,11 @@
 
   ;; Highlight changed files in the fringe of Dired
   :hook (dired-mode . diff-hl-dired-mode)
+  :hook (prog-mode . turn-on-diff-hl-mode)
+  :hook (vc-dir-mode . turn-on-diff-hl-mode)
 
   ;; Refresh diff-hl after Magit operations
-  :hook (magit-post-refresh . diff-hl-magit-post-refresh)
-  :config
-  (diff-hl-margin-mode))
+  :hook (magit-post-refresh . diff-hl-magit-post-refresh))
 
 (use-package undo-tree
   :bind (:map undo-tree-map
