@@ -36,3 +36,4 @@ ido-save-directory-list.el
 emacs/.emacs.d/var
 emacs/.emacs.d/straight
 emacs/.emacs.d/places
+emacs/.emacs.d/.lsp-session-v1
