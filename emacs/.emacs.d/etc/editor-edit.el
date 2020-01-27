@@ -12,7 +12,7 @@
 
 ;; Disable prompt when converting a text block to either uppercase
 ;; (C-x C+u) or lowercase (C-x C-l).
-(PUT 'upcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
 ;; Don't blink the cursor on the opening paren when you insert a
