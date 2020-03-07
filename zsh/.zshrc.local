@@ -29,6 +29,11 @@ PATH="$HOME/.cargo/bin:$PATH"
 autoload -Uz compinit
 compinit
 
+# Kitty completions
+if [ -x "$(command -v kitty)" ]; then
+  kitty + complete setup zsh | source /dev/stdin
+fi
+
 ## Prompt ##
 
 # zstyle ':vcs_info:*' actionformats "(%b|%a) " "zsh: %r"
