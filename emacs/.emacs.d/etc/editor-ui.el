@@ -2,7 +2,8 @@
 (global-display-line-numbers-mode t)
 
 ;; Set the font family
-(set-frame-font "Operator Mono" nil t)
+(when (member "Operator Mono" (font-family-list))
+  (set-frame-font "Operator Mono-9" nil t))
 
 (use-package doom-modeline
   :init

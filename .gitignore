@@ -37,3 +37,6 @@ emacs/.emacs.d/var
 emacs/.emacs.d/straight
 emacs/.emacs.d/places
 emacs/.emacs.d/.lsp-session-v1
+vim/.config/nvim/repos/
+vim/.vim/sessions/
+vim/.vim/undofiles
