@@ -38,8 +38,7 @@
          ("C-c C-<" . mc/mark-all-like-this)))
 
 (use-package move-text
-  :bind (("M-g <up>" . move-text-up)
-         ("M-g <down>" . move-text-down)))
+  :init (move-text-default-bindings))
 
 (use-package comment-dwim-2
   :bind ("M-;" . comment-dwim-2))
@@ -66,3 +65,7 @@
 
 (use-package hungry-delete
   :hook (after-init . global-hungry-delete-mode))
+
+(use-package beacon
+  :config
+  (beacon-mode 1))
