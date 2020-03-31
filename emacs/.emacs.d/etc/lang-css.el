@@ -17,3 +17,7 @@
 (use-package css-eldoc
   :commands turn-on-css-eldoc
   :hook ((css-mode scss-mode less-css-mode) . turn-on-css-eldoc))
+
+(use-package stylus-mode
+  :straight (:host github :repo "vladh/stylus-mode"
+                   :files ("stylus-mode.el")))
