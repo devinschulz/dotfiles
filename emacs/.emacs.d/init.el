@@ -34,9 +34,13 @@
 ;; If there's an error, let me see where it is.
 (setq debug-on-error nil)
 
+;;; Load built-in utility libraries
+(require 'map)
+
 ;; make use of standard directories
 (use-package no-littering
   :demand t)
+
 
 (use-package dash)
 (use-package f)

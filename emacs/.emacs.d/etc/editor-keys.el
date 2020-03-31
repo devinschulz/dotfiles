@@ -1,8 +1,9 @@
+;; Don't suggest shorter ways to type commands in M-x, since they
+;; don't apply when using Selectrum.
+(setq suggest-key-bindings nil)
+
 ;; Join the next line
 (global-set-key (kbd "M-j") (lambda () (interactive) (join-line -1)))
-
-;; Always go to the right indentation on the next line
-(global-set-key (kbd "RET") 'newline-and-indent)
 
 ;; Jump to function at point
 (define-key emacs-lisp-mode-map (kbd "C-c .") 'find-function-at-point)

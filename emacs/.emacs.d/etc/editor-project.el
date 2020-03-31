@@ -58,24 +58,23 @@
   (setq undo-tree-enable-undo-in-region nil))
 
 (use-package projectile
+  :bind-keymap* (("C-x p" . projectile-command-map))
   :config
-  (setq projectile-dynamic-mode-line nil
-        projectile-enable-caching t
-        projectile-mode-line-prefix ""
-        projectile-sort-order 'recentf
-        projectile-project-compilation-cmd "make "
-        projectile-completion-system 'ivy)
-  (projectile-mode +1)
-  (define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map))
 
-(use-package counsel-projectile
-  :config
-  ;; Sort files using `prescient', instead of showing them in a
-  ;; lexicographic order.
-  (setq counsel-projectile-sort-files t)
+  (setq projectile-indexing-method 'alien)
+  
+  ;; Use Selectrum (via `completing-read') for Projectile instead of
+  ;; IDO.
+  (setq projectile-completion-system 'default)
 
-  :init
-  (counsel-projectile-mode +1))
+  ;; When switching projects, give the option to choose what to do.
+  ;; This is a way better interface than having to remember ahead of
+  ;; time to use a prefix argument on `projectile-switch-project'
+  ;; (because, and please be honest here, when was the last time you
+  ;; actually remembered to do that?).
+  (setq projectile-switch-project-action 'projectile-commander)
+
+  (projectile-mode +1))
 
 (use-package go-projectile
   :config

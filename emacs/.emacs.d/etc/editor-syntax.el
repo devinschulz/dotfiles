@@ -80,3 +80,11 @@
   ("C-c e r" . embrace-replace)
   ("C-c e a" . embrace-add)
   ("C-c e c" . embrace-change))
+
+;; Package `apheleia' implements a sophisticated algorithm for
+;; applying code formatters asynchronously on save without moving
+;; point or modifying the scroll position.
+(use-package apheleia
+  :straight (:host github :repo "raxod502/apheleia")
+  :init
+  (apheleia-global-mode +1))

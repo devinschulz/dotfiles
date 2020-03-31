@@ -3,8 +3,7 @@
          ("\\.prettierrc'" . js2-mode))
   :hook ((js2-mode . js2-imenu-extras-mode)
          (js2-mode . js2-highlight-unused-variables-mode)
-         (js2-mode . add-node-modules-path)
-         (js2-mode . web-mode-init-prettier-hook))
+         (js2-mode . add-node-modules-path))
   :config
   (setq js-indent-level 2
         js-basic-offset 2
@@ -27,8 +26,7 @@
 
 (use-package rjsx-mode
   :mode ("\\.jsx\\'" . rjsx-mode)
-  :hook ((rjsx-mode . add-node-modules-path)
-         (rjsx-mode . web-mode-init-prettier-hook)))
+  :hook ((rjsx-mode . add-node-modules-path)))
 
 (use-package add-node-modules-path
   :commands add-node-modules-path
@@ -37,14 +35,6 @@
 ;; Run Mocha or Jasmine tests
 (use-package mocha
   :config (use-package mocha-snippets))
-
-(defun web-mode-init-prettier-hook ()
-  "Initialize prettier"
-  (add-node-modules-path)
-  (prettier-js-mode))
-
-(use-package prettier-js
-  :bind ("C-c p" . prettier-js))
 
 (use-package typescript-mode
   :mode (("\\.ts\\'" . typescript-mode)
