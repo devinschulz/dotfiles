@@ -69,3 +69,9 @@
 (use-package beacon
   :config
   (beacon-mode 1))
+
+(use-package dumbparens
+  :straight (:host github :repo "raxod502/dumbparens"
+                   :files ("dumbparens.el"))
+  :config
+  (dumbparens-global-mode t))
