@@ -1,7 +1,7 @@
 [user]
 	name = Devin Schulz
 	email = devin@devinschulz.com
-	signingkey = C7E3228CEB877F00
+	signingkey = 94F1FA8066BB8F921A622CEC9F76BDB6295B0080
 [core]
 	editor = emacs -nw
 	excludesfile = /Users/dev/.gitignore_global
