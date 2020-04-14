@@ -27,6 +27,7 @@
 	cp = cherry-pick
 	rg = rebase
 	st = status
+	cleanup-local = !remove-git-merged
 [credential]
 	helper = osxkeychain
 [diff]
