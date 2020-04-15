@@ -1,9 +1,14 @@
 ;; Display line numbers
 (global-display-line-numbers-mode t)
 
+(setq primary-font "Operator Mono")
+
 ;; Set the font family
-(when (member "Operator Mono" (font-family-list))
-  (set-frame-font "Operator Mono-11" nil t))
+(when (member primary-font (font-family-list))
+  ;; Fonts are appearing smaller in macOS
+  (if (equal system-type 'darwin)
+      (set-frame-font (format "%s-11" primary-font) nil t)
+    (set-frame-font (format "%s-9" primary-font) nil t)))
 
 (use-package doom-modeline
   :init
