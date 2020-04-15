@@ -3,7 +3,7 @@
 
 ;; Set the font family
 (when (member "Operator Mono" (font-family-list))
-  (set-frame-font "Operator Mono-9" nil t))
+  (set-frame-font "Operator Mono-11" nil t))
 
 (use-package doom-modeline
   :init
