@@ -20,7 +20,7 @@
   :config
   (setq zettel-indicator "§")
   (setq deft-extensions '("org" "md" "txt"))
-  (setq deft-default-extension "org")
+  (setq deft-default-extension "txt")
   (setq deft-directory (concat org-directory "/braindump"))
   (setq deft-recursive t)
 
@@ -45,5 +45,8 @@
        search-term
        3))))
 
-;; (use-package zetteldeft
-;;   :after deft)
+(use-package zetteldeft
+  :after deft
+  :config
+  (setq zetteldeft-id-format "%Y%m%d%H%M")
+  (setq zetteldeft-id-regex "[0-9]\\{12\\}"))
