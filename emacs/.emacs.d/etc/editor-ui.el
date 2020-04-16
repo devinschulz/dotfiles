@@ -1,14 +1,12 @@
 ;; Display line numbers
 (global-display-line-numbers-mode t)
 
-(setq primary-font "Operator Mono")
-
 ;; Set the font family
-(when (member primary-font (font-family-list))
-  ;; Fonts are appearing smaller in macOS
-  (if (equal system-type 'darwin)
-      (set-frame-font (format "%s-11" primary-font) nil t)
-    (set-frame-font (format "%s-9" primary-font) nil t)))
+(let ((font "Operator Mono"))
+  (when (member font (font-family-list))
+    ;; Fonts are appearing smaller in macOS 10.15.4+
+    (let ((frame-font (if (equal system-type 'darwin) (format "%s-11" font) (format "%s-9" font))))
+      (set-frame-font frame-font nil t))))
 
 (use-package doom-modeline
   :init
@@ -22,7 +20,7 @@
         doom-modeline-major-mode-color-icon     t
         doom-modeline-major-mode-icon           t
         doom-modeline-minor-modes               nil)
-  :hook (after-init . doom-modeline-mode))
+  (doom-modeline-mode 1))
 
 (use-package doom-themes
   :init
@@ -33,7 +31,7 @@
   (doom-themes-treemacs-config)
   (doom-themes-org-config)
   :hook (after-init . (lambda() (if (display-graphic-p)
-                                    (load-theme 'doom-molokai 'no-confirm)
+                                    (load-theme 'doom-one 'no-confirm)
                                   (load-theme 'monokai 'no-confirm)))))
 
 (use-package monokai-theme)
