@@ -34,6 +34,11 @@
 ;; If there's an error, let me see where it is.
 (setq debug-on-error nil)
 
+;; Up the memory so improve the performance due to the fact that the
+;; client/server communication generates a lot of memory/garbage.
+;; <https://github.com/emacs-lsp/lsp-mode#performance>.
+(setq gc-cons-threshold (* 100 1024 1024))
+
 ;;; Load built-in utility libraries
 (require 'map)
 
@@ -41,6 +46,11 @@
 (use-package no-littering
   :demand t)
 
+(use-package esup
+  :ensure t
+  ;; To use MELPA Stable use ":pin mepla-stable",
+  :pin melpa
+  :commands (esup))
 
 (use-package dash)
 (use-package f)
@@ -51,9 +61,12 @@
 ;; Make Emacs use the $PATH set up by the user's shell
 (use-package exec-path-from-shell
   :straight t
-  :demand t)
-
-(when (memq window-system '(mac ns x))
+  :if (memq window-system '(mac ns x))
+  :config
+  (setq exec-path-from-shell-debug t)
+  (add-to-list 'exec-path-from-shell-variables "NVM_BIN")
+  (add-to-list 'exec-path-from-shell-variables "GOPATH")
+  (add-to-list 'exec-path-from-shell-variables "GOROOT")
   (exec-path-from-shell-initialize))
 
 ;;load all packages in etc

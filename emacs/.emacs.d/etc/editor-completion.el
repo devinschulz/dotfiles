@@ -1,5 +1,4 @@
 (use-package company
-  :init
   :config
 
   ;; Always display the entire suggestion list onscreen, placing it
@@ -11,8 +10,8 @@
   ;; conflicts with ElDoc.)
   (setq company-frontends '(company-pseudo-tooltip-frontend))
 
- ;; Make completions display twice as soon.
-  (setq company-idle-delay 0.15)
+ ;; Make completions display as soon as possible
+  (setq company-idle-delay 0.0)
 
   ;; Make completions display after only typed one character, instead
   ;; of three.
@@ -49,9 +48,6 @@
 
   (global-company-mode +1))
 
-(use-package company-lsp
-  :after lsp-mode)
-
 (use-package company-quickhelp
   :config
   (company-quickhelp-mode +1))
@@ -65,8 +61,7 @@
 
 (use-package which-key
   :config
-  (setq which-key-sort-order 'which-key-key-order-alpha
-      which-key-side-window-max-height 0.25
-      which-key-idle-delay 0.25)
-  (which-key-mode +1)
-  (which-key-setup-side-window-bottom))
+  (setq which-key-sort-order 'which-key-key-order-alpha)
+  (setq which-key-side-window-max-height 0.25)
+  (setq which-key-idle-delay 0.25)
+  (which-key-mode))

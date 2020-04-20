@@ -47,8 +47,7 @@
          ("M-g j" . dumb-jump-go)
          ("M-g i" . dumb-jump-go-prompt)
          ("M-g x" . dumb-jump-go-prefer-external)
-         ("M-g z" . dumb-jump-go-prefer-external-other-window))
-  :config (setq dumb-jump-selector 'ivy))
+         ("M-g z" . dumb-jump-go-prefer-external-other-window)))
 
 (use-package visual-regexp
   :bind (("M-%" . vr/query-replace)))
