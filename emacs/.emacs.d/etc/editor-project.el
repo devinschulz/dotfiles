@@ -15,12 +15,12 @@
 ;; Magit
 (use-package magit
   :bind (("C-x g" . magit-status)
-         ("C-x M-g" . magit-dispatch)
-         ("C-c M-g" . magit-file-dispatch))
+         ("C-x M-g" . magit-dispatch))
   :init
   ;; Suppress the message we get about "Turning on
   ;; magit-auto-revert-mode" when loading Magit.
-  (setq magit-no-message '("Turning on magit-auto-revert-mode...")))
+  (setq magit-no-message '("Turning on magit-auto-revert-mode..."))
+  (global-magit-file-mode))
 
 (use-package magit-todos
   :straight t)
@@ -42,13 +42,17 @@
 (use-package diff-hl
   :after magit
 
-  ;; Highlight changed files in the fringe of Dired
-  :hook (dired-mode . diff-hl-dired-mode)
-  :hook (prog-mode . turn-on-diff-hl-mode)
-  :hook (vc-dir-mode . turn-on-diff-hl-mode)
+  :hook (
+         (vc-dir-mode . turn-on-diff-hl-mode)
+         ;; Since diff-hl only updates highlights whenever the files
+         ;; has saved, flydiff-mode offers highlighting when the file
+         ;; has yet to be saved
+         ((dired-mode prog-mode vc-dir-mode) . diff-hl-flydiff-mode)
 
-  ;; Refresh diff-hl after Magit operations
-  :hook (magit-post-refresh . diff-hl-magit-post-refresh))
+         ;; Refresh diff-hl after Magit operations
+         (magit-post-refresh . diff-hl-magit-post-refresh))
+  :init
+  (global-diff-hl-mode))
 
 (use-package undo-tree
   :bind (:map undo-tree-map
@@ -62,7 +66,7 @@
   :config
 
   (setq projectile-indexing-method 'alien)
-  
+
   ;; Use Selectrum (via `completing-read') for Projectile instead of
   ;; IDO.
   (setq projectile-completion-system 'default)
