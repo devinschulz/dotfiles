@@ -21,15 +21,16 @@
   ;; Display errors in the echo area after only 0.2 seconds, not 0.9.
   (setq flycheck-display-errors-delay 0.2)
 
+  ;; Disable linting header and footer commentary in emacs lisp files
+  (setq flycheck-disabled-checkers '(emacs-lisp-checkdoc))
+
   (global-flycheck-mode +1))
 
 (use-package flyspell-correct
   :diminish flyspell-correct-auto-mode
   :bind (("C-c i n" . flyspell-correct-next)
          ("C-c i p" . flyspell-correct-previous)
-         ("C-c i w" . flyspell-correct-wrapper))
-  :config
-  (setq flyspell-correct-interface #'flyspell-correct-ivy))
+         ("C-c i w" . flyspell-correct-wrapper)))
 
 (use-package ispell
   :init
