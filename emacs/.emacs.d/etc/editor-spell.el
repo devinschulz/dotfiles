@@ -4,8 +4,7 @@
          (flycheck-mode . add-node-modules-path))
   :config
   (setq-default flycheck-disabled-checkers
-                (append flycheck-disabled-checkers
-                        '(javascript-jshint json-jsonlist)))
+                (append flycheck-disabled-checkers '(javascript-jshint json-jsonlist emacs-lisp-checkdoc)))
 
   ;; Run a syntax check when changing buffers, just in case you
   ;; modified some other files that impact the current one. See
@@ -20,9 +19,6 @@
 
   ;; Display errors in the echo area after only 0.2 seconds, not 0.9.
   (setq flycheck-display-errors-delay 0.2)
-
-  ;; Disable linting header and footer commentary in emacs lisp files
-  (setq flycheck-disabled-checkers '(emacs-lisp-checkdoc))
 
   (global-flycheck-mode +1))
 
