@@ -57,16 +57,14 @@
 (use-package popup)
 (use-package async)
 (use-package better-defaults)
+(use-package direnv
+  :config
+  (direnv-mode))
 
 ;; Make Emacs use the $PATH set up by the user's shell
-(use-package exec-path-from-shell
-  :straight t
-  :if (memq window-system '(mac ns x))
-  :config
-  (setq exec-path-from-shell-debug t)
-  (add-to-list 'exec-path-from-shell-variables "NVM_BIN")
-  (add-to-list 'exec-path-from-shell-variables "GOPATH")
-  (add-to-list 'exec-path-from-shell-variables "GOROOT")
+(use-package exec-path-from-shell)
+
+(when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
 
 ;;load all packages in etc
