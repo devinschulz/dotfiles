@@ -85,6 +85,9 @@
 ;; applying code formatters asynchronously on save without moving
 ;; point or modifying the scroll position.
 (use-package apheleia
-  :straight (:host github :repo "raxod502/apheleia")
-  :init
-  (apheleia-global-mode +1))
+  :straight (:host github :repo "raxod502/apheleia"))
+;; Commented out since there is an endless loop which is crashing
+;; emacs while saving and formatting the buffer.
+;; https://github.com/raxod502/apheleia/pull/12
+;; :init
+;; (apheleia-global-mode +1))

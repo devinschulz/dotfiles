@@ -60,8 +60,10 @@
 (use-package company-go)
 
 (use-package which-key
-  :config
+  :defer 2
+  :init
   (setq which-key-sort-order 'which-key-key-order-alpha)
   (setq which-key-side-window-max-height 0.25)
   (setq which-key-idle-delay 0.25)
+  :config
   (which-key-mode))
