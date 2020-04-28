@@ -1,5 +1,6 @@
 export VISUAL=emacs
 export EDITOR=$VISUAL
+export PAGER=less
 
 export GITHUB_USER=devinschulz
 export GOPATH=$HOME/go
@@ -22,8 +23,7 @@ if [ $ITERM_SESSION_ID ]; then
   export PROMPT_COMMAND='echo -ne "\033];${PWD##*/}\007"; ':"$PROMPT_COMMAND"
 fi
 
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+# Improve startup performance by lazy loading nvm
+export NVM_LAZY_LOAD=true
 
-xsource ~/exports.local
+source ~/exports.local
