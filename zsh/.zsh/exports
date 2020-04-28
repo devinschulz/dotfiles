@@ -26,4 +26,7 @@ fi
 # Improve startup performance by lazy loading nvm
 export NVM_LAZY_LOAD=true
 
-source ~/exports.local
+LOCAL_EXPORTS=~/exports.local
+if [[ -f "$LOCAL_EXPORTS" ]]; then
+    source ~/exports.local
+fi

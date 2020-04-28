@@ -6,8 +6,9 @@ autoload -Uz compinit
 compinit
 
 # ensure dotfiles bin directory is loaded first
-PATH="$HOME/.bin:/usr/local/sbin:$PATH"
-PATH="$HOME/.cargo/bin:$PATH"
+PATH=$HOME/.bin:/usr/local/sbin:$PATH
+PATH=$HOME/.cargo/bin:$PATH
+PATH=$PATH:/usr/local/go/bin
 
 # Kitty completions
 if [ -x "$(command -v kitty)" ]; then
