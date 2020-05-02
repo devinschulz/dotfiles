@@ -1,7 +1,6 @@
 (use-package lsp-mode
   :commands lsp
-
-
+  :hook (prog-mode . lsp)
   :init
   ;; enable log only for debug
   (setq lsp-log-io nil)
