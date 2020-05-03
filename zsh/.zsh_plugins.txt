@@ -1,4 +1,3 @@
-MichaelAquilina/zsh-auto-notify
 agkozak/zsh-z
 ascii-soup/zsh-url-highlighter
 g-plane/zsh-yarn-autocompletions
