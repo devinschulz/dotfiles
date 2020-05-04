@@ -22,7 +22,6 @@ alias dcstart='docker-compose start'
 alias dcdestroy='docker-compose stop && docker-compose rm -f'
 
 alias did="vim +'normal Go' +'r!date' ~/Google\ Drive/did.txt"
-alias cat='bat'
 alias ping='prettyping --nolegend'
 alias top='htop'
 alias help='tldr'
