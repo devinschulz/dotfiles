@@ -13,6 +13,7 @@ npm i -g \
     javascript-typescript-langserver \
     typescript \
     typescript-language-server \
+    pure-prompt \
     vim-language-server \
     vscode-css-languageserver-bin \
     vscode-html-languageserver-bin \
