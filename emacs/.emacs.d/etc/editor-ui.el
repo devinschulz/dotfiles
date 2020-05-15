@@ -5,7 +5,7 @@
 (let ((font "Operator Mono"))
   (when (member font (font-family-list))
     ;; Fonts are appearing smaller in macOS 10.15.4+
-    (let ((frame-font (if (equal system-type 'darwin) (format "%s-11" font) (format "%s-9" font))))
+    (let ((frame-font (if (equal system-type 'darwin) (format "%s-12" font) (format "%s-9" font))))
       (set-frame-font frame-font nil t))))
 
 (use-package doom-modeline
