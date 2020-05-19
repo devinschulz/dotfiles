@@ -158,6 +158,7 @@ cask 'gpg-suite'
 cask 'grammarly'
 cask 'imageoptim'
 cask 'jet'
+cask 'kap'
 cask 'kitty'
 cask 'mongodb-compass'
 cask 'mysqlworkbench'
@@ -165,12 +166,8 @@ cask 'osxfuse'
 cask 'runjs'
 cask 'signal'
 cask 'slack'
-cask 'virtualbox'
-cask 'virualbox-extension-pack'
 cask 'vlc'
 
 mas 'Lungo', id: 1263070803
-mas 'Magnet', id: 441258766
 mas 'Xcode', id: 497799835
 mas 'xScope', id: 889428659
-mas 'Todoist', id: 585829637
