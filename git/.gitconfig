@@ -3,7 +3,7 @@
 	email = devin@devinschulz.com
 	signingkey = 94F1FA8066BB8F921A622CEC9F76BDB6295B0080
 [core]
-	editor = emacs -nw
+	editor = vim
 	excludesfile = /Users/dev/.gitignore_global
 [mergetool]
 	keepBackup = false
@@ -33,7 +33,7 @@
 [diff]
 	tool = nvimdiff
 [difftool "nvimdiff"]
-	cmd = "nvim -d -u ~/.vimrc \"$LOCAL\" \"$REMOTE\""
+	cmd = "vim -d -u ~/.vimrc \"$LOCAL\" \"$REMOTE\""
 [difftool]
 	prompt = false
 [gpg]
