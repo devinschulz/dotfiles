@@ -1,5 +1,4 @@
 (use-package selectrum
-  :straight (:host github :repo "raxod502/selectrum")
   :defer t
   :init
 
@@ -7,7 +6,6 @@
   (selectrum-mode +1))
 
 (use-package ctrlf
-  :straight (:host github :repo "raxod502/ctrlf")
   :init
   (ctrlf-mode +1))
 
