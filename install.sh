@@ -4,6 +4,16 @@ stow emacs
 stow git
 stow kitty
 stow tmux
+stow vim
+stow alacritty
+
+# Check if tmux package manager is installed, if not, install it
+[ ! -d "~/.tmux/plugins/tmp" ] &&
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+# install or update vim plug to the latest version
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Packages required for language server protocol
 npm i -g \

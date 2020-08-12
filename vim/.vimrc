@@ -1,12 +1,30 @@
-call plug#begin('~/.vim/plugged')
-  Plug 'junegunn/vim-easy-align'
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-surround'
-  Plug 'tpope/vim-commentary'
-  Plug 'airblade/vim-gitgutter'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
-call plug#end()
+packadd minpac
+call minpac#init()
+
+call minpac#add('airblade/vim-gitgutter')
+call minpac#add('ajh17/VimCompletesMe')
+call minpac#add('chrisbra/colorizer')
+call minpac#add('chrisbra/unicode.vim')
+call minpac#add('editorconfig/editorconfig-vim')
+call minpac#add('frazrepo/vim-rainbow')
+call minpac#add('itchyny/lightline.vim')
+call minpac#add('junegunn/fzf', { 'do': { -> fzf#install() } })
+call minpac#add('junegunn/fzf.vim')
+call minpac#add('junegunn/vim-easy-align')
+call minpac#add('k-takata/minpac', {'type': 'opt'})
+call minpac#add('mattn/emmet-vim')
+call minpac#add('mhinz/vim-grepper')
+call minpac#add('prabirshrestha/asyncomplete.vim')
+call minpac#add('prabirshrestha/vim-lsp')
+call minpac#add('sheerun/vim-polyglot')
+call minpac#add('terryma/vim-multiple-cursors')
+call minpac#add('tpope/vim-commentary')
+call minpac#add('tpope/vim-eunuch')
+call minpac#add('tpope/vim-fugitive')
+call minpac#add('tpope/vim-surround')
+call minpac#add('tpope/vim-vinegar')
+call minpac#add('vim-scripts/matchit.zip')
+call minpac#add('w0rp/ale')
 
 " turn on syntax highlighting
 syntax on
@@ -29,9 +47,12 @@ set ignorecase
 " ... unless they contain at least one uppercase letter
 set smartcase
 
+set lazyredraw
+set ttyfast
+
 " display a statusline
 set laststatus=2
-set statusline=%=%m\ %c\ %P\ %f
+setglobal statusline=[%n]\ %<%.99f\ %y%h%w%m%r%=%-14.(%l,%c%V%)\ %P
 
 " turn on hybrid line numbers
 set number relativenumber
@@ -48,9 +69,6 @@ set showcmd
 
 " show 2 lines above and below the cursor
 set scrolloff=2
-
-" highlight the current line
-set cursorline
 
 " vertical splits will be at the bottom
 set splitbelow
@@ -70,3 +88,39 @@ set background=dark
 
 " remove trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
+
+" Set the leader key
+let mapleader = ","
+
+" Section: plugin configuration
+
+" minpac
+command! PackUpdate call minpac#update('', {'do': 'call minpac#status()'})
+command! PackClean call minpac#clean()
+command! PackStatus call minpac#status()
+
+" fzf
+" shortcut to bring up the files search
+map ; :Files<CR>
+
+" asyncomplete
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+
+" grepper
+let g:grepper = {}
+let g:grepper.tools = ['grep', 'git', 'rg']
+
+" search for the current word
+nnoremap <Leader>* :Grepper -cword -noprompt<CR>
+
+" search for the current selection
+nmap gs <plug>(GrepperOperator)
+xmap gs <plug>(GrepperOperator)
+
+set grepprg=rg\ -H\ --no-heading\ --vimgrep
+set grepformat=$f:$l:%c:%M
+
+nnoremap <Leader>g :Grepper -tool git<CR>
+nnoremap <Leader>G :Grepper -tool rg<CR>
