@@ -10,10 +10,8 @@ PATH=$HOME/.bin:/usr/local/sbin:$PATH
 PATH=$HOME/.cargo/bin:$PATH
 PATH=$PATH:/usr/local/go/bin
 
-# Kitty completions
-if [ -x "$(command -v kitty)" ]; then
-  kitty + complete setup zsh | source /dev/stdin
-fi
+eval "$(starship init zsh)"
 
 source <(antibody init)
 antibody bundle < ~/.zsh_plugins.txt
+[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
