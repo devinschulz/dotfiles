@@ -55,8 +55,6 @@ alias -g V='| nvim -'
 
 [[ -f ~/aliases.local ]] && source ~/aliases.local
 
-[[ -f ~/InVision/scripts/scripts.sh ]] && alias conv="~/InVision/scripts/scripts.sh"
-
 # Git
 # Taken from prezto - https://github.com/sorin-ionescu/prezto/blob/master/modules/git/alias.zsh
 alias g='git'
