@@ -1,19 +1,19 @@
 #!/bin/bash
 
-stow emacs
+stow alacritty
+stow fish
 stow git
 stow kitty
 stow tmux
 stow vim
-stow alacritty
 
 # Check if tmux package manager is installed, if not, install it
 [ ! -d "~/.tmux/plugins/tmp" ] &&
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-# install or update vim plug to the latest version
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+# install minpac
+git clone https://github.com/k-takata/minpac.git \
+    ~/.vim/pack/minpac/opt/minpac
 
 # Packages required for language server protocol
 npm i -g \
