@@ -1,3 +1,5 @@
+set nocompatible
+
 packadd minpac
 call minpac#init()
 
@@ -7,7 +9,8 @@ call minpac#add('chrisbra/colorizer')
 call minpac#add('chrisbra/unicode.vim')
 call minpac#add('editorconfig/editorconfig-vim')
 call minpac#add('frazrepo/vim-rainbow')
-call minpac#add('itchyny/lightline.vim')
+call minpac#add('itchyny/vim-gitbranch')
+call minpac#add('jiangmiao/auto-pairs')
 call minpac#add('junegunn/fzf', { 'do': { -> fzf#install() } })
 call minpac#add('junegunn/fzf.vim')
 call minpac#add('junegunn/vim-easy-align')
@@ -16,7 +19,8 @@ call minpac#add('mattn/emmet-vim')
 call minpac#add('mhinz/vim-grepper')
 call minpac#add('prabirshrestha/asyncomplete.vim')
 call minpac#add('prabirshrestha/vim-lsp')
-call minpac#add('sheerun/vim-polyglot')
+call minpac#add('severin-lemaignan/vim-minimap')
+call minpac#add('sheerun/vim-polyglot', {'type': 'opt'})
 call minpac#add('terryma/vim-multiple-cursors')
 call minpac#add('tpope/vim-commentary')
 call minpac#add('tpope/vim-eunuch')
@@ -24,6 +28,7 @@ call minpac#add('tpope/vim-fugitive')
 call minpac#add('tpope/vim-surround')
 call minpac#add('tpope/vim-vinegar')
 call minpac#add('vim-scripts/matchit.zip')
+call minpac#add('vim-test/vim-test')
 call minpac#add('w0rp/ale')
 
 " turn on syntax highlighting
@@ -52,7 +57,18 @@ set ttyfast
 
 " display a statusline
 set laststatus=2
-setglobal statusline=[%n]\ %<%.99f\ %y%h%w%m%r%=%-14.(%l,%c%V%)\ %P
+
+" custom status line
+set statusline=
+set statusline +=%1*\ %n\ %*              "buffer number
+set statusline +=%5*%{&ff}%*              "file format
+set statusline +=%3*%y%*                  "file type
+set statusline +=%4*\ %<%F%*\ %*          "full path
+set statusline +=%2*%m%*                  "modified flag
+set statusline +=%1*%=%5l%*               "current line
+set statusline +=%2*/%L%*                 "total lines
+set statusline +=%1*%4v\ %*               "virtual column number
+set statusline +=%2*0x%04B\ %*            "hex character under cursor
 
 " turn on hybrid line numbers
 set number relativenumber
@@ -85,6 +101,10 @@ set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 " enable 256 colors
 set t_Co=256
 set background=dark
+
+" set the undo directory
+set undodir=~/.vim/undodir
+set undofile
 
 " remove trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
@@ -124,3 +144,4 @@ set grepformat=$f:$l:%c:%M
 
 nnoremap <Leader>g :Grepper -tool git<CR>
 nnoremap <Leader>G :Grepper -tool rg<CR>
+
