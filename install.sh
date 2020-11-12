@@ -33,5 +33,3 @@ npm i -g \
 
 # Golang language server
 GO111MODULE=on go get golang.org/x/tools/gopls@latest
-GO111MODULE=on go get github.com/jesseduffield/lazygit
-GO111MODULE=on go get github.com/jesseduffield/lazydocker
