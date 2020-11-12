@@ -1,0 +1,26 @@
+{
+  "coc.preferences.extensionUpdateCheck": "daily",
+  "coc.preferences.formatOnType": true,
+  "coc.preferences.formatOnSaveFiletypes": ["go", "python", "markdown", "javascript", "typescript", "json", "jsonc"],
+ 	"languageserver": {
+    "go": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod"],
+      "trace.server": "verbose",
+      "filetypes": ["go"]
+    },
+		"rust": {
+			"command": "rust-analyzer",
+			"trace.server": "verbose",
+			"filetypes": ["rust"],
+			"rootPatterns": ["Cargo.toml", ".git/"],
+			"progressOnInitialization": true
+		},
+		"bash": {
+      "command": "bash-language-server",
+      "filetypes": ["sh"],
+      "args": ["start"],
+      "ignoredRootPaths": ["~"]
+    }
+  }
+}
