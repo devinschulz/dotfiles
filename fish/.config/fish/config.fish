@@ -41,3 +41,6 @@ set PATH ~/projects/coordinator/bin $PATH
 
 # Init the startship prompt
 starship init fish | source
+
+# Disable the startup message
+set -e fish_greeting
