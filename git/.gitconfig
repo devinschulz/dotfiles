@@ -14,7 +14,7 @@
 	relativePaths = true
 [commit]
 	verbose = true
-	gpgSign = true
+	gpgsign = true
 [color]
 	ui = auto
 [fetch]
@@ -27,7 +27,7 @@
 	cp = cherry-pick
 	rg = rebase
 	st = status
-	cleanup-local = !remove-git-merged
+	gone = ! "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D"
 [credential]
 	helper = osxkeychain
 [diff]
@@ -37,10 +37,15 @@
 [difftool]
 	prompt = false
 [gpg]
-	program = gpg
+	program = /usr/local/MacGPG2/bin/gpg2
 [github]
 	user = devinschulz
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [pull]
 	rebase = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
