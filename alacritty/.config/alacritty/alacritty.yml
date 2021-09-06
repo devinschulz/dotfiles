@@ -1,38 +1,119 @@
+# Configuration for Alacritty, the GPU enhanced terminal emulator
+
+window:
+  # Window decorations
+  #
+  # Available values:
+  # - full: borders and title bar
+  # - none: neither borders nor title bar
+  # - transparent: title bar, transparent background and title bar buttons
+  # - buttonless: title bar, transparent background, but no title bar buttons
+  decorations: full
+
+
 # Font configuration
 font:
   normal:
-    family: Jetbrains Mono
+    family: JetbrainsMono Nerd Font
   bold:
-    family: Jetbrains Mono
+    family: JetbrainsMono Nerd Font
   italic:
-    family: Jetbrains Mono
+    family: JetbrainsMono Nerd Font
   size: 13.0
 
-# Colors (Material Theme)
-colors:
-  # Default colors
-  primary:
-    background: '#263238'
-    foreground: '#eeffff'
+draw_bold_text_with_bright_colors: true
 
-  # Normal colors
-  normal:
-    black:   '#000000'  # Arbitrary
-    red:     '#e53935'
-    green:   '#91b859'
-    yellow:  '#ffb62c'
-    blue:    '#6182b8'
-    magenta: '#ff5370'  # Dark pink of the original material theme
-    cyan:    '#39adb5'
-    white:   '#a0a0a0'  # Arbitrary
+scheme:
+  # Tokyo Night theme, based on both:
+  #   https://github.com/ghifarit53/tokyonight-vim
+  #   https://github.com/enkia/tokyo-night-vscode-theme
+  tokyo-night: &tokyo-night
+    # Default colors
+    primary:
+      background: '0x1a1b26'
+      foreground: '0xa9b1d6'
 
-  # Bright colors
-  bright:
-    black:   '#4e4e4e'  # Arbitrary
-    red:     '#ff5370'
-    green:   '#c3e88d'
-    yellow:  '#ffcb6b'
-    blue:    '#82aaff'
-    magenta: '#f07178'  # Pink of the original material theme
-    cyan:    '#89ddff'
-    white:   '#ffffff'  # Arbitrary
+    # Normal colors
+    normal:
+      black:   '0x32344a'
+      red:     '0xf7768e'
+      green:   '0x9ece6a'
+      yellow:  '0xe0af68'
+      blue:    '0x7aa2f7'
+      magenta: '0xad8ee6'
+      cyan:    '0x449dab'
+      white:   '0x787c99'
+
+    # Bright colors
+    bright:
+      black:   '0x444b6a'
+      red:     '0xff7a93'
+      green:   '0xb9f27c'
+      yellow:  '0xff9e64'
+      blue:    '0x7da6ff'
+      magenta: '0xbb9af7'
+      cyan:    '0x0db9d7'
+      white:   '0xacb0d0'
+
+  tokyo-night-storm: &tokyo-night-storm
+    # Default colors
+    primary:
+      background: '0x24283b'
+      foreground: '0xa9b1d6'
+
+    # Normal colors
+    normal:
+      black:   '0x32344a'
+      red:     '0xf7768e'
+      green:   '0x9ece6a'
+      yellow:  '0xe0af68'
+      blue:    '0x7aa2f7'
+      magenta: '0xad8ee6'
+      cyan:    '0x449dab'
+      white:   '0x9699a8'
+
+    # Bright colors
+    bright:
+      black:   '0x444b6a'
+      red:     '0xff7a93'
+      green:   '0xb9f27c'
+      yellow:  '0xff9e64'
+      blue:    '0x7da6ff'
+      magenta: '0xbb9af7'
+      cyan:    '0x0db9d7'
+      white:   '0xacb0d0'
+  # github Alacritty Colors
+  # https://github.com/tmcdonell/config-alacritty/blob/master/alacritty.yml
+  github-dark: &github-dark
+    # Default colors
+    primary:
+      background: '0x24292e'
+      foreground: '0xd1d5da'
+
+    # Normal colors
+    normal:
+      black:   '0x1D2125'
+      red:     '0xf14c4c'
+      green:   '0x23d18b'
+      yellow:  '0xe2e210'
+      blue:    '0x3b8eea'
+      magenta: '0xbc3fbc'
+      cyan:    '0x29b7da'
+      white:   '0xd1d5da'
+
+    # Bright colors
+    bright:
+      black:   '0x666666'
+      red:     '0xf14c4c'
+      green:   '0x23d18b'
+      yellow:  '0xf5f543'
+      blue:    '0x3b8eea'
+      magenta: '0xd670d6'
+      cyan:    '0x29b7da'
+      white:   '0xd1d5da'
+
+    indexed_colors:
+      - { index: 16, color: '0xd18616' }
+      - { index: 17, color: '0xf14c4c' }
+
+colors: *tokyo-night
