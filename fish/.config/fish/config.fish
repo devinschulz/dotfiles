@@ -15,6 +15,14 @@ fundle init
 alias lzg="lazygit"
 alias help="tldr"
 alias ping="prettyping --nolegend"
+alias k="kubectl"
+
+# Path aliases
+alias ..="cd ../"
+alias ...="cd ../../"
+alias ....="cd ../../../"
+alias .....="cd ../../../../"
+alias ......="cd ../../../../../"
 
 # Git aliases
 alias g="git"
