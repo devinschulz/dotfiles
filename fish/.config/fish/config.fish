@@ -3,9 +3,13 @@ if not functions -q fundle
   eval (curl -sfL https://git.io/fundle-install)
 end
 
+fundle plugin acomagu/fish-async-prompt
+fundle plugin edc/bass
+fundle plugin gazorby/fish-abbreviation-tips
 fundle plugin jethrokuan/z
-fundle plugin franciscolourenco/done
 fundle plugin jorgebucaran/fish-bax
+fundle plugin jorgebucaran/nvm.fish
+fundle plugin joseluisq/gitnow
 fundle plugin markcial/upto
 fundle plugin oh-my-fish/plugin-pj
 
@@ -32,6 +36,7 @@ alias gco="git checkout"
 alias gf="git fetch"
 alias gl="git log --all --decorate --oneline --graph"
 alias gr="git rebase"
+alias gp="git pull"
 
 thefuck --alias | source
 
@@ -52,3 +57,7 @@ starship init fish | source
 
 # Disable the startup message
 set -e fish_greeting
+
+if test -e ~/exports.local.fish
+  source ~/exports.local.fish
+end
