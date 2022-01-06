@@ -18,11 +18,12 @@ set ideajoin
 set ideastrictmode
 
 """ Mappings --------------------------------
-map <leader>d <Action>(Debug)
-map <leader>c <Action>(Stop)
-map <leader>r <Action>(RenameElement)
-map <leader>z <Action>(ToggleDistractionFreeMode)
-map <leader>a <Action>(Annotate)
-map <leader>s <Action>(SelectInProjectView)
 map <S-Space> <Action>(GotoNextError)
+map <leader>a <Action>(Annotate)
+map <leader>c <Action>(Stop)
+map <leader>d <Action>(Debug)
+map <leader>r <Action>(RenameElement)
+map <leader>s <Action>(SelectInProjectView)
+map <leader>t <Action>(RunClass)
+map <leader>z <Action>(ToggleDistractionFreeMode)
 
