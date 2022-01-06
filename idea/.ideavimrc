@@ -1,0 +1,28 @@
+let mapleader=","
+
+""" Plugins ---------------------------------
+set surround
+set multiple-cursors
+set clipboard+=ideaput
+set commentary
+
+""" Common settings -------------------------
+set scrolloff=5
+set incsearch
+set so=5
+set showmode
+set nu
+
+""" Idea specific settings ------------------
+set ideajoin
+set ideastrictmode
+
+""" Mappings --------------------------------
+map <leader>d <Action>(Debug)
+map <leader>c <Action>(Stop)
+map <leader>r <Action>(RenameElement)
+map <leader>z <Action>(ToggleDistractionFreeMode)
+map <leader>a <Action>(Annotate)
+map <leader>s <Action>(SelectInProjectView)
+map <S-Space> <Action>(GotoNextError)
+
