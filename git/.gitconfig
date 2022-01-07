@@ -1,7 +1,7 @@
 [user]
 	name = Devin Schulz
 	email = devin@devinschulz.com
-	signingkey = 94F1FA8066BB8F921A622CEC9F76BDB6295B0080
+	signingkey = E152F861
 [core]
 	editor = vim
 	excludesfile = /Users/dev/.gitignore_global
@@ -37,7 +37,7 @@
 [difftool]
 	prompt = false
 [gpg]
-	program = /usr/local/MacGPG2/bin/gpg2
+	program = /usr/local/bin/gpg
 [github]
 	user = devinschulz
 [url "git@github.com:"]
