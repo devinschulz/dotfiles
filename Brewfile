@@ -97,16 +97,12 @@ cask 'font-hack'
 cask 'font-hack-nerd-font'
 cask 'font-ibm-plex'
 cask 'font-inconsolata'
-cask 'font-input'
 cask 'font-jetbrains-mono-nerd-font'
 cask 'font-karla'
 cask 'font-meslo-lg'
 cask 'font-montserrat'
-cask 'font-nixie-one'
-cask 'font-office-code-pro'
 cask 'font-open-sans'
 cask 'font-oswald'
-cask 'font-playfair-display'
 cask 'font-pt-mono'
 cask 'font-roboto'
 cask 'font-roboto-mono'
@@ -118,18 +114,28 @@ cask 'font-work-sans'
 cask 'alacritty'
 cask 'appcleaner'
 cask 'cryptomator'
+cask 'brave-browser'
 cask 'docker'
+cask 'figma'
 cask 'firefox'
 cask 'fork'
 cask 'google-chrome'
+cask 'grammarly'
 cask 'imageoptim'
-cask 'mongodb-compass'
-cask 'mysqlworkbench'
 cask 'osxfuse'
+cask 'postico'
 cask 'runjs'
 cask 'signal'
 cask 'webstorm'
+cask 'zoom'
 
+mas '1Blocker', id: 1365531024
+mas '1Password for Safari', id: 568903335
+mas 'Craft', id: 1487937127
 mas 'Lungo', id: 1263070803
+mas 'NextDNS', id: 1464122853
+mas 'Slack', id: 803453959
+mas 'Vinegar', id: 1591303229
 mas 'Xcode', id: 497799835
 mas 'xScope', id: 889428659
+mas 'Vimari', id: 1480933944
