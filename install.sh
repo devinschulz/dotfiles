@@ -3,7 +3,6 @@
 stow alacritty
 stow fish
 stow git
-stow kitty
 stow tmux
 stow nvim
 
@@ -21,14 +20,15 @@ if [ ! -d ~/.local/share/nvim/site/pack/packer  ]; then
 fi
 
 # Packages required for language server protocol
-npm i -g \
+npm i --location=global \
     bash-language-server \
     dockerfile-language-server-nodejs \
     eslint_d \
     javascript-typescript-langserver \
     typescript \
     typescript-language-server \
-    pure-prompt \
+    svelte-language-server \
+    @tailwindcss/language-server \
     vim-language-server \
     vscode-css-languageserver-bin \
     vscode-html-languageserver-bin \
@@ -36,6 +36,9 @@ npm i -g \
     vue-language-server \
     yaml-language-server \
     import-js
+
+# Install luaformatter
+luarocks install --server=https://luarocks.org/dev luaformatter
 
 # Golang language server
 GO111MODULE=on go get golang.org/x/tools/gopls@latest

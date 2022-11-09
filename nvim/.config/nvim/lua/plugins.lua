@@ -1,166 +1,184 @@
+local fn = vim.fn
+
+-- The root dir to install all plugins. Plugins are under opt/ or start/ sub-directory.
+vim.g.plugin_home = fn.stdpath("data") .. "/site/pack/packer"
+
+local function packer_ensure_install()
+    -- Where to install packer.nvim -- the package manager (we make it opt)
+    local packer_dir = vim.g.plugin_home .. "/opt/packer.nvim"
+
+    if fn.glob(packer_dir) ~= "" then return false end
+
+    -- Auto-install packer in case it hasn't been installed.
+    vim.api.nvim_echo({{"Installing packer.nvim", "Type"}}, true, {})
+
+    local packer_repo = "https://github.com/wbthomason/packer.nvim"
+    local install_cmd = string.format("!git clone --depth=1 %s %s", packer_repo,
+                                      packer_dir)
+    vim.cmd(install_cmd)
+
+    return true
+end
+
+local fresh_install = packer_ensure_install()
+
+vim.cmd("packadd packer.nvim")
+
+local packer = require("packer")
 
 --------------------------------------------------------------
 -- Plugins
 --------------------------------------------------------------
 
-require("packer").startup(function(use)
-  use "wbthomason/packer.nvim" -- packer can manage itself
-  use "phanviet/vim-monokai-pro"
+packer.startup(function(use)
+    -- It's recommended to load impatient as early as possible
+    use "lewis6991/impatient.nvim"
 
-  -- Themes
-  use "folke/tokyonight.nvim"
-  use "projekt0n/github-nvim-theme"
+    use {"wbthomason/packer.nvim", opt = true} -- packer can manage itself
 
-  -- language server configurations
-  use "neovim/nvim-lspconfig"
-  use "glepnir/lspsaga.nvim" -- LSP UI
+    -- Themes
+    use {
+        "phanviet/vim-monokai-pro",
+        "projekt0n/github-nvim-theme",
+        "EdenEast/nightfox.nvim",
+        "folke/tokyonight.nvim",
+    }
 
-  use {
-    "kabouzeid/nvim-lspinstall",
-    opt = true,
-  }
+    -- language server configuration
+    use {"onsails/lspkind-nvim", event = "VimEnter"}
 
-  use {
-    "ray-x/lsp_signature.nvim", 
-    after = "nvim-lspconfig",
-  }
+    -- auto-completion engine
+    use {
+        "hrsh7th/nvim-cmp",
+        after = "lspkind-nvim",
+        config = [[require("config.nvim-cmp")]]
+    }
 
-  use {
-    "andymass/vim-matchup",
-  }
+    -- nvim-cmp completion sources
+    use {"hrsh7th/cmp-nvim-lsp", after = "nvim-cmp"}
+    use {"hrsh7th/cmp-path", after = "nvim-cmp"}
+    use {"hrsh7th/cmp-buffer", after = "nvim-cmp"}
+    use {"hrsh7th/cmp-omni", after = "nvim-cmp"}
+    use {
+        "quangnguyen30192/cmp-nvim-ultisnips",
+        after = {"nvim-cmp", "ultisnips"}
+    }
 
-  use 'Pocco81/AutoSave.nvim'
+    -- nvim-lsp configuration (it relies on cmp-nvim-lsp, so it should be loaded after cmp-nvim-lsp).
+    use {
+        "neovim/nvim-lspconfig",
+        after = "cmp-nvim-lsp",
+        config = [[require("config.lsp")]]
+    }
 
-  -- autocomplete and snippets
-  use {
-    "hrsh7th/nvim-compe",
-    requires = "onsails/lspkind-nvim",
-    -- event = "InsertEnter",
-    config = function()
-      require("config.compe").setup()
-    end,
-  }
+    use {"SirVer/ultisnips"}
 
-  use "L3MON4D3/LuaSnip"
+    use {
+        "nvim-treesitter/nvim-treesitter",
+        "windwp/nvim-ts-autotag",
+        config = function()
+            require("nvim-treesitter.configs").setup {autotag = true}
+        end,
+        run = ":TSUpdate"
+    }
 
-   -- autopairs
-  use {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    -- after = "nvim-compe",
-    config = function()
-      require "config.autopairs"
-    end,
-  }
+    -- LSP UI
+    use {
+        "glepnir/lspsaga.nvim",
+        branch = "main",
+        config = function() require("lspsaga").init_lsp_saga() end
+    }
 
-  use "liuchengxu/vista.vim"
+    use {"ray-x/lsp_signature.nvim", after = "nvim-lspconfig"}
 
- -- Editing
-  use "tpope/vim-surround"
-  use "jiangmiao/auto-pairs"
-  use "machakann/vim-highlightedyank" -- Highlight yanking
+    use {"andymass/vim-matchup"}
+    use "Pocco81/AutoSave.nvim"
 
-  -- Comment
-  use {
-    "terrortylor/nvim-comment",
-    config = function() 
-      require("nvim_comment").setup()
-    end,
-  }
+    use {
+        "nvim-lualine/lualine.nvim",
+        requires = {"kyazdani42/nvim-web-devicons", opt = true},
+        config = function()
+            require("lualine").setup {theme = "tokyonight"}
+        end
+    }
 
-  -- Git
-  use "airblade/vim-gitgutter"
+    -- autopairs
+    use {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        config = function() require("nvim-autopairs").setup() end
+    }
 
-  -- Git diff signs
-  use {
-    "lewis6991/gitsigns.nvim",
-    event = "BufRead",
-    config = function()
-      require("config.gitsigns").setup()
-    end,
-  }
+    -- Editing
+    use {
+        "kylechui/nvim-surround",
+        tag = "*",
+        config = function() require("nvim-surround").setup() end
+    }
+    use "tpope/vim-commentary"
+    use "jiangmiao/auto-pairs"
 
-  -- file managing , picker etc
-  use {
-  	"kyazdani42/nvim-tree.lua",
-    config = function() 
-      require("config.nvimtree").setup()
-    end,
-  }
+    -- Git
+    use "airblade/vim-gitgutter"
 
-  use "kyazdani42/nvim-web-devicons"
-  use "nvim-lua/plenary.nvim"
-  use "nvim-lua/popup.nvim"
-  use "nvim-telescope/telescope-media-files.nvim"
-  use "nvim-telescope/telescope.nvim"
+    -- Git diff signs
+    use {
+        "lewis6991/gitsigns.nvim",
+        event = "BufRead",
+        config = function() require("gitsigns").setup() end
+    }
 
-  use {
-    "nvim-treesitter/nvim-treesitter",
-    branch = "0.5-compat",
-    run = ":TSUpdate",
-    config = function()
-      require("config.treesitter").setup()
-    end,
-  }
+    -- file managing , picker etc
+    use {
+        "nvim-tree/nvim-tree.lua",
+        requires = "nvim-tree/nvim-web-devicons",
+        config = function() require("nvim-tree").setup() end
+    }
 
-  use "nvim-treesitter/nvim-treesitter-refactor"
+    -- Fancy tabs
+    use {
+        "akinsho/bufferline.nvim",
+        tag = "v3.*",
+        requires = "kyazdani42/nvim-web-devicons",
+        config = function() require("bufferline").setup() end
+    }
 
-  use {
-    'yamatsum/nvim-nonicons',
-    requires = {'kyazdani42/nvim-web-devicons'}
-  }
+    use "kyazdani42/nvim-web-devicons"
+    use "nvim-lua/plenary.nvim"
+    use "nvim-lua/popup.nvim"
+    use "nvim-telescope/telescope-media-files.nvim"
+    use {"nvim-telescope/telescope.nvim", requires = "nvim-lua/plenary.nvim"}
 
-  -- misc
-  use {'prettier/vim-prettier', run= 'yarn install'}
+    -- Vim version of magit
+    use {"TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim"}
 
-    -- nvim-bufferline
-  use {
-    'akinsho/nvim-bufferline.lua',
-    config = function()
-      require("config.bufferline").setup()
-    end,
-    event = "BufWinEnter",
-  }
+    -- Undo tree
+    use {"simnalamburt/vim-mundo", cmd = {"MundoToggle", "MundoShow"}}
 
-  use {
-    'folke/trouble.nvim',
-    requires = "kyazdani42/nvim-web-devicons"
-  }
+    -- misc
+    use {
+        "sbdchd/neoformat",
+        config = function() require("config.neoformat").setup() end
+    }
 
-   -- Status line
-  use {
-    "famiu/feline.nvim",
-    config = function()
-      require("feline").setup()
-    end
-  }
+    use {
+        "folke/trouble.nvim",
+        requires = "kyazdani42/nvim-web-devicons",
+        config = function() require("trouble").setup() end
+    }
 
+    -- Indent lines
+    use "lukas-reineke/indent-blankline.nvim"
 
-  -- Indent lines
-  use {
-    "lukas-reineke/indent-blankline.nvim",
-    config = function()
-      require('config.blankline').setup()
-    end
-  }
+    -- Colorize hex, rgba, colours
+    use {
+        "norcalli/nvim-colorizer.lua",
+        config = function() require("colorizer").setup() end
+    }
 
-  -- Colorize hex, rgba, colours
-  use {  
-    "norcalli/nvim-colorizer.lua", 
-    config = function() 
-      require("colorizer").setup()
-    end
-  }
-
-  use {
-    "karb94/neoscroll.nvim",
-    opt = true,
-    config = function() 
-      require("neoscroll").setup()
-    end
-  }
-
-  -- Vim-test
-  use "vim-test/vim-test"
+    use "vim-test/vim-test"
+    use "github/copilot.vim"
 
 end)
+
+if fresh_install then packer.sync() end

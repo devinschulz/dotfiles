@@ -7,4 +7,5 @@ M.setup = function()
 }
 end
 
-return M 
+return M
+

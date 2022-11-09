@@ -1,41 +1,44 @@
 local utils = {}
 
+function utils.executable(name)
+    if vim.fn.executable(name) > 0 then return true end
+    return false
+end
+
 function utils.add_keymap(mode, opts, keymaps)
-  for _, keymap in ipairs(keymaps) do 
-    vim.api.nvim_set_keymap(mode, keymap[1], keymap[2], opts)
-  end
+    for _, keymap in ipairs(keymaps) do
+        vim.api.nvim_set_keymap(mode, keymap[1], keymap[2], opts)
+    end
 end
 
 function utils.add_keymap_normal_mode(opts, keymaps)
-  utils.add_keymap("n", opts, keymaps)
+    utils.add_keymap("n", opts, keymaps)
 end
 
 function utils.add_keymap_visual_mode(opts, keymaps)
-  utils.add_keymap("v", opts, keymaps)
+    utils.add_keymap("v", opts, keymaps)
 end
 
 function utils.add_keymap_visual_block_mode(opts, keymaps)
-  utils.add_keymap("x", opts, keymaps)
+    utils.add_keymap("x", opts, keymaps)
 end
 
 function utils.add_keymap_insert_mode(opts, keymaps)
-  utils.add_keymap("i", opts, keymaps)
+    utils.add_keymap("i", opts, keymaps)
 end
 
 function utils.add_keymap_term_mode(opts, keymaps)
-  utils.add_keymap("t", opts, keymaps)
+    utils.add_keymap("t", opts, keymaps)
 end
 
 function utils.loaded_plugins()
-  local count = 0
+    local count = 0
 
-  for _, v in pairs(packer_plugins) do
-    if (v.loaded == true) then
-      count = count + 1
+    for _, v in pairs(packer_plugins) do
+        if (v.loaded == true) then count = count + 1 end
     end
-  end
 
-  return count
+    return count
 end
 
 return utils

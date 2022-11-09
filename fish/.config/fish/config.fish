@@ -1,6 +1,6 @@
 # Install Fundle if not present
 if not functions -q fundle
-  eval (curl -sfL https://git.io/fundle-install)
+    eval (curl -sfL https://git.io/fundle-install)
 end
 
 fundle plugin acomagu/fish-async-prompt
@@ -40,6 +40,9 @@ alias gp="git pull"
 
 thefuck --alias | source
 
+# 1Password completions
+op completion fish | source
+
 # Add local scripts to PATH
 set PATH ~/.bin $PATH
 
@@ -59,5 +62,9 @@ starship init fish | source
 set -e fish_greeting
 
 if test -e ~/exports.local.fish
-  source ~/exports.local.fish
+    source ~/exports.local.fish
 end
+
+# Bun
+set -Ux BUN_INSTALL "/Users/dev/.bun"
+set -px --path PATH "/Users/dev/.bun/bin"
