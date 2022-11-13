@@ -36,6 +36,10 @@ packer.startup(function(use)
 
     use {"wbthomason/packer.nvim", opt = true} -- packer can manage itself
 
+    -- Snippets
+    use "rafamadriz/friendly-snippets"
+    use "L3MON4D3/LuaSnip"
+
     -- Themes
     use {
         "phanviet/vim-monokai-pro",
@@ -59,10 +63,7 @@ packer.startup(function(use)
     use {"hrsh7th/cmp-path", after = "nvim-cmp"}
     use {"hrsh7th/cmp-buffer", after = "nvim-cmp"}
     use {"hrsh7th/cmp-omni", after = "nvim-cmp"}
-    use {
-        "quangnguyen30192/cmp-nvim-ultisnips",
-        after = {"nvim-cmp", "ultisnips"}
-    }
+    use { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" }
 
     -- nvim-lsp configuration (it relies on cmp-nvim-lsp, so it should be loaded after cmp-nvim-lsp).
     use {
@@ -71,14 +72,12 @@ packer.startup(function(use)
         config = [[require("config.lsp")]]
     }
 
-    use {"SirVer/ultisnips"}
-
     use {
         "nvim-treesitter/nvim-treesitter",
+        "p00f/nvim-ts-rainbow",
         "windwp/nvim-ts-autotag",
-        config = function()
-            require("nvim-treesitter.configs").setup {autotag = true}
-        end,
+        "JoosepAlviste/nvim-ts-context-commentstring",
+        config = [[require("config.treesitter")]],
         run = ":TSUpdate"
     }
 
@@ -94,20 +93,14 @@ packer.startup(function(use)
     use {"andymass/vim-matchup"}
     use "Pocco81/AutoSave.nvim"
 
-    use {
-        "nvim-lualine/lualine.nvim",
-        requires = {"kyazdani42/nvim-web-devicons", opt = true},
-        config = function()
-            require("lualine").setup {theme = "tokyonight"}
-        end
-    }
-
-    -- autopairs
-    use {
-        "windwp/nvim-autopairs",
-        event = "InsertEnter",
-        config = function() require("nvim-autopairs").setup() end
-    }
+    -- use {
+    --     "nvim-lualine/lualine.nvim",
+    --     requires = {"kyazdani42/nvim-web-devicons", opt = true},
+    --     config = function()
+    --         require("lualine").setup {theme = "tokyonight"}
+    --     end
+    -- }
+    use {'feline-nvim/feline.nvim', config = [[require('config.feline')]]}
 
     -- Editing
     use {
@@ -116,17 +109,32 @@ packer.startup(function(use)
         config = function() require("nvim-surround").setup() end
     }
     use "tpope/vim-commentary"
-    use "jiangmiao/auto-pairs"
+    use "lukas-reineke/indent-blankline.nvim"
+    use {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        config = function() require("nvim-autopairs").setup() end
+    }
+    use {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
+    }
+    use { "itchyny/vim-highlighturl", event = "BufRead" }
+    use {
+      "folke/todo-comments.nvim",
+      requires = "nvim-lua/plenary.nvim",
+    }
 
     -- Git
-    use "airblade/vim-gitgutter"
-
-    -- Git diff signs
     use {
         "lewis6991/gitsigns.nvim",
         event = "BufRead",
         config = function() require("gitsigns").setup() end
     }
+    use { "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" }
+    use { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" }
 
     -- file managing , picker etc
     use {
@@ -149,16 +157,19 @@ packer.startup(function(use)
     use "nvim-telescope/telescope-media-files.nvim"
     use {"nvim-telescope/telescope.nvim", requires = "nvim-lua/plenary.nvim"}
 
-    -- Vim version of magit
-    use {"TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim"}
 
     -- Undo tree
     use {"simnalamburt/vim-mundo", cmd = {"MundoToggle", "MundoShow"}}
 
-    -- misc
     use {
         "sbdchd/neoformat",
         config = function() require("config.neoformat").setup() end
+    }
+    use {
+      "MunifTanjim/prettier.nvim",
+      config = function ()
+        require('config.prettier')
+      end
     }
 
     use {
@@ -167,17 +178,22 @@ packer.startup(function(use)
         config = function() require("trouble").setup() end
     }
 
-    -- Indent lines
-    use "lukas-reineke/indent-blankline.nvim"
-
     -- Colorize hex, rgba, colours
     use {
         "norcalli/nvim-colorizer.lua",
         config = function() require("colorizer").setup() end
     }
 
-    use "vim-test/vim-test"
     use "github/copilot.vim"
+
+    use {
+      "nvim-neotest/neotest",
+      requires = {
+        "nvim-lua/plenary.nvim",
+        "nvim-treesitter/nvim-treesitter",
+        "antoinemadec/FixCursorHold.nvim"
+      }
+    }
 
 end)
 

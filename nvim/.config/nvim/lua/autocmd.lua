@@ -36,6 +36,3 @@ autocmd("TextYankPost",
 autocmd("BufReadPost", {
     command = [[if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif]]
 })
-
-command([[autocmd BufWritePre * undojoin | Neoformat]])
-
