@@ -1,4 +1,6 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
 [kubernetes]
 format = 'on [⛵ $context \($namespace\)](dimmed green) '
-disabled = false
+disabled = true
 
