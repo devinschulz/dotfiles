@@ -37,8 +37,8 @@ npm i --location=global \
     yaml-language-server \
     import-js
 
-# Install luaformatter
-luarocks install --server=https://luarocks.org/dev luaformatter
+# Rust packages
+cargo install stylua
 
 # Golang language server
 GO111MODULE=on go get golang.org/x/tools/gopls@latest
