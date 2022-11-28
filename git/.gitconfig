@@ -1,9 +1,9 @@
 [user]
 	name = Devin Schulz
 	email = devin@devinschulz.com
-	signingkey = E152F861
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJzKB6DNFyUZ3BfdeeW3imQnZh7BeLy7QSyBRVjhpqEu
 [core]
-	editor = vim
+	editor = nvim
 	excludesfile = /Users/dev/.gitignore_global
 [mergetool]
 	keepBackup = false
@@ -38,6 +38,7 @@
 	prompt = false
 [gpg]
 	program = /usr/local/bin/gpg
+	format = ssh
 [github]
 	user = devinschulz
 [url "git@github.com:"]
@@ -49,3 +50,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
