@@ -52,8 +52,8 @@ set PATH (go env GOPATH)/bin $PATH
 # Add cargo crates to PATH
 set PATH ~/.cargo/bin $PATH
 
-# Add the coordinator to PATH
-set PATH ~/projects/coordinator/bin $PATH
+# Add `cape` to PATH
+set PATH ~/projects/cli $PATH
 
 # Init the startship prompt
 starship init fish | source
