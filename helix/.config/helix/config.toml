@@ -1,0 +1,34 @@
+theme = "tokyonight_storm"
+
+[editor]
+line-number = "relative"
+gutters     = ["diagnostics", "spacer", "line-numbers", "spacer", "diff"]
+bufferline  = "multiple"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.indent-guides]
+render = true
+character = "╎"
+skip-levels = 1
+
+[editor.statusline]
+left = ["mode", "spinner"]
+center = ["file-name"]
+right = ["diagnostics", "selections", "position",  "file-type"]
+separator = "│"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[keys.normal]
+C-p = "file_picker"
+
+[editor.search]
+wrap-around = false

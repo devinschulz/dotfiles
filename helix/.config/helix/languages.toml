@@ -1,0 +1,41 @@
+[[language]]
+name = "html"
+scope = "source.html"
+formatter = { command = 'prettier', args = ["--parser", "html"] }
+language-server = { command = "vscode-html-languageservice", args = ["--stdio"] }
+
+[[language]]
+name = "astro"
+scope = "source.astro"
+roots = ["package.json", "astro.config.mjs"]
+language-server = { command = "astro-ls", args = ["--stdio"] }
+
+[[language]]
+name = "css"
+scope = "source.css"
+formatter = { command = 'prettier', args = ["--parser", "css"] }
+auto-format = true
+
+[[language]]
+name = "javascript"
+scope = "source.js"
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+auto-format = true
+
+[[language]]
+name = "json"
+scope = "source.json"
+formatter = { command = 'prettier', args = ["--parser", "json"] }
+
+[[language]]
+name = "typescript"
+scope = "source.ts"
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+auto-format = true
+
+# [[language]]
+# name = "tailwindcss"
+# injection-regex = "(postcss|css|html)"
+# file-types = ["css", "tsx", "jsx"]
+# roots = ["tailwind.config.js","tailwind.config.cjs"]
+# language-server = { command = "tailwindcss-language-server", args = ["-vvv", "--stdio"] }
