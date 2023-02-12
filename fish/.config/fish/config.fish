@@ -20,6 +20,7 @@ alias lzg="lazygit"
 alias help="tldr"
 alias ping="prettyping --nolegend"
 alias k="kubectl"
+alias pn="pnpm"
 
 # Path aliases
 alias ..="cd ../"
@@ -65,6 +66,3 @@ if test -e ~/exports.local.fish
     source ~/exports.local.fish
 end
 
-# Bun
-set -Ux BUN_INSTALL "/Users/dev/.bun"
-set -px --path PATH "/Users/dev/.bun/bin"
