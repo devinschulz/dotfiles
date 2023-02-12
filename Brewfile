@@ -23,6 +23,7 @@ brew 'gh'
 brew 'gifsicle'
 brew 'git'
 brew 'gnu-getopt'
+brew 'gnu-sed'
 brew 'gnupg', link: false
 brew 'gnutls'
 brew 'go'
@@ -115,22 +116,20 @@ cask 'obsidian'
 cask 'osxfuse'
 cask 'postico'
 cask 'signal'
-cask 'shottr'
-cask 'thingsmacsandboxhelper'
+cask 'transmission'
 cask 'visual-studio-code'
 cask 'webstorm'
 cask 'zoom'
 
 mas '1Blocker', id: 1365531024
 mas '1Password for Safari', id: 568903335
+mas 'Anybox', id: 1593408455
 mas 'Craft', id: 1487937127
-mas 'GoodLinks', id: 1474335294
 mas 'Lungo', id: 1263070803
 mas 'Magnet', id: 441258766
 mas 'Meeter', id: 1510445899
 mas 'Pixelmator Pro', id: 1289583905
 mas 'Slack', id: 803453959
-mas 'Things', id: 904280696
 mas 'Vimari', id: 1480933944
 mas 'Vinegar', id: 1591303229
 mas 'Xcode', id: 497799835
