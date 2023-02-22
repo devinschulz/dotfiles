@@ -1,7 +1,13 @@
 return {
   {
-    "zbirenbaum/copilot.lua",
+    "zbirenbaum/copilot-cmp",
     event = "VeryLazy",
+    dependencies = {
+      {
+        "zbirenbaum/copilot.lua",
+        config = true,
+      },
+    },
     config = true,
   },
   {
