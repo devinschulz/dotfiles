@@ -51,16 +51,6 @@ return {
     end,
   },
   {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "zbirenbaum/copilot-cmp",
-    },
-    opts = function(_, opts)
-      local cmp = require("cmp")
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "copilot" } }))
-    end,
-  },
-  {
     "neovim/nvim-lspconfig",
     opts = {
       ---@type lspconfig.options
