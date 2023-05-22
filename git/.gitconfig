@@ -3,7 +3,7 @@
 	email = devin@devinschulz.com
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJzKB6DNFyUZ3BfdeeW3imQnZh7BeLy7QSyBRVjhpqEu
 [core]
-	editor = nvim
+	editor = hx
 	excludesfile = /Users/dev/.gitignore_global
 [mergetool]
 	keepBackup = false
