@@ -7,7 +7,8 @@ stow tmux
 stow nvim
 
 npm i -g vscode-langservers-extracted \
-  typescript
+  typescript \ 
+	svelte-language-server
 
 # Check if tmux package manager is installed, if not, install it
 [ ! -d "$HOME/.tmux/plugins/tmp" ] &&
