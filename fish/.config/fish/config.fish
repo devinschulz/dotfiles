@@ -8,7 +8,6 @@ fundle plugin edc/bass
 fundle plugin gazorby/fish-abbreviation-tips
 fundle plugin jethrokuan/z
 fundle plugin jorgebucaran/fish-bax
-fundle plugin jorgebucaran/nvm.fish
 fundle plugin joseluisq/gitnow
 fundle plugin markcial/upto
 fundle plugin oh-my-fish/plugin-pj
@@ -65,4 +64,3 @@ set -e fish_greeting
 if test -e ~/exports.local.fish
     source ~/exports.local.fish
 end
-
