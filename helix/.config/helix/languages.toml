@@ -54,3 +54,7 @@ auto-format = true
 name = "toml"
 auto-format = true
 formatter = { command = "taplo", args = ["fmt", "-", "stdin"] }
+[[language]]
+name = "lua"
+auto-format = true
+formatter = { command = 'stylua' }
