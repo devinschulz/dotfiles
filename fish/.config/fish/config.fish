@@ -55,6 +55,9 @@ set PATH ~/.cargo/bin $PATH
 # Add `cape` to PATH
 set PATH ~/projects/cli $PATH
 
+# Set the default editor to helix
+set -x EDITOR hx
+
 # Init the startship prompt
 starship init fish | source
 
