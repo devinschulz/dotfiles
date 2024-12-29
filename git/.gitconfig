@@ -1,7 +1,7 @@
 [user]
 	name = Devin Schulz
 	email = devin@devinschulz.com
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJzKB6DNFyUZ3BfdeeW3imQnZh7BeLy7QSyBRVjhpqEu
+	signingkey = ~/.ssh/id_ed25519.pub
 [core]
 	editor = hx
 	excludesfile = /Users/dev/.gitignore_global
@@ -37,12 +37,12 @@
 [difftool]
 	prompt = false
 [gpg]
-	program = /usr/local/bin/gpg
+	program = /opt/homebrew/bin/gpg
 	format = ssh
 [github]
 	user = devinschulz
 [url "git@github.com:"]
-	insteadOf = https://github.com/
+  insteadOf = https://github.com/
 [pull]
 	rebase = true
 [filter "lfs"]
@@ -50,7 +50,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-[gpg "ssh"]
-	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 [init]
 	defaultBranch = main
