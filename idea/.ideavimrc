@@ -1,4 +1,4 @@
-let mapleader=","
+let mapleader=" "
 
 """ Plugins ---------------------------------
 set surround
@@ -12,6 +12,7 @@ set incsearch
 set so=5
 set showmode
 set nu
+set relativenumber
 
 """ Idea specific settings ------------------
 set ideajoin
