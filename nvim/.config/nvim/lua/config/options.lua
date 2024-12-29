@@ -1,6 +1,6 @@
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+-- Options are automatically loaded before lazy.nvim startup
+-- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 
--- Backups
-vim.opt.backup = false
-vim.opt.swapfile = false
+-- Enable spell checking
+vim.opt.spelllang = "en_us"
+vim.opt.spell = true
