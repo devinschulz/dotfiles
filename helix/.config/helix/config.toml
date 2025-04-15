@@ -1,10 +1,11 @@
-theme = "tokyonight_storm"
+theme = "catppuccin_macchiato"
 
 [editor]
 line-number = "relative"
 gutters = ["diagnostics", "spacer", "line-numbers", "spacer", "diff"]
 bufferline = "multiple"
 auto-format = true
+rulers = [80, 120]
 
 [editor.cursor-shape]
 insert = "bar"
@@ -34,8 +35,12 @@ mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"
 
+[editor.search]
+wrap-around = false
+
 [keys.normal]
 C-p = "file_picker"
 
-[editor.search]
-wrap-around = false
+[keys.normal."space"]
+f = "file_picker_in_current_directory"
+F = "file_picker"

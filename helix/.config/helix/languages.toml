@@ -1,48 +1,61 @@
 [[language]]
-name = "astro"
-formatter = { command = 'prettier', args = ["--parser", "astro"] }
-roots = ["package.json", "astro.config.mjs"]
-language-server = { command = "astro-ls", args = ["--stdio"] }
-auto-format = true
-
-[[language]]
-name = "html"
-formatter = { command = 'prettier', args = ["--parser", "html"] }
-
-[language-server.tailwindcss-html]
-language-id = "html"
-command = "tailwindcss-language-server"
-args = ["--stdio"]
-config = {}
-
-[[language]]
 name = "json"
 formatter = { command = 'prettier', args = ["--parser", "json"] }
 
 [[language]]
-name = "css"
-formatter = { command = 'prettier', args = ["--parser", "css"] }
+name = "html"
+language-servers = ["vscode-html-language-server", "tailwindcss-ls", "copilot"]
+formatter = { command = 'prettier', args = ["--parser", "html"] }
 auto-format = true
 
-[language-server.tailwindcss-css]
-language-id = "css"
-command = "tailwindcss-language-server"
-args = ["--stdio"]
-config = {}
+[[language]]
+name = "css"
+language-servers = ["vscode-css-language-server", "tailwindcss-ls", "copilot"]
+formatter = { command = 'npx', args = ["prettier", "--parser", "css"] }
+auto-format = true
 
 [[language]]
 name = "javascript"
-formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+language-servers = [
+  "typescript-language-server",
+  "tailwindcss-ls",
+  "eslint",
+  "copilot",
+]
+formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
 auto-format = true
 
 [[language]]
 name = "typescript"
-formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+language-servers = [
+  "typescript-language-server",
+  "tailwindcss-ls",
+  "eslint",
+  "copilot",
+]
+formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
+auto-format = true
+
+[[language]]
+name = "jsx"
+language-servers = [
+  "typescript-language-server",
+  "tailwindcss-ls",
+  "eslint",
+  "copilot",
+]
+formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
 auto-format = true
 
 [[language]]
 name = "tsx"
-formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+language-servers = [
+  "typescript-language-server",
+  "tailwindcss-ls",
+  "eslint",
+  "copilot",
+]
+formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
 auto-format = true
 
 [[language]]
@@ -54,7 +67,53 @@ auto-format = true
 name = "toml"
 auto-format = true
 formatter = { command = "taplo", args = ["fmt", "-", "stdin"] }
+
 [[language]]
 name = "lua"
 auto-format = true
 formatter = { command = 'stylua' }
+
+[[language]]
+name = "astro"
+roots = ["package.json", "astro.config.mjs"]
+language-servers = ["astro-ls", "tailwindcss-ls", "eslint", "copilot"]
+# requires the plugin to be installed
+formatter = { command = 'npx', args = ["prettier", "--parser", "astro"] }
+auto-format = true
+
+# Language Servers
+[language-server.copilot]
+command = "copilot-language-server"
+args = ["--stdio"]
+
+[language-server.eslint]
+args = ["--stdio"]
+command = "vscode-eslint-language-server"
+
+[language-server.eslint.config]
+validate = "on"
+experimental = { useFlatConfig = false }
+rulesCustomizations = []
+run = "onType"
+problems = { shortenToSingleLine = false }
+nodePath = ""
+
+[language-server.eslint.config.codeAction]
+[language-server.eslint.config.codeAction.disableRuleComment]
+enable = true
+location = "separateLine"
+
+[language-server.eslint.config.codeAction.showDocumentation]
+enable = true
+
+[language-server.eslint.config.codeActionOnSave]
+enable = true
+mode = "fixAll"
+
+[language-server.eslint.config.workingDirectory]
+mode = "location"
+
+[language-server."astro-ls"]
+command = "astro-ls"
+args = ["--stdio"]
+config = { typescript = { tsdk = "/Users/devinschulz/.bun/install/global/node_modules/typescript/lib" }, environment = "node" }
