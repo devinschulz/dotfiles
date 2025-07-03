@@ -41,3 +41,9 @@ vim/.config/nvim
 vim/.config/nvim
 vim/.vim/sessions
 vim/.vim/undofiles
+helix/.config/helix/runtime
+
+fish/.config/fish/completions
+fish/.config/fish/functions
+fish/.config/fish/conf.d
+
